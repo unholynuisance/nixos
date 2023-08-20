@@ -1,5 +1,6 @@
 #+title: Configuration
 #+auto_tangle: t
+#+property: header-args :mkdirp yes
 
 * Configuration
 #+begin_src nix :tangle configuration.nix
