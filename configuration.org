@@ -12,13 +12,10 @@
 
 {
   imports =
-    [ # Include the results of the hardware scan.
+    [
       ./hardware-configuration.nix
+      ./modules/boot/boot.nix
     ];
-
-  # Bootloader.
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
 
   networking.hostName = "nixos"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
@@ -176,5 +173,27 @@
   # networking.interfaces.enp1s0.useDHCP = lib.mkDefault true;
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
+}
+#+end_src
+
+* Boot
+#+begin_src nix :tangle modules/boot/boot.nix
+{ config, pkgs, ... }:
+{
+  imports = [
+    ./grub.nix
+  ];
+}
+#+end_src
+
+** GRUB
+#+begin_src nix :tangle modules/boot/grub.nix
+{ config, pkgs, ... }:
+{
+  config = {
+    boot.loader.grub = {
+      enable = true;
+    };
+  };
 }
 #+end_src
