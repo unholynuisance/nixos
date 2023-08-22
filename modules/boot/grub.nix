@@ -6,7 +6,7 @@
       efiSupport = true;
       efiInstallAsRemovable = true;
       device = "nodev";
-      gfxmode = "auto";
+      gfxmodeEfi = "auto";
       theme = pkgs.stdenv.mkDerivation {
         pname = "distro-grub-themes";
         version = "3.1";
