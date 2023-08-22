@@ -6,6 +6,7 @@
       efiSupport = true;
       efiInstallAsRemovable = true;
       device = "nodev";
+      gfxmode = "auto";
     };
   };
 }
