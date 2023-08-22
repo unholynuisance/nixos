@@ -11,12 +11,12 @@
         pname = "distro-grub-themes";
         version = "3.1";
         src = pkgs.fetchFromGitHub {
-          owner = "AdisonCavani";
-          repo = "distro-grub-themes";
-          rev = "v3.1";
-          hash = "sha256-ZcoGbbOMDDwjLhsvs77C7G7vINQnprdfI37a9ccrmPs=";
+          owner = "shvchk";
+          repo = "poly-dark";
+          rev = "4850f0c917a0fa320cfd32779b4030baebb2ba8c";
+          hash = "sha256-o8dMaXItmmZiOIBnRRYiepPH8bPBR3tjWyALaenXqlM";
         };
-        installPhase = "cp -r customize/nixos $out";
+        installPhase = "cp -r . $out";
       };
     };
   };
