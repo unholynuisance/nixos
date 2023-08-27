@@ -34,10 +34,8 @@
     lvm_vg = {
       primary = {
         type = "lvm_vg";
-        name = "primary";
         lvs = {
           bootvol = {
-            name = "bootvol";
             size = "1G";
             content = {
               type = "btrfs";
@@ -50,7 +48,6 @@
             };
           };
           cryptrootvol = {
-            name = "cryptrootvol";
             size = "16G";
             content = {
               name = "primary-rootvol";
@@ -63,7 +60,6 @@
             };
           };
           crypthomevol = {
-            name = "crypthomevol";
             size = "100%FREE";
             content = {
               name = "primary-homevol";
@@ -76,7 +72,6 @@
             };
           };
           cryptswapvol = {
-            name = "cryptswapvol";
             size = "4G";
             content = {
               name = "primary-swapvol";
