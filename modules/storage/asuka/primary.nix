@@ -2,28 +2,30 @@
 
 {
   disko.devices = {
-    disk.primary = {
-      type = "disk";
-      device = device;
-      content = {
-        type = "gpt";
-        partitions = {
-          efi = {
-            label = "primary-efi";
-            size = "128M";
-            content = {
-              type = "filesystem";
-              format = "vfat";
-              mountpoint = "/efi";
-              extraArgs = [ "-n primary-efi" ];
+    disk = {
+      ${device.name} = {
+        type = "disk";
+        device = device.path;
+        content = {
+          type = "gpt";
+          partitions = {
+            efi = {
+              label = "${device.name}-primary-efi";
+              size = "128M";
+              content = {
+                type = "filesystem";
+                format = "vfat";
+                mountpoint = "/efi";
+                extraArgs = [ "-n primary-efi" ];
+              };
             };
-          };
-          lvm = {
-            label = "primary-lvm";
-            size = "100%";
-            content = {
-              type = "lvm_pv";
-              vg = "primary";
+            lvm = {
+              label = "${device.name}-primary-lvm";
+              size = "100%";
+              content = {
+                type = "lvm_pv";
+                vg = "primary";
+              };
             };
           };
         };
