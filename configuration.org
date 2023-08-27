@@ -175,7 +175,7 @@
 #+end_src
 
 * Storage
-#+begin_src nix :tangle modules/storage/asuka/primary.nix
+#+begin_src nix :tangle modules/storage/asuka/primary-master.nix
 { device, ... }:
 
 {
