@@ -2,6 +2,16 @@
 #+auto_tangle: t
 #+property: header-args :mkdirp yes
 
+* Hosts
+** Asuka
+#+begin_src nix :tangle modules/hosts/asuka/default.nix
+{ ... }:
+
+{
+  imports = [];
+}
+#+end_src
+
 * Configuration
 #+begin_src nix :tangle configuration.nix
 # Edit this configuration file to define what should be installed on
