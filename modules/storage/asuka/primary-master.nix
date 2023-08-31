@@ -52,6 +52,7 @@
             content = {
               name = "primary-rootvol";
               type = "luks";
+              extraFormatArgs = ["--label primary-cryptroot"];
               content = {
                 type = "btrfs";
                 mountpoint = "/";
@@ -64,6 +65,7 @@
             content = {
               name = "primary-homevol";
               type = "luks";
+              extraFormatArgs = ["--label primary-crypthome"];
               content = {
                 type = "btrfs";
                 mountpoint = "/home";
@@ -76,6 +78,7 @@
             content = {
               name = "primary-swapvol";
               type = "luks";
+              extraFormatArgs = ["--label primary-cryptswap"];
               content = {
                 type = "swap";
               };
