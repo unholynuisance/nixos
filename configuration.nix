@@ -7,8 +7,8 @@
 {
   imports =
     [
+      ./modules/default.nix
       ./hardware-configuration.nix
-      ./modules/boot/default.nix
     ];
 
   networking.hostName = "nixos"; # Define your hostname.
