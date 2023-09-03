@@ -53,6 +53,7 @@
               name = "primary-rootvol";
               type = "luks";
               extraFormatArgs = ["--label primary-cryptroot"];
+              passwordFile = "/tmp/primary-cryptroot-password";
               content = {
                 type = "btrfs";
                 mountpoint = "/";
@@ -66,6 +67,7 @@
               name = "primary-homevol";
               type = "luks";
               extraFormatArgs = ["--label primary-crypthome"];
+              passwordFile = "/tmp/primary-crypthome-password";
               content = {
                 type = "btrfs";
                 mountpoint = "/home";
@@ -79,6 +81,7 @@
               name = "primary-swapvol";
               type = "luks";
               extraFormatArgs = ["--label primary-cryptswap"];
+              passwordFile = "/tmp/primary-cryptswap-password";
               content = {
                 type = "swap";
               };
