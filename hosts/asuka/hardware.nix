@@ -14,8 +14,8 @@
     networking.useDHCP = lib.mkDefault true;
     nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
 
-    (import ./storage/primary-master.nix {
+    disko.devices = (import ./storage/primary-master.nix {
       device = { name = "vda"; path = "/dev/disk/by-id/ata-QEMU_DVD-ROM_QM00001"; };
-    })
+    }).disko.devices;
   };
 }
