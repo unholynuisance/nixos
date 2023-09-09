@@ -54,6 +54,7 @@
               type = "luks";
               extraFormatArgs = ["--label primary-cryptroot"];
               passwordFile = "/tmp/primary-cryptroot-password";
+              initrdUnlock = true;
               content = {
                 type = "btrfs";
                 extraArgs = [ "--label primary-root" ];
@@ -72,6 +73,7 @@
               type = "luks";
               extraFormatArgs = ["--label primary-crypthome"];
               passwordFile = "/tmp/primary-crypthome-password";
+              initrdUnlock = true;
               content = {
                 type = "btrfs";
                 extraArgs = [ "--label primary-home" ];
@@ -90,6 +92,7 @@
               type = "luks";
               extraFormatArgs = ["--label primary-cryptswap"];
               passwordFile = "/tmp/primary-cryptswap-password";
+              initrdUnlock = true;
               content = {
                 type = "swap";
               };
