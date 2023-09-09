@@ -56,8 +56,12 @@
               passwordFile = "/tmp/primary-cryptroot-password";
               content = {
                 type = "btrfs";
-                mountpoint = "/";
                 extraArgs = [ "--label primary-root" ];
+                subvolumes = {
+                  "@" = {
+                    mountpoint = "/";
+                  };
+                };
               };
             };
           };
@@ -70,8 +74,12 @@
               passwordFile = "/tmp/primary-crypthome-password";
               content = {
                 type = "btrfs";
-                mountpoint = "/home";
                 extraArgs = [ "--label primary-home" ];
+                subvolumes = {
+                  "@" = {
+                    mountpoint = "/home";
+                  };
+                };
               };
             };
           };
