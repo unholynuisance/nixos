@@ -75,9 +75,9 @@
   # services.xserver.libinput.enable = true;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.users.son-of-satan = {
+  users.users.unholynuisance = {
     isNormalUser = true;
-    description = "Son of Satan";
+    description = "Unholy Nuisance";
     extraGroups = [ "networkmanager" "wheel" ];
     packages = with pkgs; [
       firefox
