@@ -5,7 +5,7 @@
     nixpkgs = {
       url = "github:nixos/nixpkgs/nixos-unstable";
     };
-    
+
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -14,10 +14,14 @@
     disko = {
       url = "github:nix-community/disko";
       inputs.nixpkgs.follows = "nixpkgs";
-    }; 
+    };
   };
 
-  outputs = { self, nixpkgs, ... }@inputs: {
+  outputs = {
+    self,
+    nixpkgs,
+    ...
+  } @ inputs: {
     nixosConfigurations = {
       # personal hosts: shinji, rei, asuka, toji, mari
       # virtual hosts: kaworu
@@ -28,14 +32,15 @@
       # rei = import ...;
 
       # primary personal laptop
-      asuka = import ./hosts/asuka { inherit inputs; };
+      asuka = import ./hosts/asuka {inherit inputs;};
 
       # secondary personal laptop
-      shinji = import ./hosts/shinji { inherit inputs; };
+      shinji = import ./hosts/shinji {inherit inputs;};
 
       # primary work laptop
       # misato = import ...;
     };
+
+    formatter.x86_64-linux = nixpkgs.legacyPackages.x86_64-linux.alejandra;
   };
 }
-

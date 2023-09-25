@@ -1,6 +1,4 @@
-{ device, ... }:
-
-{
+{device, ...}: {
   disko.devices = {
     disk = {
       ${device.name} = {
@@ -16,7 +14,7 @@
                 type = "filesystem";
                 format = "vfat";
                 mountpoint = "/efi";
-                extraArgs = [ "-n primary-efi" ];
+                extraArgs = ["-n primary-efi"];
               };
             };
             lvm = {
@@ -39,7 +37,7 @@
             size = "1G";
             content = {
               type = "btrfs";
-              extraArgs = [ "--label primary-boot" ];
+              extraArgs = ["--label primary-boot"];
               subvolumes = {
                 "@" = {
                   mountpoint = "/boot";
@@ -57,7 +55,7 @@
               initrdUnlock = true;
               content = {
                 type = "btrfs";
-                extraArgs = [ "--label primary-root" ];
+                extraArgs = ["--label primary-root"];
                 subvolumes = {
                   "@" = {
                     mountpoint = "/";
@@ -76,7 +74,7 @@
               initrdUnlock = true;
               content = {
                 type = "btrfs";
-                extraArgs = [ "--label primary-home" ];
+                extraArgs = ["--label primary-home"];
                 subvolumes = {
                   "@" = {
                     mountpoint = "/home";
