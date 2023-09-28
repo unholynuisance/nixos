@@ -5,6 +5,6 @@
   ...
 }: {
   imports = [
-    ./boot/default.nix
+    ./boot
   ];
 }

@@ -10,7 +10,7 @@ in
       disko.nixosModules.disko
 
       ./../../configuration.nix
-      ./../../modules
+      ../../modules/nixos
 
       (import ./storage/primary-master.nix {
         device = {
@@ -22,6 +22,7 @@ in
       ({
         config,
         lib,
+        pkgs,
         ...
       }: {
         config = {

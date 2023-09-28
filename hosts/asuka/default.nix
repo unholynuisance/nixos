@@ -10,7 +10,7 @@ in
       disko.nixosModules.disko
 
       ./../../configuration.nix
-      ./../../modules
+      ../../modules/nixos
 
       (import ./storage/primary-master.nix {
         device = {
@@ -19,7 +19,12 @@ in
         };
       })
 
-      {config}: {
+      ({
+        config,
+        lib,
+        pkgs,
+        ...
+      }: {
         config = {
           networking.hostName = "asuka";
 
@@ -40,6 +45,6 @@ in
           fileSystems."/boot".device = lib.mkForce "/dev/disk/by-label/primary-boot";
           fileSystems."/home".device = lib.mkForce "/dev/disk/by-label/primary-home";
         };
-      }
+      })
     ];
   }
