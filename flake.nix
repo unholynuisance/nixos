@@ -27,6 +27,7 @@
       # virtual hosts: kaworu
       # work hosts: misato ritsuko gendo kozo naoko yui kyoko ryoji maya shigeru
       # server hosts: adam lilith sachiel shamshel ramiel gaghiel israfel sahaquiel bardiel zeruel arael armisael tabris lilin
+      # iso: ryoji
 
       # primary personal workstation
       # rei = import ...;
@@ -39,6 +40,9 @@
 
       # primary work laptop
       # misato = import ...;
+
+      # iso
+      ryoji = import ./hosts/ryoji {inherit inputs;};
     };
 
     formatter.x86_64-linux = nixpkgs.legacyPackages.x86_64-linux.alejandra;
