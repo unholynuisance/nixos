@@ -9,7 +9,6 @@ in
       home-manager.nixosModules.home-manager
       disko.nixosModules.disko
 
-      ./../../configuration.nix
       ../../modules/nixos
 
       (import ./storage/primary-master.nix {
