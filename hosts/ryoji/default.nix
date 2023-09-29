@@ -20,6 +20,8 @@ in
         config = {
           networking.hostName = "ryoji";
 
+          modules.nixos.guest = true;
+
           boot.initrd.availableKernelModules = ["ahci" "xhci_pci" "virtio_pci" "sr_mod" "virtio_blk"];
           boot.initrd.kernelModules = [];
           boot.kernelModules = ["kvm-amd"];
