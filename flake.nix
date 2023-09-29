@@ -38,6 +38,9 @@
       # secondary personal laptop
       shinji = import ./hosts/shinji {inherit inputs;};
 
+      # primary virtual host:
+      kaworu = import ./hosts/kaworu {inherit inputs;};
+
       # primary work laptop
       # misato = import ...;
 
