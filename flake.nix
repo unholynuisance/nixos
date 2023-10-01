@@ -48,6 +48,10 @@
       ryoji = import ./hosts/ryoji {inherit inputs;};
     };
 
+    homeConfigurations = {
+      unholynuisance = import ./users/unholynuisance {inherit inputs;};
+    };
+
     formatter.x86_64-linux = nixpkgs.legacyPackages.x86_64-linux.alejandra;
   };
 }
