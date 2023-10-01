@@ -21,6 +21,8 @@ in
             address = "mtataryn555@gmail.com";
             primary = true;
           };
+
+          modules.home.git.enable = true;
         };
       })
     ];
