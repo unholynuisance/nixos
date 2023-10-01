@@ -13,4 +13,8 @@
     ./pulseaudio.nix
     ./rtkit.nix
   ];
+
+  config = {
+    system.stateVersion = "23.05";
+  };
 }
