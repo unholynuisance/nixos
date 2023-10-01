@@ -17,9 +17,8 @@ in {
     };
   };
 
-  config =
-    lib.mkIf cfg.enable {
-      services.qemuGuest.enable = true;
-      services.spice-vdagentd.enable = true;
-    };
+  config = lib.mkIf cfg.enable {
+    services.qemuGuest.enable = true;
+    services.spice-vdagentd.enable = true;
+  };
 }

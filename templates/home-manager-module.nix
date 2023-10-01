@@ -3,8 +3,7 @@
   lib,
   pkgs,
   ...
-} @ args:
-let
+} @ args: let
   name = "name";
   cfg = config.modules.home.${name};
 in {
