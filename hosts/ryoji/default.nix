@@ -20,15 +20,7 @@ in
         config = {
           networking.hostName = "ryoji";
 
-          modules.nixos.guest = true;
-
-          boot.initrd.availableKernelModules = ["ahci" "xhci_pci" "virtio_pci" "sr_mod" "virtio_blk"];
-          boot.initrd.kernelModules = [];
-          boot.kernelModules = ["kvm-amd"];
-          boot.extraModulePackages = [];
-
-          networking.useDHCP = lib.mkDefault true;
-          nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
+          modules.nixos.guest.enable = true;
         };
       })
     ];
