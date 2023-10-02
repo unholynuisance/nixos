@@ -18,6 +18,7 @@
       primary = true;
     };
 
+    modules.home.common.enable = true;
     modules.home.git.enable = true;
   };
 }
