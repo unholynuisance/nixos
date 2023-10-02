@@ -6,6 +6,7 @@
 }: {
   imports = [
     ./common.nix
+    ./emacs.nix
     ./git.nix
   ];
 
