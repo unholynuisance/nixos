@@ -19,6 +19,6 @@ in {
 
   config =
     lib.mkIf cfg.enable {
-      home.packages = with pkgs; [ cmake ];
+      home.packages = with pkgs; [fd ripgrep gnumake cmake gcc libtool ];
     };
 }

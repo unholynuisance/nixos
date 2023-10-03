@@ -19,7 +19,7 @@ in {
 
   config =
     lib.mkIf cfg.enable {
-      home.packages = with pkgs; [ibm-plex];
+      home.packages = with pkgs; [ibm-plex libvterm];
 
       programs.emacs = {
         enable = true;
