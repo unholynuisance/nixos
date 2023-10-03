@@ -8,6 +8,7 @@
     ./boot
     ./common.nix
     ./guest.nix
+    ./home-manager.nix
     ./networkmanager.nix
     ./pipewire.nix
     ./pulseaudio.nix

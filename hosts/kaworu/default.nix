@@ -25,6 +25,7 @@
 
     modules.nixos.grub.enable = true;
     modules.nixos.guest.enable = true;
+    modules.nixos.home-manager.enable = true;
     modules.nixos.networkmanager.enable = true;
     modules.nixos.pipewire.enable = true;
     modules.nixos.rtkit.enable = true;
