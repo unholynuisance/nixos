@@ -17,18 +17,17 @@ in {
     };
   };
 
-  config =
-    lib.mkIf cfg.enable {
-      home.packages = with pkgs; [ibm-plex libvterm];
+  config = lib.mkIf cfg.enable {
+    home.packages = with pkgs; [ibm-plex libvterm];
 
-      programs.emacs = {
-        enable = true;
-        package = pkgs.emacs29-gtk3;
-      };
-
-      services.emacs = {
-        enable = true;
-        package = pkgs.emacs29-gtk3;
-      };
+    programs.emacs = {
+      enable = true;
+      package = pkgs.emacs29-gtk3;
     };
+
+    services.emacs = {
+      enable = true;
+      package = pkgs.emacs29-gtk3;
+    };
+  };
 }

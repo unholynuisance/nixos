@@ -17,13 +17,12 @@ in {
     };
   };
 
-  config =
-    lib.mkIf cfg.enable {
-      environment.systemPackages = with pkgs; [home-manager];
+  config = lib.mkIf cfg.enable {
+    environment.systemPackages = with pkgs; [home-manager];
 
-      home-manager = {
-        useGlobalPkgs = true;
-        useUserPackages = true;
-      };
+    home-manager = {
+      useGlobalPkgs = true;
+      useUserPackages = true;
     };
+  };
 }
