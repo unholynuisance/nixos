@@ -23,6 +23,8 @@ in {
         enable = true;
         layout = "us";
         xkbVariant = "";
+
+        excludePackages = with pkgs; [xterm];
       };
     };
 }
