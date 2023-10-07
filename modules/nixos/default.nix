@@ -6,6 +6,7 @@
 }: {
   imports = [
     ./boot
+    ./users
     ./common.nix
     ./gnome.nix
     ./guest.nix

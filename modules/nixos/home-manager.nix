@@ -2,6 +2,7 @@
   config,
   lib,
   pkgs,
+  homeModules,
   ...
 } @ args: let
   name = "home-manager";
@@ -23,6 +24,8 @@ in {
     home-manager = {
       useGlobalPkgs = true;
       useUserPackages = true;
+
+      extraSpecialArgs = {inherit homeModules;};
     };
   };
 }

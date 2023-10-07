@@ -40,21 +40,21 @@
       asuka = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         modules = [./hosts/asuka];
-        specialArgs = {inherit nixosModules home-manager disko;};
+        specialArgs = {inherit nixosModules homeModules home-manager disko;};
       };
 
       # secondary personal laptop
       shinji = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         modules = [./hosts/shinji];
-        specialArgs = {inherit nixosModules home-manager disko;};
+        specialArgs = {inherit nixosModules homeModules home-manager disko;};
       };
 
       # primary virtual host:
       kaworu = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         modules = [./hosts/kaworu];
-        specialArgs = {inherit nixosModules home-manager disko;};
+        specialArgs = {inherit nixosModules homeModules home-manager disko;};
       };
 
       # primary work laptop
@@ -64,7 +64,7 @@
       ryoji = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         modules = [./hosts/ryoji];
-        specialArgs = {inherit nixosModules nixpkgs home-manager disko;};
+        specialArgs = {inherit nixosModules homeModules nixpkgs home-manager disko;};
       };
     };
 
