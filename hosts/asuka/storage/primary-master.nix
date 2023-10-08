@@ -46,7 +46,7 @@
             };
           };
           cryptrootvol = {
-            size = "16G";
+            size = "64G";
             content = {
               name = "primary-rootvol";
               type = "luks";
@@ -60,7 +60,26 @@
                   "@" = {
                     mountpoint = "/";
                   };
+                  "@nix" = {
+                    mountpoint = "/nix";
+                  };
+                  "@log" = {
+                    mountpoint = "/var/log";
+                  };
                 };
+              };
+            };
+          };
+          cryptswapvol = {
+            size = "32G";
+            content = {
+              name = "primary-swapvol";
+              type = "luks";
+              extraFormatArgs = ["--label primary-cryptswap"];
+              passwordFile = "/tmp/primary-cryptswap-password";
+              initrdUnlock = true;
+              content = {
+                type = "swap";
               };
             };
           };
@@ -80,19 +99,6 @@
                     mountpoint = "/home";
                   };
                 };
-              };
-            };
-          };
-          cryptswapvol = {
-            size = "4G";
-            content = {
-              name = "primary-swapvol";
-              type = "luks";
-              extraFormatArgs = ["--label primary-cryptswap"];
-              passwordFile = "/tmp/primary-cryptswap-password";
-              initrdUnlock = true;
-              content = {
-                type = "swap";
               };
             };
           };
