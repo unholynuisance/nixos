@@ -43,13 +43,6 @@
         specialArgs = {inherit nixosModules homeModules home-manager disko;};
       };
 
-      # secondary personal laptop
-      shinji = nixpkgs.lib.nixosSystem {
-        system = "x86_64-linux";
-        modules = [./hosts/shinji];
-        specialArgs = {inherit nixosModules homeModules home-manager disko;};
-      };
-
       # primary virtual host:
       kaworu = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
