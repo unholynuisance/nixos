@@ -18,6 +18,6 @@ in {
   };
 
   config = lib.mkIf cfg.enable {
-    home.packages = with pkgs; [fd ripgrep gnumake cmake gcc libtool];
+    home.packages = with pkgs; [firefox fd ripgrep gnumake cmake gcc libtool perl];
   };
 }
