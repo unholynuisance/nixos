@@ -23,6 +23,7 @@
   config = {
     networking.hostName = "asuka";
 
+    modules.nixos.boot.plymouth.enable = true;
     modules.nixos.gnome.enable = true;
     modules.nixos.grub.enable = true;
     modules.nixos.guest.enable = true;

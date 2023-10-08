@@ -5,6 +5,7 @@
 }: {
   imports = [
     ./grub.nix
+    ./plymouth.nix
   ];
 
   config = {
