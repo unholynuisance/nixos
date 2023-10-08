@@ -41,8 +41,21 @@
     boot.kernelModules = ["kvm-amd"];
     boot.extraModulePackages = [];
 
-    networking.useDHCP = lib.mkDefault true;
+    hardware.enableAllFirmware = true;
+    hardware.enableRedistributableFirmware = true;
+    hardware.wirelessRegulatoryDatabase = true;
 
+    hardware.opengl = {
+      driSupport = true;
+      driSupport32Bit = true;
+
+      extraPackages = with pkgs; [
+        amdvlk
+        driversi686Linux.amdvlk
+      ];
+    };
+
+    networking.useDHCP = lib.mkDefault true;
 
     fileSystems."/".device = lib.mkForce "/dev/disk/by-label/primary-root";
     fileSystems."/efi".device = lib.mkForce "/dev/disk/by-label/primary-efi";
