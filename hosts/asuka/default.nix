@@ -34,6 +34,7 @@
 
     modules.nixos.users.unholynuisance.enable = true;
 
+    boot.initrd.systemd.enable = true;
     boot.initrd.availableKernelModules = ["nvme" "xhci_pci" "thunderbolt" "usb_storage" "sd_mod" "rtsx_pci_sdmmc"];
     boot.initrd.kernelModules = [];
     boot.kernelModules = ["kvm-amd"];
@@ -41,9 +42,6 @@
 
     networking.useDHCP = lib.mkDefault true;
 
-    boot.initrd.luks.devices.primary-rootvol.preLVM = lib.mkForce false;
-    boot.initrd.luks.devices.primary-swapvol.preLVM = lib.mkForce false;
-    boot.initrd.luks.devices.primary-homevol.preLVM = lib.mkForce false;
 
     fileSystems."/".device = lib.mkForce "/dev/disk/by-label/primary-root";
     fileSystems."/efi".device = lib.mkForce "/dev/disk/by-label/primary-efi";
