@@ -14,8 +14,8 @@
 
     (import ./storage/primary-master.nix {
       device = {
-        name = "vda";
-        path = "/dev/disk/by-id/ata-QEMU_DVD-ROM_QM00001";
+        name = "nvme0n1";
+        path = "nvme-SKHynix_HFS001TEJ4X112N_4JC5N4835101A5L1A";
       };
     })
   ];
@@ -23,12 +23,18 @@
   config = {
     networking.hostName = "asuka";
 
+    modules.nixos.gnome.enable = true;
     modules.nixos.grub.enable = true;
+    modules.nixos.guest.enable = true;
+    modules.nixos.home-manager.enable = true;
     modules.nixos.networkmanager.enable = true;
     modules.nixos.pipewire.enable = true;
     modules.nixos.rtkit.enable = true;
+    modules.nixos.xserver.enable = true;
 
-    boot.initrd.availableKernelModules = ["ahci" "xhci_pci" "virtio_pci" "sr_mod" "virtio_blk"];
+    modules.nixos.users.unholynuisance.enable = true;
+
+    boot.initrd.availableKernelModules = ["nvme" "xhci_pci" "thunderbolt" "usb_storage" "sd_mod" "rtsx_pci_sdmmc"];
     boot.initrd.kernelModules = [];
     boot.kernelModules = ["kvm-amd"];
     boot.extraModulePackages = [];
