@@ -8,6 +8,7 @@
     ./common.nix
     ./emacs.nix
     ./git.nix
+    ./gnome.nix
   ];
 
   config = {

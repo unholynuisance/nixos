@@ -21,5 +21,6 @@
     modules.home.common.enable = true;
     modules.home.emacs.enable = true;
     modules.home.git.enable = true;
+    modules.home.gnome.enable = true;
   };
 }
