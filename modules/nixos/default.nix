@@ -11,6 +11,7 @@
     ./gnome.nix
     ./guest.nix
     ./home-manager.nix
+    ./libvirt.nix
     ./networkmanager.nix
     ./pipewire.nix
     ./pulseaudio.nix

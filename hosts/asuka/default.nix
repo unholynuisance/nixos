@@ -32,6 +32,7 @@
     modules.nixos.pipewire.enable = true;
     modules.nixos.rtkit.enable = true;
     modules.nixos.steam.enable = true;
+    modules.nixos.libvirt.enable = true;
     modules.nixos.xserver.enable = true;
 
     modules.nixos.users.unholynuisance.enable = true;
