@@ -15,6 +15,7 @@
     ./pipewire.nix
     ./pulseaudio.nix
     ./rtkit.nix
+    ./steam.nix
     ./xserver.nix
   ];
 
