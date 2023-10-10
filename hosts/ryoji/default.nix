@@ -3,14 +3,14 @@
   lib,
   pkgs,
   modulesPath,
-  nixosModules,
+  self,
   home-manager,
   ...
 } @ args: {
   imports = [
     "${modulesPath}/installer/cd-dvd/installation-cd-graphical-gnome.nix"
     home-manager.nixosModules.home-manager
-    nixosModules
+    self.nixosModules.combined
   ];
 
   config = {

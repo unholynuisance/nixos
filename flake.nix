@@ -22,10 +22,27 @@
     nixpkgs,
     home-manager,
     disko,
-  } @ inputs: let
-    nixosModules = import ./modules/nixos;
-    homeModules = import ./modules/home;
-  in {
+  } @ args: {
+    nixosModules = rec {
+      combined = import ./modules/nixos;
+      default = combined;
+    };
+
+    homeModules = rec {
+      combined = import ./modules/home;
+      default = combined;
+    };
+
+    hosts = {
+      asuka = import ./hosts/asuka;
+      kaworu = import ./hosts/kaworu;
+      ryoji = import ./hosts/ryoji;
+    };
+
+    users = {
+      unholynuisance = import ./users/unholynuisance;
+    };
+
     nixosConfigurations = {
       # personal hosts: shinji, rei, asuka, toji, mari
       # virtual hosts: kaworu
@@ -39,15 +56,15 @@
       # primary personal laptop
       asuka = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
-        modules = [./hosts/asuka];
-        specialArgs = {inherit nixosModules homeModules home-manager disko;};
+        modules = [self.hosts.asuka];
+        specialArgs = {inherit self home-manager disko;};
       };
 
       # primary virtual host:
       kaworu = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
-        modules = [./hosts/kaworu];
-        specialArgs = {inherit nixosModules homeModules home-manager disko;};
+        modules = [self.hosts.kaworu];
+        specialArgs = {inherit self home-manager disko;};
       };
 
       # primary work laptop
@@ -56,16 +73,16 @@
       # iso
       ryoji = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
-        modules = [./hosts/ryoji];
-        specialArgs = {inherit nixosModules homeModules nixpkgs home-manager disko;};
+        modules = [self.hosts.ryoji];
+        specialArgs = {inherit self home-manager disko;};
       };
     };
 
     homeConfigurations = {
-      unholynuisance = inputs.home-manager.lib.homeManagerConfiguration {
+      unholynuisance = home-manager.lib.homeManagerConfiguration {
         pkgs = nixpkgs.legacyPackages.x86_64-linux;
-        modules = [./users/unholynuisance];
-        extraSpecialArgs = {inherit homeModules;};
+        modules = [self.users.unholynuisance];
+        extraSpecialArgs = {inherit self;};
       };
     };
 

@@ -2,11 +2,11 @@
   config,
   lib,
   pkgs,
-  homeModules,
+  self,
   ...
 } @ args: {
   imports = [
-    homeModules
+    self.homeModules.combined
   ];
 
   config = {

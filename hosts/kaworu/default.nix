@@ -2,7 +2,7 @@
   config,
   lib,
   pkgs,
-  nixosModules,
+  self,
   home-manager,
   disko,
   ...
@@ -10,7 +10,7 @@
   imports = [
     home-manager.nixosModules.home-manager
     disko.nixosModules.disko
-    nixosModules
+    self.nixosModules.combined
 
     (import ./storage/primary-master.nix {
       device = {
