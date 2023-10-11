@@ -180,24 +180,38 @@ in {
           toggle-on-all-workspaces = [];
         };
 
+        # Touchpad
         "org/gnome/desktop/peripherals/touchpad" = {
+          # Tap to click
           tap-to-click = true;
+          # Scroll method
           two-finger-scrolling-enabled = true;
         };
 
+        # Appearance
         "org/gnome/desktop/interface" = {
+          # Style
           color-scheme = "prefer-dark";
+        };
+
+        # Power
+        "org/gnome/desktop/interface" = {
+          # Show battery percentage
           show-battery-percentage = true;
         };
 
-        "org/gnome/app-switcher" = {
-          current-workspace-only = true;
-        };
-
+        # Multitasking
         "org/gnome/mutter" = {
-          dynamic-workspaces = true;
+          # Active screen edges
           edge-tiling = true;
+          # Workspaces
+          dynamic-workspaces = true;
+          # Multi-monitor
           workspaces-only-on-primary = true;
+        };
+        "org/gnome/app-switcher" = {
+          # App switching
+          current-workspace-only = true;
         };
 
         "org/gnome/shell" = {
