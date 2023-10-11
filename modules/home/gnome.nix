@@ -25,9 +25,26 @@ in {
       ];
 
       dconf.settings = {
+        # Launchers
+        "org/gnome/settings-daemon/plugins/media-keys" = {
+          # Home folder
+          home = ["<Ctrl><Super>h"];
+          # Launch calculator
+          calculator = ["<Ctrl><Super>c"];
+          # Launch e-mail client
+          email = ["<Ctrl><Super>m"];
+          # Launch help browser
+          help = ["<Ctrl><Super>F1"];
+          # Launch web browser
+          www = ["<Ctrl><Super>b"];
+          # Search
+          search = [];
+          # Settings
+          control-center = ["<Ctrl><Super>s"];
+        };
+
+        # Keyboard shortcuts: Navigation
         "org/gnome/desktop/wm/keybindings" = {
-          # Keyboard shortcuts: Navigation
-          # ##############################
           # Hide all normal windows
           show-desktop = [];
           # Move to workspace on the {left, right}
@@ -74,20 +91,63 @@ in {
           # Switch windows of an application
           switch-group = ["<Alt><Super>Tab"];
           switch-group-backward = ["<Alt><Shift><Super>Tab"];
+        };
 
-          # Keybindings: System
-          # ###################
+        # Keybindings: System
+        "org/gnome/desktop/wm/keybindings" = {
           # Show the run command prompt
           panel-run-dialog = ["<Super>F2"];
+        };
+        "org/gnome/settings-daemon/plugins/media-keys" = {
+          # Lock screen
+          screensaver = ["<Super>l"];
+          # Log out
+          logout = ["<Super>o"];
+          # Show all apps
+          toggle-application-view = ["<Super>a"];
+          # Show the notification list
+          toggle-message-tray = ["<Super>v"];
+          # Show the overview
+          toggle-overview = [];
+        };
+        "org/gnome/shell/keybindings" = {
+          # Focus the active notification
+          focus-active-notification = ["<Super>n"];
+          # Open the app menu
+          open-application-menu = [];
+        };
+        "org/gnome/mutter/wayland/keybindings/restore-shortcuts" = {
+          # Restore the keyboard shortcuts
+          restore-shortcuts = [];
+        };
 
-          # Keyboard shortcuts: Typing
-          # ##########################
+        # Keyboard shortcuts: Typing
+        "org/gnome/desktop/wm/keybindings" = {
           # Switch to {next, previous} input source
           switch-input-source = ["<Super>space"];
           switch-input-source-backward = ["<Shift><Super>space"];
+        };
 
-          # Keyboard shortcuts: Windows
-          # ###########################
+        # Keyboard shrotcuts: Screenshots
+        "org/gnome/shell/keybindings" = {
+          # Record a screencast interactively
+          show-screen-recording-ui = [];
+          # Take a screenshot
+          screenshot = [];
+          # Take a screenshot interactively
+          show-screenshot-ui = ["<Super>Print"];
+          # Take a screenshot of a window
+          screenshot-window = [];
+        };
+
+        # Keyboard shortcuts: Windows
+        "org/gnome/mutter/keybindings" = {
+          # View split on left
+          toggle-tiled-left = ["<Super>Left"];
+          # View split on right
+          toggle-tiled-right = ["<Super>Right"];
+        };
+        "org/gnome/desktop/wm/keybindings" = {
           # Activate the window menu
           activate-window-menu = [];
           # Close window
@@ -118,76 +178,6 @@ in {
           toggle-maximized = [];
           # Toggle window on all workspaces or one
           toggle-on-all-workspaces = [];
-        };
-
-        "org/gnome/settings-daemon/plugins/media-keys" = {
-          # Launchers
-          # #########
-          # Home folder
-          home = ["<Ctrl><Super>h"];
-          # Launch calculator
-          calculator = ["<Ctrl><Super>c"];
-          # Launch e-mail client
-          email = ["<Ctrl><Super>m"];
-          # Launch help browser
-          help = ["<Ctrl><Super>F1"];
-          # Launch web browser
-          www = ["<Ctrl><Super>b"];
-          # Search
-          search = [];
-          # Settings
-          control-center = ["<Ctrl><Super>s"];
-
-          # Keyboard shortcuts: System
-          # ###################
-          # Lock screen
-          screensaver = ["<Super>l"];
-          # Log out
-          logout = ["<Super>o"];
-          # Show all apps
-          toggle-application-view = ["<Super>a"];
-          # Show the notification list
-          toggle-message-tray = ["<Super>v"];
-          # Show the overview
-          toggle-overview = [];
-        };
-
-        "org/gnome/shell/keybindings" = {
-          # Keyboard shrotcuts: Screenshots
-          # ###########
-          # Record a screencast interactively
-          show-screen-recording-ui = [];
-          # Take a screenshot
-          screenshot = [];
-          # Take a screenshot interactively
-          show-screenshot-ui = ["<Super>Print"];
-          # Take a screenshot of a window
-          screenshot-window = [];
-
-          # Keyboard shortcuts: System
-          # ##########################
-          # Focus the active notification
-          focus-active-notification = ["<Super>n"];
-          # Open the app menu
-          open-application-menu = [];
-        };
-
-        "org/gnome/mutter/keybindings" = {
-          # Keyboard shortcuts: Windows
-          # ###########################
-          # Activate the window menu
-          # View split on left
-          toggle-tiled-left = ["<Super>Left"];
-          # View split on right
-          toggle-tiled-right = ["<Super>Right"];
-        };
-
-
-        "org/gnome/mutter/wayland/keybindings/restore-shortcuts" = {
-          # Keyboard shortcuts: System
-          # ##########################
-          # Restore the keyboard shortcuts
-          restore-shortcuts = [];
         };
 
         "org/gnome/desktop/peripherals/touchpad" = {
