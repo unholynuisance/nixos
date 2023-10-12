@@ -21,6 +21,7 @@
     modules.home.common.enable = true;
     modules.home.discord.enable = true;
     modules.home.emacs.enable = true;
+    modules.home.emacs.package = pkgs.emacs29-pgtk;
     modules.home.git.enable = true;
     modules.home.gnome.enable = true;
     modules.home.gtk.enable = true;

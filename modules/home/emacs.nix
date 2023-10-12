@@ -4,16 +4,23 @@
   pkgs,
   ...
 } @ args: let
-  name = "emacs";
-  cfg = config.modules.home.${name};
+  cfg = config.modules.home.emacs;
 in {
-  options.modules.home.${name} = {
+  options.modules.home.emacs = {
     enable = lib.mkOption {
       description = ''
         Whether to enable this module.
       '';
       type = lib.types.bool;
       default = false;
+    };
+
+    package = lib.mkOption {
+      description = ''
+        Emacs package to use.
+      '';
+      type = lib.types.package;
+      default = pkgs.emacs;
     };
   };
 
@@ -22,12 +29,12 @@ in {
 
     programs.emacs = {
       enable = true;
-      package = pkgs.emacs29-gtk3;
+      package = cfg.package;
     };
 
     services.emacs = {
       enable = true;
-      package = pkgs.emacs29-gtk3;
+      package = cfg.package;
     };
   };
 }
