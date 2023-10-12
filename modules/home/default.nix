@@ -10,6 +10,7 @@
     ./emacs.nix
     ./git.nix
     ./gnome.nix
+    ./gtk.nix
   ];
 
   config = {

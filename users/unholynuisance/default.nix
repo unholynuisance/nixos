@@ -23,5 +23,6 @@
     modules.home.emacs.enable = true;
     modules.home.git.enable = true;
     modules.home.gnome.enable = true;
+    modules.home.gtk.enable = true;
   };
 }
