@@ -6,7 +6,7 @@
 } @ args: let
   cfg = config.modules.hm.git;
 in {
-  options.modules.hm.git= {
+  options.modules.hm.git = {
     enable = lib.mkOption {
       description = ''
         Whether to enable this module.

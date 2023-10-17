@@ -16,10 +16,9 @@ in {
     };
   };
 
-  config =
-    lib.mkIf cfg.enable {
-      programs.steam = {
-        enable = true;
-      };
+  config = lib.mkIf cfg.enable {
+    programs.steam = {
+      enable = true;
     };
+  };
 }

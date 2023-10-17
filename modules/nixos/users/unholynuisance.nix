@@ -16,16 +16,15 @@ in {
     };
   };
 
-  config =
-    lib.mkIf cfg.enable {
-      users.users.unholynuisance = {
-        isNormalUser = true;
-        description = "Unholy Nuisance";
-        extraGroups = [ "wheel" "networkmanager"];
-      };
-
-      home-manager.users = {
-        unholynuisance = import ../../../users/unholynuisance;
-      };
+  config = lib.mkIf cfg.enable {
+    users.users.unholynuisance = {
+      isNormalUser = true;
+      description = "Unholy Nuisance";
+      extraGroups = ["wheel" "networkmanager"];
     };
+
+    home-manager.users = {
+      unholynuisance = import ../../../users/unholynuisance;
+    };
+  };
 }

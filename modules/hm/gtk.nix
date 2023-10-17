@@ -16,26 +16,24 @@ in {
     };
   };
 
-  config =
-    lib.mkIf cfg.enable {
-      gtk = {
-        enable = true;
+  config = lib.mkIf cfg.enable {
+    gtk = {
+      enable = true;
 
-        theme = {
-          name = "Adwaita-dark";
-          package = pkgs.gnome.gnome-themes-extra;
-        };
+      theme = {
+        name = "Adwaita-dark";
+        package = pkgs.gnome.gnome-themes-extra;
+      };
 
+      iconTheme = {
+        name = "Adwaita";
+        package = pkgs.gnome.adwaita-icon-theme;
+      };
 
-        iconTheme = {
-          name = "Adwaita";
-          package = pkgs.gnome.adwaita-icon-theme;
-        };
-
-        cursorTheme = {
-          name = "Adwaita";
-          package = pkgs.gnome.adwaita-icon-theme;
-        };
+      cursorTheme = {
+        name = "Adwaita";
+        package = pkgs.gnome.adwaita-icon-theme;
       };
     };
+  };
 }

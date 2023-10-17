@@ -6,7 +6,7 @@
 } @ args: let
   cfg = config.modules.hm.common;
 in {
-  options.modules.hm.common= {
+  options.modules.hm.common = {
     enable = lib.mkOption {
       description = ''
         Whether to enable this module.

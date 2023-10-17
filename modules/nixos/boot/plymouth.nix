@@ -16,9 +16,8 @@ in {
     };
   };
 
-  config =
-    lib.mkIf cfg.enable {
-      boot.plymouth.enable = true;
-      boot.kernelParams = ["quiet"];
-    };
+  config = lib.mkIf cfg.enable {
+    boot.plymouth.enable = true;
+    boot.kernelParams = ["quiet"];
+  };
 }

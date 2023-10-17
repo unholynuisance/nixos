@@ -16,19 +16,18 @@ in {
     };
   };
 
-  config =
-    lib.mkIf cfg.enable {
-      environment.systemPackages = with pkgs; [ virt-manager ];
+  config = lib.mkIf cfg.enable {
+    environment.systemPackages = with pkgs; [virt-manager];
 
-      virtualisation.libvirtd = {
-        enable = true;
+    virtualisation.libvirtd = {
+      enable = true;
 
-        qemu = {
-          ovmf.enable = true;
-          swtpm.enable = true;
+      qemu = {
+        ovmf.enable = true;
+        swtpm.enable = true;
 
-          runAsRoot = false;
-        };
+        runAsRoot = false;
       };
     };
+  };
 }

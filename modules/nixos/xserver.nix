@@ -17,14 +17,13 @@ in {
     };
   };
 
-  config =
-    lib.mkIf cfg.enable {
-      services.xserver = {
-        enable = true;
-        layout = "us";
-        xkbVariant = "";
+  config = lib.mkIf cfg.enable {
+    services.xserver = {
+      enable = true;
+      layout = "us";
+      xkbVariant = "";
 
-        excludePackages = with pkgs; [xterm];
-      };
+      excludePackages = with pkgs; [xterm];
     };
+  };
 }

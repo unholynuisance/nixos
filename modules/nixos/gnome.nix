@@ -17,18 +17,17 @@ in {
     };
   };
 
-  config =
-    lib.mkIf cfg.enable {
-      services.xserver = {
-        displayManager.gdm.enable = true;
-        desktopManager.gnome.enable = true;
-      };
-
-      environment.gnome.excludePackages = with pkgs; [
-        gnome-tour
-        gnome.epiphany
-        gnome.geary
-        gnome.gedit
-      ];
+  config = lib.mkIf cfg.enable {
+    services.xserver = {
+      displayManager.gdm.enable = true;
+      desktopManager.gnome.enable = true;
     };
+
+    environment.gnome.excludePackages = with pkgs; [
+      gnome-tour
+      gnome.epiphany
+      gnome.geary
+      gnome.gedit
+    ];
+  };
 }
