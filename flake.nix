@@ -29,7 +29,7 @@
     };
 
     homeModules = rec {
-      combined = import ./modules/home;
+      combined = import ./modules/hm;
       default = combined;
     };
 

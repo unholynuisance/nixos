@@ -4,9 +4,9 @@
   pkgs,
   ...
 } @ args: let
-  cfg = config.modules.home.gtk;
+  cfg = config.modules.hm.gtk;
 in {
-  options.modules.home.gtk = {
+  options.modules.hm.gtk = {
     enable = lib.mkOption {
       description = ''
         Whether to enable this module.

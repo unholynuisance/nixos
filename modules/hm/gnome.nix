@@ -4,9 +4,9 @@
   pkgs,
   ...
 } @ args: let
-  cfg = config.modules.home.gnome;
+  cfg = config.modules.hm.gnome;
 in {
-  options.modules.home.gnome = {
+  options.modules.hm.gnome = {
     enable = lib.mkOption {
       description = ''
         Whether to enable this module.

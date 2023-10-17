@@ -4,10 +4,9 @@
   pkgs,
   ...
 } @ args: let
-  name = "git";
-  cfg = config.modules.home.${name};
+  cfg = config.modules.hm.common;
 in {
-  options.modules.home.${name} = {
+  options.modules.hm.common= {
     enable = lib.mkOption {
       description = ''
         Whether to enable this module.
@@ -18,10 +17,6 @@ in {
   };
 
   config = lib.mkIf cfg.enable {
-    programs.git = {
-      enable = true;
-      userName = config.home.username;
-      userEmail = config.accounts.email.accounts.personal.address;
-    };
+    home.packages = with pkgs; [firefox fd ripgrep gnumake cmake gcc libtool perl telegram-desktop];
   };
 }

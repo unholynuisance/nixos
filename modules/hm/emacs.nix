@@ -4,9 +4,9 @@
   pkgs,
   ...
 } @ args: let
-  cfg = config.modules.home.emacs;
+  cfg = config.modules.hm.emacs;
 in {
-  options.modules.home.emacs = {
+  options.modules.hm.emacs = {
     enable = lib.mkOption {
       description = ''
         Whether to enable this module.

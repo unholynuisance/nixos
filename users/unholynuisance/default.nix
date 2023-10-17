@@ -18,12 +18,12 @@
       primary = true;
     };
 
-    modules.home.common.enable = true;
-    modules.home.discord.enable = true;
-    modules.home.emacs.enable = true;
-    modules.home.emacs.package = pkgs.emacs29-pgtk;
-    modules.home.git.enable = true;
-    modules.home.gnome.enable = true;
-    modules.home.gtk.enable = true;
+    modules.hm.common.enable = true;
+    modules.hm.discord.enable = true;
+    modules.hm.emacs.enable = true;
+    modules.hm.emacs.package = pkgs.emacs29-pgtk;
+    modules.hm.git.enable = true;
+    modules.hm.gnome.enable = true;
+    modules.hm.gtk.enable = true;
   };
 }
