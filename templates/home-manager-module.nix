@@ -4,10 +4,9 @@
   pkgs,
   ...
 } @ args: let
-  name = "name";
-  cfg = config.modules.home.${name};
+  cfg = config.modules.home.name;
 in {
-  options.modules.home.${name} = {
+  options.modules.home.name = {
     enable = lib.mkOption {
       description = ''
         Whether to enable this module.
@@ -17,7 +16,7 @@ in {
     };
   };
 
-  config =
-    lib.mkIf cfg.enable {
-    };
+  config = lib.mkIf cfg.enable {
+    foo = "bar";
+  };
 }
