@@ -57,14 +57,14 @@
       asuka = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         modules = [self.hosts.asuka];
-        specialArgs = {inherit self home-manager disko;};
+        specialArgs = args;
       };
 
       # primary virtual host:
       kaworu = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         modules = [self.hosts.kaworu];
-        specialArgs = {inherit self home-manager disko;};
+        specialArgs = args;
       };
 
       # primary work laptop
@@ -74,7 +74,7 @@
       ryoji = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         modules = [self.hosts.ryoji];
-        specialArgs = {inherit self home-manager disko;};
+        specialArgs = args;
       };
     };
 
@@ -82,7 +82,7 @@
       unholynuisance = home-manager.lib.homeManagerConfiguration {
         pkgs = nixpkgs.legacyPackages.x86_64-linux;
         modules = [self.users.unholynuisance];
-        extraSpecialArgs = {inherit self;};
+        extraSpecialArgs = args;
       };
     };
 
