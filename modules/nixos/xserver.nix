@@ -2,12 +2,12 @@
   config,
   lib,
   pkgs,
+  xkeyboard-config-src,
   ...
 } @ args: let
-  name = "xserver";
-  cfg = config.modules.nixos.${name};
+  cfg = config.modules.nixos.xserver;
 in {
-  options.modules.nixos.${name} = {
+  options.modules.nixos.xserver = {
     enable = lib.mkOption {
       description = ''
         Whether to enable this module.
@@ -18,6 +18,12 @@ in {
   };
 
   config = lib.mkIf cfg.enable {
+    nixpkgs.overlays = [(final: prev: {
+      xkeyboard_config = prev.xkeyboard_config.overrideAttrs (old: {
+        src = xkeyboard-config-src;
+      });
+    })];
+
     services.xserver = {
       enable = true;
       layout = "us";

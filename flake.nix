@@ -15,13 +15,18 @@
       url = "github:nix-community/disko";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    xkeyboard-config-src = {
+      url = "github:unholynuisance/xkeyboard-config";
+      flake = false;
+    };
   };
 
   outputs = {
     self,
     nixpkgs,
     home-manager,
-    disko,
+    ...
   } @ args: {
     nixosModules = rec {
       combined = import ./modules/nixos;
