@@ -39,6 +39,7 @@
     };
 
     hosts = {
+      rei = import ./hosts/rei;
       asuka = import ./hosts/asuka;
       kaworu = import ./hosts/kaworu;
       ryoji = import ./hosts/ryoji;
@@ -56,7 +57,11 @@
       # iso: ryoji
 
       # primary personal workstation
-      # rei = ...;
+      rei = nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
+        modules = [self.hosts.rei];
+        specialArgs = args;
+      };
 
       # primary personal laptop
       asuka = nixpkgs.lib.nixosSystem {
