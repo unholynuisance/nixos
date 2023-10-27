@@ -11,13 +11,6 @@
     home-manager.nixosModules.home-manager
     disko.nixosModules.disko
     self.nixosModules.combined
-
-    (import ./storage/primary-master.nix {
-      device = {
-        name = "vda";
-        path = "ata-QEMU_DVD-ROM_QM00001";
-      };
-    })
   ];
 
   config = {
@@ -43,15 +36,42 @@
 
     networking.useDHCP = lib.mkDefault true;
 
-    security.tpm2 = {
-      enable = true;
-      pkcs11.enable = true;
-      tctiEnvironment.enable = true;
-    };
-
-    fileSystems."/".device = lib.mkForce "/dev/disk/by-label/primary-root";
-    fileSystems."/efi".device = lib.mkForce "/dev/disk/by-label/primary-efi";
-    fileSystems."/boot".device = lib.mkForce "/dev/disk/by-label/primary-boot";
-    fileSystems."/home".device = lib.mkForce "/dev/disk/by-label/primary-home";
+    disko.devices = with self.lib.storage;
+      mkDevices {
+        disks = [
+          (mkDisk {
+            name = "nvme0n1";
+            device = "/dev/disk/by-id/ata-QEMU_DVD-ROM_QM00001";
+            partitions = [
+              (mkEfiPartition {size = "128M";})
+              (mkPhysicalVolumePartition {
+                size = "100%";
+                vg = "primary";
+              })
+            ];
+          })
+        ];
+        volumeGroups = [
+          (mkVolumeGroup {
+            name = "primary";
+            volumes = [
+              (mkBootVolume {size = "1G";})
+              (mkSwapVolume {
+                size = "4G";
+              })
+              (mkBtrfsVolume {
+                name = "root";
+                size = "100%FREE";
+                subvolumes = {
+                  "?" = {mountpoint = "/";};
+                  "?nix" = {mountpoint = "/nix";};
+                  "?var?log" = {mountpoint = "/var/log";};
+                  "?home?unholynuisance" = {mountpoint = "/home/unholynuisance";};
+                };
+              })
+            ];
+          })
+        ];
+      };
   };
 }
