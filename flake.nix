@@ -28,6 +28,8 @@
     home-manager,
     ...
   } @ args: {
+    lib = import ./lib {inherit (nixpkgs) lib;};
+
     nixosModules = rec {
       combined = import ./modules/nixos;
       default = combined;
