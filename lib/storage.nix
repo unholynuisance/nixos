@@ -142,7 +142,7 @@
       name = "boot";
       inherit size encrypt unlock;
       subvolumes = {
-        "@" = {mountpoint = "/boot";};
+        "?" = {mountpoint = "/boot";};
       };
     };
 
