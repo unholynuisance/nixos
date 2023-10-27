@@ -11,13 +11,6 @@
     home-manager.nixosModules.home-manager
     disko.nixosModules.disko
     self.nixosModules.combined
-
-    (import ./storage/primary-master.nix {
-      device = {
-        name = "nvme0n1";
-        path = "nvme-SKHynix_HFS001TEJ4X112N_4JC5N4835101A5L1A";
-      };
-    })
   ];
 
   config = {
@@ -59,9 +52,135 @@
 
     networking.useDHCP = lib.mkDefault true;
 
-    fileSystems."/".device = lib.mkForce "/dev/disk/by-label/primary-root";
-    fileSystems."/efi".device = lib.mkForce "/dev/disk/by-label/primary-efi";
-    fileSystems."/boot".device = lib.mkForce "/dev/disk/by-label/primary-boot";
-    fileSystems."/home".device = lib.mkForce "/dev/disk/by-label/primary-home";
+    disko.devices = with self.lib.storage;
+      mkDevices {
+        disks = [
+          (mkDisk {
+            name = "nvme0n1";
+            device = "/dev/disk/by-id/nvme-Samsung_SSD_970_EVO_Plus_2TB_S4J4NX0W704961W";
+            partitions = [
+              (mkEfiPartition {size = "128M";})
+              (mkPhysicalVolumePartition {
+                size = "100%";
+                vg = "primary";
+              })
+            ];
+          })
+          # (mkDisk {
+          #   name = "sda";
+          #   device = "/dev/disk/by-id/ata-KINGSTON_SA400S37960G_50026B7282DD00AE";
+          #   partitions = [
+          #     (mkPhysicalVolumePartition {
+          #       size = "100%";
+          #       vg = "secondary";
+          #     })
+          #   ];
+          # })
+          # (mkDisk {
+          #   name = "sdb";
+          #   device = "/dev/disk/by-id/ata-KINGSTON_SA400S37960G_50026B76835CE2EE";
+          #   partitions = [
+          #     (mkPhysicalVolumePartition {
+          #       size = "100%";
+          #       vg = "secondary";
+          #     })
+          #   ];
+          # })
+          # (mkDisk {
+          #   name = "sdd";
+          #   device = "/dev/disk/by-id/ata-ST2000DM008-2FR102_ZFL4EW68";
+          #   partitions = [
+          #     (mkPhysicalVolumePartition {
+          #       size = "100%";
+          #       vg = "tertiary";
+          #     })
+          #   ];
+          # })
+          # (mkDisk {
+          #   name = "sdc";
+          #   device = "/dev/disk/by-id/ata-ST2000DM008-2UB102_WK30M5VB";
+          #   partitions = [
+          #     (mkPhysicalVolumePartition {
+          #       size = "100%";
+          #       vg = "tertiary";
+          #     })
+          #   ];
+          # })
+        ];
+        volumeGroups = [
+          (mkVolumeGroup {
+            name = "primary";
+            volumes = [
+              (mkBootVolume {size = "1G";})
+              (mkSwapVolume {
+                size = "32G";
+                encrypt = true;
+                unlock = true;
+              })
+              (mkBtrfsVolume {
+                name = "root";
+                size = "128G";
+                subvolumes = {
+                  "?" = {mountpoint = "/";};
+                  "?var?log" = {mountpoint = "/var/log";};
+                  "?nix" = {mountpoint = "/nix";};
+                };
+                encrypt = true;
+                unlock = true;
+              })
+              (mkBtrfsVolume {
+                name = "home";
+                size = "256G";
+                subvolumes = {
+                  "?" = {mountpoint = "/home";};
+                  "?unholynuisance" = {mountpoint = "/home/unholynuisance";};
+                };
+                encrypt = true;
+                unlock = true;
+              })
+              (mkBtrfsVolume {
+                name = "media";
+                size = "100%FREE";
+                subvolumes = {
+                  "?unholynuisance?games" = {mountpoint = "/media/unholynuisance/games/primary";};
+                  "?unholynuisance?vms" = {mountpoint = "/media/unholynuisance/vms/primary";};
+                };
+                encrypt = true;
+                unlock = true;
+              })
+            ];
+          })
+          # (mkVolumeGroup {
+          #   name = "secondary";
+          #   volumes = [
+          #     (mkBtrfsVolume {
+          #       name = "media";
+          #       size = "100%FREE";
+          #       subvolumes = {
+          #         "?unholynuisance?games" = {mountpoint = "/media/unholynuisance/games/secondary";};
+          #         "?unholynuisance?vms" = {mountpoint = "/media/unholynuisance/vms/secondary";};
+          #       };
+          #       encrypt = true;
+          #       unlock = true;
+          #     })
+          #   ];
+          # })
+          # (mkVolumeGroup {
+          #   name = "tertiary";
+          #   volumes = [
+          #     (mkBtrfsVolume {
+          #       name = "media";
+          #       size = "100%FREE";
+          #       subvolumes = {
+          #         "?unholynuisance?games" = {mountpoint = "/media/unholynuisance/games/tertiary";};
+          #         "?unholynuisance?vms" = {mountpoint = "/media/unholynuisance/vms/tertiary";};
+          #       };
+          #       encrypt = true;
+          #       unlock = true;
+          #     })
+          #   ];
+          # })
+        ];
+      };
   };
 }
