@@ -18,11 +18,13 @@ in {
   };
 
   config = lib.mkIf cfg.enable {
-    nixpkgs.overlays = [(final: prev: {
-      xkeyboard_config = prev.xkeyboard_config.overrideAttrs (old: {
-        src = xkeyboard-config-src;
-      });
-    })];
+    nixpkgs.overlays = [
+      (final: prev: {
+        xkeyboard_config = prev.xkeyboard_config.overrideAttrs (old: {
+          src = xkeyboard-config-src;
+        });
+      })
+    ];
 
     services.xserver = {
       enable = true;
