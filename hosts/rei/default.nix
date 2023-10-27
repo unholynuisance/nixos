@@ -122,8 +122,8 @@
                 size = "128G";
                 subvolumes = {
                   "?" = {mountpoint = "/";};
-                  "?var?log" = {mountpoint = "/var/log";};
                   "?nix" = {mountpoint = "/nix";};
+                  "?var?log" = {mountpoint = "/var/log";};
                 };
                 encrypt = true;
                 unlock = true;
