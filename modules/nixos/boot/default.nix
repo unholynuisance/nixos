@@ -10,5 +10,6 @@
 
   config = {
     boot.loader.efi.efiSysMountPoint = "/efi";
+    boot.tmp.useTmpfs = true;
   };
 }
