@@ -52,7 +52,7 @@
 
     networking.useDHCP = lib.mkDefault true;
 
-    disko.devices = with self.lib.storage;
+    disko.devices = with pkgs.lib.nuisance.storage;
       mkDevices {
         disks = [
           (mkDisk {

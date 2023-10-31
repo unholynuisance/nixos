@@ -28,7 +28,9 @@
     home-manager,
     ...
   } @ args: {
-    lib = import ./lib {inherit (nixpkgs) lib;};
+    lib = import ./lib args;
+    packages = import ./packages args;
+    overlays = import ./overlays args;
 
     nixosModules = rec {
       combined = import ./modules/nixos;
@@ -98,6 +100,6 @@
       };
     };
 
-    formatter.x86_64-linux = nixpkgs.legacyPackages.x86_64-linux.alejandra;
+    formatter = self.lib.forAllSystems (system: nixpkgs.legacyPackages.${system}.alejandra);
   };
 }
