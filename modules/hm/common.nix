@@ -17,6 +17,6 @@ in {
   };
 
   config = lib.mkIf cfg.enable {
-    home.packages = with pkgs; [firefox fd ripgrep gnumake cmake gcc libtool perl telegram-desktop];
+    home.packages = with pkgs; [firefox fd ripgrep gnumake cmake gcc libtool perl telegram-desktop texlive.combined.scheme-full];
   };
 }
