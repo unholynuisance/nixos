@@ -18,12 +18,15 @@
       primary = true;
     };
 
-    modules.hm.common.enable = true;
-    modules.hm.discord.enable = true;
-    modules.hm.emacs.enable = true;
-    modules.hm.emacs.package = pkgs.emacs29-pgtk;
-    modules.hm.git.enable = true;
-    modules.hm.gnome.enable = true;
-    modules.hm.gtk.enable = true;
+    modules.hm = {
+      common.enable = true;
+      discord.enable = true;
+      emacs.enable = true;
+      emacs.package = pkgs.emacs29-pgtk;
+      git.enable = true;
+      gnome.enable = true;
+      gtk.enable = true;
+      minecraft.enable = true;
+    };
   };
 }

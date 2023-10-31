@@ -11,6 +11,7 @@
     ./git.nix
     ./gnome.nix
     ./gtk.nix
+    ./minecraft.nix
   ];
 
   config = {
