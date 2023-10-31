@@ -4,9 +4,9 @@
   pkgs,
   ...
 } @ args: let
-  cfg = config.modules.home.name;
+  cfg = config.modules.hm.name;
 in {
-  options.modules.home.name = {
+  options.modules.hm.name = {
     enable = lib.mkOption {
       description = ''
         Whether to enable this module.
