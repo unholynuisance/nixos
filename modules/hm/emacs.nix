@@ -25,7 +25,11 @@ in {
   };
 
   config = lib.mkIf cfg.enable {
-    home.packages = with pkgs; [ibm-plex nerdfonts libvterm];
+    home.packages = with pkgs; [
+      ibm-plex
+      nerdfonts
+      libvterm
+    ];
 
     programs.emacs = {
       enable = true;

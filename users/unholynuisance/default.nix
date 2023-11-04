@@ -22,7 +22,7 @@
       common.enable = true;
       discord.enable = true;
       emacs.enable = true;
-      emacs.package = pkgs.emacs29-pgtk;
+      emacs.package = pkgs.emacs29-gtk3;
       git.enable = true;
       gnome.enable = true;
       gtk.enable = true;
