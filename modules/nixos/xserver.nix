@@ -5,9 +5,9 @@
   xkeyboard-config-src,
   ...
 } @ args: let
-  cfg = config.modules.nixos.xserver;
+  cfg = config.nuisance.modules.nixos.xserver;
 in {
-  options.modules.nixos.xserver = {
+  options.nuisance.modules.nixos.xserver = {
     enable = lib.mkOption {
       description = ''
         Whether to enable this module.

@@ -4,9 +4,9 @@
   pkgs,
   ...
 } @ args: let
-  cfg = config.modules.hm.minecraft;
+  cfg = config.nuisance.modules.hm.minecraft;
 in {
-  options.modules.hm.minecraft = {
+  options.nuisance.modules.hm.minecraft = {
     enable = lib.mkOption {
       description = ''
         Whether to enable this module.

@@ -16,17 +16,19 @@
   config = {
     networking.hostName = "kaworu";
 
-    modules.nixos.boot.plymouth.enable = true;
-    modules.nixos.gnome.enable = true;
-    modules.nixos.grub.enable = true;
-    modules.nixos.guest.enable = true;
-    modules.nixos.home-manager.enable = true;
-    modules.nixos.networkmanager.enable = true;
-    modules.nixos.pipewire.enable = true;
-    modules.nixos.rtkit.enable = true;
-    modules.nixos.xserver.enable = true;
+    nuisance.modules.nixos = {
+      boot.plymouth.enable = true;
+      gnome.enable = true;
+      grub.enable = true;
+      guest.enable = true;
+      home-manager.enable = true;
+      networkmanager.enable = true;
+      pipewire.enable = true;
+      rtkit.enable = true;
+      xserver.enable = true;
 
-    modules.nixos.users.unholynuisance.enable = true;
+      users.unholynuisance.enable = true;
+    };
 
     boot.initrd.systemd.enable = true;
     boot.initrd.availableKernelModules = ["ahci" "xhci_pci" "virtio_pci" "sr_mod" "virtio_blk"];

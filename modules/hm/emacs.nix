@@ -4,9 +4,9 @@
   pkgs,
   ...
 } @ args: let
-  cfg = config.modules.hm.emacs;
+  cfg = config.nuisance.modules.hm.emacs;
 in {
-  options.modules.hm.emacs = {
+  options.nuisance.modules.hm.emacs = {
     enable = lib.mkOption {
       description = ''
         Whether to enable this module.

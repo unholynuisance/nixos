@@ -4,9 +4,9 @@
   pkgs,
   ...
 } @ args: let
-  cfg = config.modules.nixos.libvirt;
+  cfg = config.nuisance.modules.nixos.libvirt;
 in {
-  options.modules.nixos.libvirt = {
+  options.nuisance.modules.nixos.libvirt = {
     enable = lib.mkOption {
       description = ''
         Whether to enable this module.

@@ -16,6 +16,8 @@
   config = {
     networking.hostName = "ryoji";
 
-    modules.nixos.guest.enable = true;
+    nuisance.modules.nixos = {
+      guest.enable = true;
+    };
   };
 }

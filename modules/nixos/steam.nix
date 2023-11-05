@@ -4,9 +4,9 @@
   pkgs,
   ...
 } @ args: let
-  cfg = config.modules.nixos.steam;
+  cfg = config.nuisance.modules.nixos.steam;
 in {
-  options.modules.nixos.steam = {
+  options.nuisance.modules.nixos.steam = {
     enable = lib.mkOption {
       description = ''
         Whether to enable this module.

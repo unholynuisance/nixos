@@ -18,7 +18,7 @@
       primary = true;
     };
 
-    modules.hm = {
+    nuisance.modules.hm = {
       common.enable = true;
       discord.enable = true;
       emacs.enable = true;

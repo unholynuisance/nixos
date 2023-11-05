@@ -4,9 +4,9 @@
   pkgs,
   ...
 } @ args: let
-  cfg = config.modules.nixos.boot.plymouth;
+  cfg = config.nuisance.modules.nixos.boot.plymouth;
 in {
-  options.modules.nixos.boot.plymouth = {
+  options.nuisance.modules.nixos.boot.plymouth = {
     enable = lib.mkOption {
       description = ''
         Whether to enable this module.

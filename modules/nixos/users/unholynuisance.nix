@@ -4,9 +4,9 @@
   pkgs,
   ...
 } @ args: let
-  cfg = config.modules.nixos.users.unholynuisance;
+  cfg = config.nuisance.modules.nixos.users.unholynuisance;
 in {
-  options.modules.nixos.users.unholynuisance = {
+  options.nuisance.modules.nixos.users.unholynuisance = {
     enable = lib.mkOption {
       description = ''
         Whether to enable this module.

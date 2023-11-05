@@ -4,9 +4,9 @@
   pkgs,
   ...
 } @ args: let
-  cfg = config.modules.hm.common;
+  cfg = config.nuisance.modules.hm.common;
 in {
-  options.modules.hm.common = {
+  options.nuisance.modules.hm.common = {
     enable = lib.mkOption {
       description = ''
         Whether to enable this module.

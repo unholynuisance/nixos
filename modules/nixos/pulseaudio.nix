@@ -5,9 +5,9 @@
   ...
 } @ args: let
   name = "pulseaudio";
-  cfg = config.modules.nixos.${name};
+  cfg = config.nuisance.modules.nixos.${name};
 in {
-  options.modules.nixos.${name} = {
+  options.nuisance.modules.nixos.${name} = {
     enable = lib.mkOption {
       description = ''
         Whether to enable this module.

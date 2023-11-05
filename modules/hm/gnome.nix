@@ -4,9 +4,9 @@
   pkgs,
   ...
 } @ args: let
-  cfg = config.modules.hm.gnome;
+  cfg = config.nuisance.modules.hm.gnome;
 in {
-  options.modules.hm.gnome = {
+  options.nuisance.modules.hm.gnome = {
     enable = lib.mkOption {
       description = ''
         Whether to enable this module.

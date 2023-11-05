@@ -4,9 +4,9 @@
   pkgs,
   ...
 } @ args: let
-  cfg = config.modules.hm.git;
+  cfg = config.nuisance.modules.hm.git;
 in {
-  options.modules.hm.git = {
+  options.nuisance.modules.hm.git = {
     enable = lib.mkOption {
       description = ''
         Whether to enable this module.

@@ -4,9 +4,9 @@
   pkgs,
   ...
 } @ args: let
-  cfg = config.modules.hm.discord;
+  cfg = config.nuisance.modules.hm.discord;
 in {
-  options.modules.hm.discord = {
+  options.nuisance.modules.hm.discord = {
     enable = lib.mkOption {
       description = ''
         Whether to enable this module.

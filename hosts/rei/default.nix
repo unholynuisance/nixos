@@ -16,20 +16,21 @@
   config = {
     networking.hostName = "rei";
 
-    modules.nixos.boot.plymouth.enable = true;
-    modules.nixos.gnome.enable = true;
-    modules.nixos.grub.enable = true;
-    modules.nixos.guest.enable = true;
-    modules.nixos.home-manager.enable = true;
-    modules.nixos.networkmanager.enable = true;
-    modules.nixos.pipewire.enable = true;
-    modules.nixos.rtkit.enable = true;
-    modules.nixos.steam.enable = true;
-    modules.nixos.libvirt.enable = true;
-    modules.nixos.xserver.enable = true;
+    nuisance.modules.nixos = {
+      boot.plymouth.enable = true;
+      gnome.enable = true;
+      grub.enable = true;
+      guest.enable = true;
+      home-manager.enable = true;
+      networkmanager.enable = true;
+      pipewire.enable = true;
+      rtkit.enable = true;
+      steam.enable = true;
+      libvirt.enable = true;
+      xserver.enable = true;
 
-    modules.nixos.users.unholynuisance.enable = true;
-
+      users.unholynuisance.enable = true;
+    };
     boot.initrd.systemd.enable = true;
     boot.initrd.availableKernelModules = ["nvme" "xhci_pci" "usbhid"];
     boot.initrd.kernelModules = [];

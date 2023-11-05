@@ -4,9 +4,9 @@
   pkgs,
   ...
 } @ args: let
-  cfg = config.modules.hm.gtk;
+  cfg = config.nuisance.modules.hm.gtk;
 in {
-  options.modules.hm.gtk = {
+  options.nuisance.modules.hm.gtk = {
     enable = lib.mkOption {
       description = ''
         Whether to enable this module.

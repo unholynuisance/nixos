@@ -4,9 +4,9 @@
   pkgs,
   ...
 } @ args: let
-  cfg = config.modules.nixos.gtnh-server;
+  cfg = config.nuisance.modules.nixos.gtnh-server;
 in {
-  options.modules.nixos.gtnh-server = {
+  options.nuisance.modules.nixos.gtnh-server = {
     enable = lib.mkOption {
       description = ''
         Whether to enable this module.
