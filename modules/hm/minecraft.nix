@@ -17,6 +17,6 @@ in {
   };
 
   config = lib.mkIf cfg.enable {
-    home.packages = with pkgs; [prismlauncher];
+    home.packages = with pkgs; [prismlauncher-qt5];
   };
 }
