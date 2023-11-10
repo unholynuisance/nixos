@@ -19,6 +19,8 @@ in {
   config = lib.mkIf cfg.enable {
     environment.systemPackages = with pkgs; [virt-manager];
 
+    virtualisation.spiceUSBRedirection.enable = true;
+
     virtualisation.libvirtd = {
       enable = true;
 
