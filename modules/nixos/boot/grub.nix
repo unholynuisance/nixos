@@ -22,6 +22,7 @@ in {
       enable = true;
       efiSupport = true;
       efiInstallAsRemovable = true;
+      useOSProber = true;
       device = "nodev";
       gfxmodeEfi = "2560x1440,auto";
       theme = pkgs.stdenv.mkDerivation {
