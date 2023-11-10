@@ -27,7 +27,10 @@
       rtkit.enable = true;
       xserver.enable = true;
 
-      users.unholynuisance.enable = true;
+      users.unholynuisance = {
+        enable = true;
+        extraGroups = ["wheel" "networkmanager" "libvirtd"];
+      };
     };
 
     boot.initrd.systemd.enable = true;

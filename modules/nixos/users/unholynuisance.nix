@@ -14,13 +14,21 @@ in {
       type = lib.types.bool;
       default = false;
     };
+
+    extraGroups = lib.mkOption {
+      description = ''
+        The user’s auxiliary groups.
+      '';
+      type = with lib.types; listOf str;
+      default = [];
+    };
   };
 
   config = lib.mkIf cfg.enable {
     users.users.unholynuisance = {
       isNormalUser = true;
       description = "Unholy Nuisance";
-      extraGroups = ["wheel" "networkmanager"];
+      extraGroups = cfg.extraGroups;
     };
 
     home-manager.users = {

@@ -29,8 +29,12 @@
       libvirt.enable = true;
       xserver.enable = true;
 
-      users.unholynuisance.enable = true;
+      users.unholynuisance = {
+        enable = true;
+        extraGroups = ["wheel" "networkmanager" "libvirtd"];
+      };
     };
+
     boot.initrd.systemd.enable = true;
     boot.initrd.availableKernelModules = ["nvme" "xhci_pci" "usbhid"];
     boot.initrd.kernelModules = [];
