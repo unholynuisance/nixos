@@ -28,10 +28,16 @@
       steam.enable = true;
       libvirt.enable = true;
       xserver.enable = true;
+      mc-gtnh-server = {
+        enable = true;
+        serverProperties = {
+          online-mode = false;
+        };
+      };
 
       users.unholynuisance = {
         enable = true;
-        extraGroups = ["wheel" "networkmanager" "libvirtd"];
+        extraGroups = ["wheel" "networkmanager" "libvirtd" "mc-gtnh-server"];
       };
     };
 

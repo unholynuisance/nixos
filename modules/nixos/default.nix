@@ -12,7 +12,7 @@
     ./guest.nix
     ./home-manager.nix
     ./libvirt.nix
-    ./gtnh-server.nix
+    ./mc-gtnh-server.nix
     ./networkmanager.nix
     ./pipewire.nix
     ./pulseaudio.nix
