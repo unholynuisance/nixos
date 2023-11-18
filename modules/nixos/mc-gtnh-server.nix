@@ -42,9 +42,16 @@
     motd = "GT New Horizons 2.4.0";
   };
 
+  serverProperties = serverPropertiesDefaults // cfg.serverProperties // {
+    server-port = cfg.serverPort;
+    enable-rcon = cfg.enableRcon;
+    rcon-port = cfg.rconPort;
+    rcon-password = cfg.rconPassword;
+  };
+
   serverPropertiesFile =
     pkgs.writeText "server.properties"
-    (lib.generators.toINIWithGlobalSection {} {globalSection = serverPropertiesDefaults // cfg.serverProperties;});
+    (lib.generators.toINIWithGlobalSection {} {globalSection = serverProperties;});
 in {
   options.nuisance.modules.nixos.mc-gtnh-server = {
     enable = lib.mkOption {
@@ -75,15 +82,25 @@ in {
       default = {};
     };
 
-    # whitelist = lib.mkOption {
-    #   type = with lib.types; with pkgs.lib.nuisance.types; listOf (attrsOf (oneOf [uuid str]));
-    #   default = [];
-    # };
+    serverPort = lib.mkOption {
+      type = lib.types.port;
+      default = 25565;
+    };
 
-    # ops = lib.mkOption {
-    #   type = with lib.types; with pkgs.lib.nuisance.types; listOf (attrsOf (oneOf [uuid int str]));
-    #   default = [];
-    # };
+    enableRcon = lib.mkOption {
+      type = lib.types.bool;
+      default = false;
+    };
+
+    rconPort = lib.mkOption {
+      type = lib.types.port;
+      default = 25575;
+    };
+
+    rconPassword = lib.mkOption {
+      type = lib.types.str;
+      default = "";
+    };
 
     maxMemory = lib.mkOption {
       type = lib.types.str;
