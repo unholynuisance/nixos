@@ -12,7 +12,7 @@
     hash = "sha256-5sdOtCYm+Hg698Xlk4wZBsg43mRjMLd8LloAFN1YMb4=";
   };
 
-  gtnh-server-src = fetchzip {
+  mc-gtnh-server-src = fetchzip {
     url = "https://downloads.gtnewhorizons.com/ServerPacks/GT_New_Horizons_2.4.0_Server_Java_17-20.zip";
     hash = "sha256-2OtwaJuAa83u9iyMGKfeOUgJlqxsFtKVdTA4dliCBnQ=";
     stripRoot = false;
@@ -20,8 +20,8 @@
 in {
   mc-gtnh-server = stdenv.mkDerivation {
     pname = "mc-gtnh-server";
-    version = "3.4.0";
-    src = gtnh-server-src;
+    version = "2.4.0";
+    src = mc-gtnh-server-src;
     nativeBuildInputs = [unzip];
 
     installPhase = ''
