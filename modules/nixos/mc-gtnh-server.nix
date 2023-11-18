@@ -149,6 +149,7 @@ in {
       serviceConfig = {
         ExecStart = "${cfg.package}/bin/mc-gtnh-server-start -Xms${cfg.minMemory} -Xmx${cfg.maxMemory}";
         ExecStop = "${cfg.package}/bin/mc-gtnh-server-stop $MAINPID ${config.systemd.sockets.mc-gtnh-server.socketConfig.ListenFIFO}";
+        User="mc-gtnh-server";
         WorkingDirectory = cfg.stateDirectory;
         Restart = "always";
 
