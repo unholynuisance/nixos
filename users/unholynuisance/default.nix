@@ -26,7 +26,10 @@
       git.enable = true;
       gnome.enable = true;
       gtk.enable = true;
-      minecraft.enable = true;
+      minecraft = {
+        enable = true;
+        instances.gtnh.enable = true;
+      };
     };
   };
 }
