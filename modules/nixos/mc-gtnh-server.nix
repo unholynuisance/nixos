@@ -159,24 +159,24 @@ in {
       };
 
       preStart = ''
-        # eula
-        ln -sf ${eulaFile} ./eula.txt
-
-        # configuration
-        cp -bv --suffix=.old ${serverPropertiesFile} server.properties
-
-        # static files
         function overwrite {
           SOURCE="${cfg.package}/lib/mc-gtnh-server/$1"
           DEST="./$1"
 
           [[ -e "$DEST" ]] && rm -r "$DEST"
-          cp -rv "$SOURCE" "$DEST"
+          cp -rTv --no-preserve mode "$SOURCE" "$DEST"
         }
+
+        # eula
+        ln -sf ${eulaFile} ./eula.txt
 
         if [[ ! -e .lock ]] then
           touch .lock
 
+          # configuration
+          cp -bv --no-preserve mode --suffix .old ${serverPropertiesFile} ./server.properties
+
+          # static files
           overwrite config
           overwrite mods
           overwrite libraries
