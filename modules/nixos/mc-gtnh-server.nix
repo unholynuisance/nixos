@@ -111,6 +111,11 @@ in {
       type = lib.types.str;
       default = "2G";
     };
+
+    openFirewall = lib.mkOption {
+      type = lib.types.bool;
+      default = false;
+    };
   };
 
   config = lib.mkIf cfg.enable {
@@ -187,6 +192,15 @@ in {
           overwrite server-icon.png
         fi
       '';
+    };
+
+    networking.firewall = lib.mkIf cfg.openFirewall {
+      allowedTCPPorts = [ cfg.serverPort ];
+      allowedUDPPorts = [
+        cfg.serverPort
+      ] ++ lib.optionals cfg.enableRcon [
+        cfg.rconPort
+      ];
     };
   };
 }
