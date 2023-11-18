@@ -26,7 +26,7 @@ in {
 
     installPhase = ''
       mkdir -p $out/lib/mc-gtnh-server
-      cp -rv --no-preserve mode $src/* $out/lib/mc-gtnh-server
+      cp -rTv --no-preserve mode $src/ $out/lib/mc-gtnh-server
       cp -v ${server-utilities} $out/lib/mc-gtnh-server/mods/
 
       mkdir -p $out/bin
