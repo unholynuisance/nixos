@@ -17,6 +17,12 @@
     hash = "sha256-2OtwaJuAa83u9iyMGKfeOUgJlqxsFtKVdTA4dliCBnQ=";
     stripRoot = false;
   };
+
+  mc-gtnh-client-src = fetchzip {
+    url = "https://downloads.gtnewhorizons.com/Multi_mc_downloads/GT_New_Horizons_2.4.0_Java_17-20.zip";
+    hash = "sha256-18ek/jTlTOnaBa1MUy7qyyffzeaBSynCJHYRJJVAt10=";
+    stripRoot = false;
+  };
 in {
   mc-gtnh-server = stdenv.mkDerivation {
     pname = "mc-gtnh-server";
@@ -48,6 +54,25 @@ in {
 
       chmod +x $out/bin/mc-gtnh-server-start
       chmod +x $out/bin/mc-gtnh-server-stop
+    '';
+  };
+
+  mc-gtnh-client = stdenv.mkDerivation rec {
+    pname = "mc-gtnh-client";
+    version = "2.4.0";
+    src = mc-gtnh-client-src;
+    nativeBuildInputs = [unzip];
+    installPhase = ''
+      cp -rTv --no-preserve mode "$src/GT New Horizons ${version}" $out
+
+      cp -v ${server-utilities} $out/.minecraft/mods
+
+      cp -v ${./resources/options.txt} $out/.minecraft/options.txt
+      cp -v ${./resources/optionsof.txt} $out/.minecraft/optionsof.txt
+      cp -v ${./resources/optionsshaders.txt} $out/.minecraft/optionsshaders.txt
+
+      cp -rTv ${./resources/resourcepacks} $out/.minecraft/resourcepacks
+      cp -rTv ${./resources/shaderpacks} $out/.minecraft/shaderpacks
     '';
   };
 }
