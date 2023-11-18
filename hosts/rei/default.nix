@@ -30,9 +30,11 @@
       xserver.enable = true;
       mc-gtnh-server = {
         enable = true;
+        enableRcon = true;
         serverProperties = {
           online-mode = false;
         };
+        openFirewall = true;
       };
 
       users.unholynuisance = {
