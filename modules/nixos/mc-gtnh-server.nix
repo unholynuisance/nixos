@@ -42,12 +42,15 @@
     motd = "GT New Horizons 2.4.0";
   };
 
-  serverProperties = serverPropertiesDefaults // cfg.serverProperties // {
-    server-port = cfg.serverPort;
-    enable-rcon = cfg.enableRcon;
-    rcon-port = cfg.rconPort;
-    rcon-password = cfg.rconPassword;
-  };
+  serverProperties =
+    serverPropertiesDefaults
+    // cfg.serverProperties
+    // {
+      server-port = cfg.serverPort;
+      enable-rcon = cfg.enableRcon;
+      rcon-port = cfg.rconPort;
+      rcon-password = cfg.rconPassword;
+    };
 
   serverPropertiesFile =
     pkgs.writeText "server.properties"
@@ -154,7 +157,7 @@ in {
       serviceConfig = {
         ExecStart = "${cfg.package}/bin/mc-gtnh-server-start -Xms${cfg.minMemory} -Xmx${cfg.maxMemory}";
         ExecStop = "${cfg.package}/bin/mc-gtnh-server-stop $MAINPID ${config.systemd.sockets.mc-gtnh-server.socketConfig.ListenFIFO}";
-        User="mc-gtnh-server";
+        User = "mc-gtnh-server";
         WorkingDirectory = cfg.stateDirectory;
         Restart = "always";
 
@@ -195,12 +198,14 @@ in {
     };
 
     networking.firewall = lib.mkIf cfg.openFirewall {
-      allowedTCPPorts = [ cfg.serverPort ];
-      allowedUDPPorts = [
-        cfg.serverPort
-      ] ++ lib.optionals cfg.enableRcon [
-        cfg.rconPort
-      ];
+      allowedTCPPorts = [cfg.serverPort];
+      allowedUDPPorts =
+        [
+          cfg.serverPort
+        ]
+        ++ lib.optionals cfg.enableRcon [
+          cfg.rconPort
+        ];
     };
   };
 }
