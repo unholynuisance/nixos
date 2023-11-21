@@ -25,9 +25,13 @@ in {
       cmake
       libtool
       perl
-      texlive.combined.scheme-full
       firefox
       qbittorrent
+      libreoffice
+      hunspell
+      hunspellDicts.uk-ua
+      hunspellDicts.en-us-large
+      texlive.combined.scheme-full
       slack
       teams-for-linux
       telegram-desktop
