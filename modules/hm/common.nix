@@ -27,6 +27,7 @@ in {
       perl
       texlive.combined.scheme-full
       firefox
+      qbittorrent
       slack
       teams-for-linux
       telegram-desktop
