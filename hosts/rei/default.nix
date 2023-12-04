@@ -83,16 +83,16 @@
               })
             ];
           })
-          # (mkDisk {
-          #   name = "sda";
-          #   device = "/dev/disk/by-id/ata-KINGSTON_SA400S37960G_50026B7282DD00AE";
-          #   partitions = [
-          #     (mkPhysicalVolumePartition {
-          #       size = "100%";
-          #       vg = "secondary";
-          #     })
-          #   ];
-          # })
+          (mkDisk {
+            name = "sda";
+            device = "/dev/disk/by-id/ata-KINGSTON_SA400S37960G_50026B7282DD00AE";
+            partitions = [
+              (mkPhysicalVolumePartition {
+                size = "100%";
+                vg = "secondary";
+              })
+            ];
+          })
           # (mkDisk {
           #   name = "sdb";
           #   device = "/dev/disk/by-id/ata-KINGSTON_SA400S37960G_50026B76835CE2EE";
@@ -167,21 +167,29 @@
               })
             ];
           })
-          # (mkVolumeGroup {
-          #   name = "secondary";
-          #   volumes = [
-          #     (mkBtrfsVolume {
-          #       name = "media";
-          #       size = "100%FREE";
-          #       subvolumes = {
-          #         "?unholynuisance?games" = {mountpoint = "/media/unholynuisance/games/secondary";};
-          #         "?unholynuisance?vms" = {mountpoint = "/media/unholynuisance/vms/secondary";};
-          #       };
-          #       encrypt = true;
-          #       unlock = true;
-          #     })
-          #   ];
-          # })
+          (mkVolumeGroup {
+            name = "secondary";
+            volumes = [
+              (mkBtrfsVolume {
+                name = "media";
+                size = "100%FREE";
+                subvolumes = {
+                  "?unholynuisance?games" = {mountpoint = "/media/unholynuisance/games/secondary";};
+                  "?unholynuisance?vms" = {mountpoint = "/media/unholynuisance/vms/secondary";};
+                };
+                encrypt = true;
+                unlock = true;
+              })
+              (mkBtrfsVolume {
+                name = "stash";
+                size = "32G";
+                subvolumes = {
+                  "?" = {};
+                };
+                encrypt = true;
+              })
+            ];
+          })
           # (mkVolumeGroup {
           #   name = "tertiary";
           #   volumes = [
