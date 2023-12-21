@@ -34,6 +34,10 @@
         openFirewall = true;
       };
 
+      virtualisation = {
+        podman.enable = true;
+      };
+
       users.unholynuisance = {
         enable = true;
         extraGroups = ["wheel" "networkmanager" "libvirtd" "mc-gtnh-server"];
