@@ -35,6 +35,8 @@ in {
       slack
       teams-for-linux
       telegram-desktop
+      krita
+      xournalpp
     ];
   };
 }
