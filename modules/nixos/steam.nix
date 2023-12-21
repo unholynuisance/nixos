@@ -17,7 +17,10 @@ in {
   };
 
   config = lib.mkIf cfg.enable {
-    environment.systemPackages = with pkgs; [protontricks];
+    environment.systemPackages = with pkgs; [
+      protontricks
+      mangohud
+    ];
 
     programs.steam = {
       enable = true;
