@@ -20,6 +20,7 @@
     ./steam.nix
     ./users
     ./xserver.nix
+    ./podman.nix
   ];
 
   config = {
