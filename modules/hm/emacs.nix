@@ -28,6 +28,7 @@ in {
     home.packages = with pkgs; [
       ibm-plex
       nerdfonts
+      noto-fonts-cjk-sans
       libvterm
     ];
 
