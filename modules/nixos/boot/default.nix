@@ -10,9 +10,14 @@
 
   config = {
     boot.loader.efi.efiSysMountPoint = "/efi";
+
+    zramSwap = {
+      enable = true;
+    };
+
     boot.tmp = {
       useTmpfs = true;
-      tmpfsSize = "75%";
+      tmpfsSize = "100%";
     };
   };
 }
