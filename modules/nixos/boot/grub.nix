@@ -42,6 +42,8 @@ in {
       device = "nodev";
       gfxmodeEfi = "${cfg.resolution},auto";
       theme = poly-dark-theme;
+      splashImage = "${poly-dark-theme}/background.png";
+      font = "${poly-dark-theme}/unifont-regular-16.pf2";
     };
   };
 }
