@@ -17,9 +17,16 @@
     networking.hostName = "rei";
 
     nuisance.modules.nixos = {
-      boot.plymouth.enable = true;
+      boot = {
+        plymouth.enable = true;
+
+        grub = {
+          enable = true;
+          resolution = "2560x1440";
+        };
+      };
+
       gnome.enable = true;
-      grub.enable = true;
       guest.enable = true;
       home-manager.enable = true;
       networkmanager.enable = true;
@@ -28,6 +35,7 @@
       steam.enable = true;
       libvirt.enable = true;
       xserver.enable = true;
+
       mc-gtnh-server = {
         enable = true;
         enableRcon = true;

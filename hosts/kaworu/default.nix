@@ -17,9 +17,12 @@
     networking.hostName = "kaworu";
 
     nuisance.modules.nixos = {
-      boot.plymouth.enable = true;
+      boot = {
+        plymouth.enable = true;
+        grub.enable = true;
+      };
+
       gnome.enable = true;
-      grub.enable = true;
       guest.enable = true;
       home-manager.enable = true;
       networkmanager.enable = true;

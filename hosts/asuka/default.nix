@@ -17,9 +17,16 @@
     networking.hostName = "asuka";
 
     nuisance.modules.nixos = {
-      boot.plymouth.enable = true;
+      boot = {
+        plymouth.enable = true;
+
+        grub = {
+          enable = true;
+          resolution = "2560x1600";
+        };
+      };
+
       gnome.enable = true;
-      grub.enable = true;
       guest.enable = true;
       home-manager.enable = true;
       networkmanager.enable = true;
