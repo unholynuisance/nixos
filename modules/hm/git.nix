@@ -1,10 +1,5 @@
-{
-  config,
-  lib,
-  pkgs,
-  ...
-} @ args: let
-  cfg = config.nuisance.modules.hm.git;
+{ config, lib, pkgs, ... }@args:
+let cfg = config.nuisance.modules.hm.git;
 in {
   options.nuisance.modules.hm.git = {
     enable = lib.mkOption {

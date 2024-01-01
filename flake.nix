@@ -2,9 +2,7 @@
   description = "A very basic flake";
 
   inputs = {
-    nixpkgs = {
-      url = "github:nixos/nixpkgs/nixos-unstable";
-    };
+    nixpkgs = { url = "github:nixos/nixpkgs/nixos-unstable"; };
 
     home-manager = {
       url = "github:nix-community/home-manager";
@@ -22,12 +20,7 @@
     };
   };
 
-  outputs = {
-    self,
-    nixpkgs,
-    home-manager,
-    ...
-  } @ args: {
+  outputs = { self, nixpkgs, home-manager, ... }@args: {
     lib = import ./lib args;
     packages = import ./packages args;
     overlays = import ./overlays args;
@@ -49,9 +42,7 @@
       ryoji = import ./hosts/ryoji;
     };
 
-    users = {
-      unholynuisance = import ./users/unholynuisance;
-    };
+    users = { unholynuisance = import ./users/unholynuisance; };
 
     nixosConfigurations = {
       # personal hosts: shinji, rei, asuka, toji, mari
@@ -63,21 +54,21 @@
       # primary personal workstation
       rei = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
-        modules = [self.hosts.rei];
+        modules = [ self.hosts.rei ];
         specialArgs = args;
       };
 
       # primary personal laptop
       asuka = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
-        modules = [self.hosts.asuka];
+        modules = [ self.hosts.asuka ];
         specialArgs = args;
       };
 
       # primary virtual host:
       kaworu = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
-        modules = [self.hosts.kaworu];
+        modules = [ self.hosts.kaworu ];
         specialArgs = args;
       };
 
@@ -87,7 +78,7 @@
       # iso
       ryoji = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
-        modules = [self.hosts.ryoji];
+        modules = [ self.hosts.ryoji ];
         specialArgs = args;
       };
     };
@@ -95,11 +86,12 @@
     homeConfigurations = {
       unholynuisance = home-manager.lib.homeManagerConfiguration {
         pkgs = nixpkgs.legacyPackages.x86_64-linux;
-        modules = [self.users.unholynuisance];
+        modules = [ self.users.unholynuisance ];
         extraSpecialArgs = args;
       };
     };
 
-    formatter = self.lib.forAllSystems (system: nixpkgs.legacyPackages.${system}.alejandra);
+    formatter =
+      self.lib.forAllSystems (system: nixpkgs.legacyPackages.${system}.nixfmt);
   };
 }

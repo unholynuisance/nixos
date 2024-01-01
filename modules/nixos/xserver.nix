@@ -1,11 +1,5 @@
-{
-  config,
-  lib,
-  pkgs,
-  xkeyboard-config-src,
-  ...
-} @ args: let
-  cfg = config.nuisance.modules.nixos.xserver;
+{ config, lib, pkgs, xkeyboard-config-src, ... }@args:
+let cfg = config.nuisance.modules.nixos.xserver;
 in {
   options.nuisance.modules.nixos.xserver = {
     enable = lib.mkOption {
@@ -20,9 +14,8 @@ in {
   config = lib.mkIf cfg.enable {
     nixpkgs.overlays = [
       (final: prev: {
-        xkeyboard_config = prev.xkeyboard_config.overrideAttrs (old: {
-          src = xkeyboard-config-src;
-        });
+        xkeyboard_config = prev.xkeyboard_config.overrideAttrs
+          (old: { src = xkeyboard-config-src; });
       })
     ];
 
@@ -31,7 +24,7 @@ in {
       layout = "us";
       xkbVariant = "";
 
-      excludePackages = with pkgs; [xterm];
+      excludePackages = with pkgs; [ xterm ];
     };
   };
 }

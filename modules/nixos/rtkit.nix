@@ -1,9 +1,5 @@
-{
-  config,
-  lib,
-  pkgs,
-  ...
-} @ args: let
+{ config, lib, pkgs, ... }@args:
+let
   name = "rtkit";
   cfg = config.nuisance.modules.nixos.${name};
 in {
@@ -17,7 +13,5 @@ in {
     };
   };
 
-  config = lib.mkIf cfg.enable {
-    security.rtkit.enable = true;
-  };
+  config = lib.mkIf cfg.enable { security.rtkit.enable = true; };
 }

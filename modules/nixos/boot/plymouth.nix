@@ -1,10 +1,5 @@
-{
-  config,
-  lib,
-  pkgs,
-  ...
-} @ args: let
-  cfg = config.nuisance.modules.nixos.boot.plymouth;
+{ config, lib, pkgs, ... }@args:
+let cfg = config.nuisance.modules.nixos.boot.plymouth;
 in {
   options.nuisance.modules.nixos.boot.plymouth = {
     enable = lib.mkOption {
@@ -18,6 +13,6 @@ in {
 
   config = lib.mkIf cfg.enable {
     boot.plymouth.enable = true;
-    boot.kernelParams = ["quiet"];
+    boot.kernelParams = [ "quiet" ];
   };
 }

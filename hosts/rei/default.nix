@@ -1,12 +1,4 @@
-{
-  config,
-  lib,
-  pkgs,
-  self,
-  home-manager,
-  disko,
-  ...
-} @ args: {
+{ config, lib, pkgs, self, home-manager, disko, ... }@args: {
   imports = [
     home-manager.nixosModules.home-manager
     disko.nixosModules.disko
@@ -42,41 +34,34 @@
         openFirewall = true;
       };
 
-      virtualisation = {
-        podman.enable = true;
-      };
+      virtualisation = { podman.enable = true; };
 
       users.unholynuisance = {
         enable = true;
-        extraGroups = ["wheel" "networkmanager" "libvirtd" "mc-gtnh-server"];
+        extraGroups = [ "wheel" "networkmanager" "libvirtd" "mc-gtnh-server" ];
       };
     };
 
     boot.initrd.systemd.enable = true;
-    boot.initrd.availableKernelModules = ["nvme" "xhci_pci" "usbhid"];
-    boot.initrd.kernelModules = [];
-    boot.kernelModules = ["kvm-amd"];
-    boot.extraModulePackages = [];
+    boot.initrd.availableKernelModules = [ "nvme" "xhci_pci" "usbhid" ];
+    boot.initrd.kernelModules = [ ];
+    boot.kernelModules = [ "kvm-amd" ];
+    boot.extraModulePackages = [ ];
 
     hardware.enableAllFirmware = true;
     hardware.enableRedistributableFirmware = true;
     hardware.wirelessRegulatoryDatabase = true;
 
-    services.xserver.videoDrivers = ["nvidia"];
+    services.xserver.videoDrivers = [ "nvidia" ];
 
-    hardware.nvidia = {
-      modesetting.enable = true;
-    };
+    hardware.nvidia = { modesetting.enable = true; };
 
     hardware.opengl = {
       enable = true;
       driSupport = true;
       driSupport32Bit = true;
 
-      extraPackages = with pkgs; [
-        amdvlk
-        driversi686Linux.amdvlk
-      ];
+      extraPackages = with pkgs; [ amdvlk driversi686Linux.amdvlk ];
     };
 
     networking.useDHCP = lib.mkDefault true;
@@ -86,9 +71,10 @@
         disks = [
           (mkDisk {
             name = "nvme0n1";
-            device = "/dev/disk/by-id/nvme-Samsung_SSD_970_EVO_Plus_2TB_S4J4NX0W704961W";
+            device =
+              "/dev/disk/by-id/nvme-Samsung_SSD_970_EVO_Plus_2TB_S4J4NX0W704961W";
             partitions = [
-              (mkEfiPartition {size = "128M";})
+              (mkEfiPartition { size = "128M"; })
               (mkPhysicalVolumePartition {
                 size = "100%";
                 vg = "primary";
@@ -97,7 +83,8 @@
           })
           (mkDisk {
             name = "sda";
-            device = "/dev/disk/by-id/ata-KINGSTON_SA400S37960G_50026B7282DD00AE";
+            device =
+              "/dev/disk/by-id/ata-KINGSTON_SA400S37960G_50026B7282DD00AE";
             partitions = [
               (mkPhysicalVolumePartition {
                 size = "100%";
@@ -140,7 +127,7 @@
           (mkVolumeGroup {
             name = "primary";
             volumes = [
-              (mkBootVolume {size = "1G";})
+              (mkBootVolume { size = "1G"; })
               (mkSwapVolume {
                 size = "32G";
                 encrypt = true;
@@ -150,9 +137,9 @@
                 name = "root";
                 size = "128G";
                 subvolumes = {
-                  "?" = {mountpoint = "/";};
-                  "?nix" = {mountpoint = "/nix";};
-                  "?var?log" = {mountpoint = "/var/log";};
+                  "?" = { mountpoint = "/"; };
+                  "?nix" = { mountpoint = "/nix"; };
+                  "?var?log" = { mountpoint = "/var/log"; };
                 };
                 encrypt = true;
                 unlock = true;
@@ -161,8 +148,8 @@
                 name = "home";
                 size = "256G";
                 subvolumes = {
-                  "?" = {mountpoint = "/home";};
-                  "?unholynuisance" = {mountpoint = "/home/unholynuisance";};
+                  "?" = { mountpoint = "/home"; };
+                  "?unholynuisance" = { mountpoint = "/home/unholynuisance"; };
                 };
                 encrypt = true;
                 unlock = true;
@@ -171,8 +158,12 @@
                 name = "media";
                 size = "100%FREE";
                 subvolumes = {
-                  "?unholynuisance?games" = {mountpoint = "/media/unholynuisance/games/primary";};
-                  "?unholynuisance?vms" = {mountpoint = "/media/unholynuisance/vms/primary";};
+                  "?unholynuisance?games" = {
+                    mountpoint = "/media/unholynuisance/games/primary";
+                  };
+                  "?unholynuisance?vms" = {
+                    mountpoint = "/media/unholynuisance/vms/primary";
+                  };
                 };
                 encrypt = true;
                 unlock = true;
@@ -186,8 +177,12 @@
                 name = "media";
                 size = "100%FREE";
                 subvolumes = {
-                  "?unholynuisance?games" = {mountpoint = "/media/unholynuisance/games/secondary";};
-                  "?unholynuisance?vms" = {mountpoint = "/media/unholynuisance/vms/secondary";};
+                  "?unholynuisance?games" = {
+                    mountpoint = "/media/unholynuisance/games/secondary";
+                  };
+                  "?unholynuisance?vms" = {
+                    mountpoint = "/media/unholynuisance/vms/secondary";
+                  };
                 };
                 encrypt = true;
                 unlock = true;
@@ -195,9 +190,7 @@
               (mkBtrfsVolume {
                 name = "stash";
                 size = "32G";
-                subvolumes = {
-                  "?" = {};
-                };
+                subvolumes = { "?" = { }; };
                 encrypt = true;
               })
             ];

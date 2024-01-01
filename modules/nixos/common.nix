@@ -1,11 +1,7 @@
 # Edit this configuration file to define what should be installed on
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
-{
-  config,
-  pkgs,
-  ...
-}: {
+{ config, pkgs, ... }: {
   time.timeZone = "Europe/Kyiv";
 
   i18n.defaultLocale = "en_US.UTF-8";
@@ -24,13 +20,9 @@
 
   console.keyMap = "us";
 
-  environment.systemPackages = with pkgs; [
-    vim
-    emacs
-    git
-  ];
+  environment.systemPackages = with pkgs; [ vim emacs git ];
 
   services.openssh.enable = true;
 
-  nix.settings.experimental-features = ["nix-command" "flakes"];
+  nix.settings.experimental-features = [ "nix-command" "flakes" ];
 }

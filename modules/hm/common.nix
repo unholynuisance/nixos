@@ -1,10 +1,5 @@
-{
-  config,
-  lib,
-  pkgs,
-  ...
-} @ args: let
-  cfg = config.nuisance.modules.hm.common;
+{ config, lib, pkgs, ... }@args:
+let cfg = config.nuisance.modules.hm.common;
 in {
   options.nuisance.modules.hm.common = {
     enable = lib.mkOption {

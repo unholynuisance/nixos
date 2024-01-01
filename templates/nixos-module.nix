@@ -1,10 +1,5 @@
-{
-  config,
-  lib,
-  pkgs,
-  ...
-} @ args: let
-  cfg = config.modules.nixos.name;
+{ config, lib, pkgs, ... }@args:
+let cfg = config.modules.nixos.name;
 in {
   options.modules.nixos.name = {
     enable = lib.mkOption {
@@ -16,7 +11,5 @@ in {
     };
   };
 
-  config = lib.mkIf cfg.enable {
-    foo = "bar";
-  };
+  config = lib.mkIf cfg.enable { foo = "bar"; };
 }

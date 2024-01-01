@@ -1,18 +1,6 @@
-{
-  config,
-  lib,
-  pkgs,
-  ...
-}: {
-  imports = [
-    ./common.nix
-    ./discord.nix
-    ./emacs.nix
-    ./git.nix
-    ./gnome.nix
-    ./gtk.nix
-    ./minecraft.nix
-  ];
+{ config, lib, pkgs, ... }: {
+  imports =
+    [ ./applications ./games ./common.nix ./git.nix ./gnome.nix ./gtk.nix ];
 
   config = {
     # see https://github.com/nix-community/home-manager/issues/2942

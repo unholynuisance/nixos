@@ -1,10 +1,1 @@
-{
-  config,
-  lib,
-  pkgs,
-  ...
-}: {
-  imports = [
-    ./unholynuisance.nix
-  ];
-}
+{ config, lib, pkgs, ... }: { imports = [ ./unholynuisance.nix ]; }

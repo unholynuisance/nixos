@@ -1,10 +1,5 @@
-{
-  config,
-  lib,
-  pkgs,
-  self,
-  ...
-} @ args: let
+{ config, lib, pkgs, self, ... }@args:
+let
   name = "home-manager";
   cfg = config.nuisance.modules.nixos.${name};
 in {
@@ -19,13 +14,13 @@ in {
   };
 
   config = lib.mkIf cfg.enable {
-    environment.systemPackages = with pkgs; [home-manager];
+    environment.systemPackages = with pkgs; [ home-manager ];
 
     home-manager = {
       useGlobalPkgs = true;
       useUserPackages = true;
 
-      extraSpecialArgs = {inherit self;};
+      extraSpecialArgs = { inherit self; };
     };
   };
 }

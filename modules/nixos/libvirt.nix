@@ -1,10 +1,5 @@
-{
-  config,
-  lib,
-  pkgs,
-  ...
-} @ args: let
-  cfg = config.nuisance.modules.nixos.libvirt;
+{ config, lib, pkgs, ... }@args:
+let cfg = config.nuisance.modules.nixos.libvirt;
 in {
   options.nuisance.modules.nixos.libvirt = {
     enable = lib.mkOption {
@@ -17,7 +12,7 @@ in {
   };
 
   config = lib.mkIf cfg.enable {
-    environment.systemPackages = with pkgs; [virt-manager];
+    environment.systemPackages = with pkgs; [ virt-manager ];
 
     virtualisation.spiceUSBRedirection.enable = true;
 

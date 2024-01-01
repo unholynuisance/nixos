@@ -1,10 +1,4 @@
-{
-  config,
-  lib,
-  pkgs,
-  self,
-  ...
-}: {
+{ config, lib, pkgs, self, ... }: {
   imports = [
     ./boot
     ./common.nix
@@ -24,10 +18,7 @@
   ];
 
   config = {
-    nixpkgs.overlays = [
-      self.overlays.lib
-      self.overlays.pkgs
-    ];
+    nixpkgs.overlays = [ self.overlays.lib self.overlays.pkgs ];
 
     nixpkgs.config.allowUnfree = true;
     system.stateVersion = "23.05";

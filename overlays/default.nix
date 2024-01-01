@@ -1,9 +1,7 @@
-{self, ...}: {
+{ self, ... }: {
   lib = final: prev: {
-    lib = prev.lib.extend (final: prev: {nuisance = self.lib;});
+    lib = prev.lib.extend (final: prev: { nuisance = self.lib; });
   };
 
-  pkgs = final: prev: {
-    nuisance = self.packages.${prev.system};
-  };
+  pkgs = final: prev: { nuisance = self.packages.${prev.system}; };
 }

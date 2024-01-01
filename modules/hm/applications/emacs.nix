@@ -1,12 +1,7 @@
-{
-  config,
-  lib,
-  pkgs,
-  ...
-} @ args: let
-  cfg = config.nuisance.modules.hm.emacs;
+{ config, lib, pkgs, ... }@args:
+let cfg = config.nuisance.modules.hm.applications.emacs;
 in {
-  options.nuisance.modules.hm.emacs = {
+  options.nuisance.modules.hm.applications.emacs = {
     enable = lib.mkOption {
       description = ''
         Whether to enable this module.
@@ -37,9 +32,9 @@ in {
       package = cfg.package;
     };
 
-    services.emacs = {
-      enable = true;
-      package = cfg.package;
-    };
+    # services.emacs = {
+    #   enable = true;
+    #   package = cfg.package;
+    # };
   };
 }

@@ -1,9 +1,5 @@
-{
-  config,
-  lib,
-  pkgs,
-  ...
-} @ args: let
+{ config, lib, pkgs, ... }@args:
+let
   name = "pulseaudio";
   cfg = config.nuisance.modules.nixos.${name};
 in {

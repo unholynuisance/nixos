@@ -1,12 +1,7 @@
-{
-  config,
-  lib,
-  pkgs,
-  ...
-} @ args: let
-  cfg = config.nuisance.modules.hm.discord;
+{ config, lib, pkgs, ... }@args:
+let cfg = config.nuisance.modules.hm.applications.discord;
 in {
-  options.nuisance.modules.hm.discord = {
+  options.nuisance.modules.hm.applications.discord = {
     enable = lib.mkOption {
       description = ''
         Whether to enable this module.
@@ -17,9 +12,7 @@ in {
   };
 
   config = lib.mkIf cfg.enable {
-    home.packages = with pkgs; [
-      discord
-    ];
+    home.packages = with pkgs; [ discord ];
 
     home.activation = {
       discord = ''

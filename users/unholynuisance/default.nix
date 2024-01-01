@@ -1,13 +1,5 @@
-{
-  config,
-  lib,
-  pkgs,
-  self,
-  ...
-} @ args: {
-  imports = [
-    self.homeModules.combined
-  ];
+{ config, lib, pkgs, self, ... }@args: {
+  imports = [ self.homeModules.combined ];
 
   config = {
     home.username = "unholynuisance";
@@ -20,15 +12,23 @@
 
     nuisance.modules.hm = {
       common.enable = true;
-      discord.enable = true;
-      emacs.enable = true;
-      emacs.package = pkgs.emacs29-gtk3;
       git.enable = true;
       gnome.enable = true;
       gtk.enable = true;
-      minecraft = {
-        enable = true;
-        instances.gtnh.enable = true;
+
+      applications = {
+        discord.enable = true;
+        emacs = {
+          enable = true;
+          package = pkgs.emacs29-gtk3;
+        };
+      };
+
+      games = {
+        minecraft = {
+          enable = true;
+          instances.gtnh.enable = true;
+        };
       };
     };
   };

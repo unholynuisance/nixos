@@ -1,9 +1,5 @@
-{
-  config,
-  lib,
-  pkgs,
-  ...
-} @ args: let
+{ config, lib, pkgs, ... }@args:
+let
   cfg = config.nuisance.modules.nixos.boot.grub;
 
   poly-dark-theme = pkgs.stdenv.mkDerivation {

@@ -1,12 +1,7 @@
-{
-  config,
-  lib,
-  pkgs,
-  ...
-} @ args: let
-  cfg = config.nuisance.modules.hm.minecraft;
+{ config, lib, pkgs, ... }@args:
+let cfg = config.nuisance.modules.hm.games.minecraft;
 in {
-  options.nuisance.modules.hm.minecraft = {
+  options.nuisance.modules.hm.games.minecraft = {
     enable = lib.mkOption {
       description = ''
         Whether to enable this module.
@@ -26,7 +21,8 @@ in {
 
       directory = lib.mkOption {
         type = lib.types.path;
-        default = "${config.home.homeDirectory}/.local/share/PrismLauncher/instances/gtnh";
+        default =
+          "${config.home.homeDirectory}/.local/share/PrismLauncher/instances/gtnh";
       };
 
       package = lib.mkOption {
@@ -37,7 +33,7 @@ in {
   };
 
   config = lib.mkIf cfg.enable {
-    home.packages = with pkgs; [prismlauncher-qt5];
+    home.packages = with pkgs; [ prismlauncher-qt5 ];
 
     home.activation = {
       mc-gtnh-client = ''

@@ -1,9 +1,5 @@
-{
-  config,
-  lib,
-  pkgs,
-  ...
-} @ args: let
+{ config, lib, pkgs, ... }@args:
+let
   cfg = config.nuisance.modules.nixos.mc-gtnh-server;
 
   eulaFile = builtins.toFile "eula.txt" ''
@@ -42,19 +38,17 @@
     motd = "GT New Horizons 2.4.0";
   };
 
-  serverProperties =
-    serverPropertiesDefaults
-    // cfg.serverProperties
-    // {
-      server-port = cfg.serverPort;
-      enable-rcon = cfg.enableRcon;
-      rcon-port = cfg.rconPort;
-      rcon-password = cfg.rconPassword;
-    };
+  serverProperties = serverPropertiesDefaults // cfg.serverProperties // {
+    server-port = cfg.serverPort;
+    enable-rcon = cfg.enableRcon;
+    rcon-port = cfg.rconPort;
+    rcon-password = cfg.rconPassword;
+  };
 
-  serverPropertiesFile =
-    pkgs.writeText "server.properties"
-    (lib.generators.toINIWithGlobalSection {} {globalSection = serverProperties;});
+  serverPropertiesFile = pkgs.writeText "server.properties"
+    (lib.generators.toINIWithGlobalSection { } {
+      globalSection = serverProperties;
+    });
 in {
   options.nuisance.modules.nixos.mc-gtnh-server = {
     enable = lib.mkOption {
@@ -81,8 +75,8 @@ in {
     };
 
     serverProperties = lib.mkOption {
-      type = with lib.types; attrsOf (oneOf [bool int str]);
-      default = {};
+      type = with lib.types; attrsOf (oneOf [ bool int str ]);
+      default = { };
     };
 
     serverPort = lib.mkOption {
@@ -131,10 +125,10 @@ in {
       homeMode = "770";
     };
 
-    users.groups.mc-gtnh-server = {};
+    users.groups.mc-gtnh-server = { };
 
     systemd.sockets.mc-gtnh-server = {
-      bindsTo = ["mc-gtnh-server.service"];
+      bindsTo = [ "mc-gtnh-server.service" ];
       socketConfig = {
         ListenFIFO = "/run/mc-gtnh-server.stdin";
         SocketMode = "0660";
@@ -147,16 +141,15 @@ in {
 
     systemd.services.mc-gtnh-server = {
       description = "GT New Horizons Server service";
-      wantedBy =
-        if cfg.startOnBoot
-        then ["multi-user.target"]
-        else [];
-      requires = ["mc-gtnh-server.socket"];
-      after = ["network.target" "mc-gtnh-server.socket"];
+      wantedBy = if cfg.startOnBoot then [ "multi-user.target" ] else [ ];
+      requires = [ "mc-gtnh-server.socket" ];
+      after = [ "network.target" "mc-gtnh-server.socket" ];
 
       serviceConfig = {
-        ExecStart = "${cfg.package}/bin/mc-gtnh-server-start -Xms${cfg.minMemory} -Xmx${cfg.maxMemory}";
-        ExecStop = "${cfg.package}/bin/mc-gtnh-server-stop $MAINPID ${config.systemd.sockets.mc-gtnh-server.socketConfig.ListenFIFO}";
+        ExecStart =
+          "${cfg.package}/bin/mc-gtnh-server-start -Xms${cfg.minMemory} -Xmx${cfg.maxMemory}";
+        ExecStop =
+          "${cfg.package}/bin/mc-gtnh-server-stop $MAINPID ${config.systemd.sockets.mc-gtnh-server.socketConfig.ListenFIFO}";
         User = "mc-gtnh-server";
         WorkingDirectory = cfg.stateDirectory;
         Restart = "always";
@@ -198,14 +191,9 @@ in {
     };
 
     networking.firewall = lib.mkIf cfg.openFirewall {
-      allowedTCPPorts = [cfg.serverPort];
-      allowedUDPPorts =
-        [
-          cfg.serverPort
-        ]
-        ++ lib.optionals cfg.enableRcon [
-          cfg.rconPort
-        ];
+      allowedTCPPorts = [ cfg.serverPort ];
+      allowedUDPPorts = [ cfg.serverPort ]
+        ++ lib.optionals cfg.enableRcon [ cfg.rconPort ];
     };
   };
 }

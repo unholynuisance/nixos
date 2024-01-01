@@ -1,10 +1,5 @@
-{
-  config,
-  lib,
-  pkgs,
-  ...
-} @ args: let
-  cfg = config.nuisance.modules.nixos.users.unholynuisance;
+{ config, lib, pkgs, ... }@args:
+let cfg = config.nuisance.modules.nixos.users.unholynuisance;
 in {
   options.nuisance.modules.nixos.users.unholynuisance = {
     enable = lib.mkOption {
@@ -20,7 +15,7 @@ in {
         The user’s auxiliary groups.
       '';
       type = with lib.types; listOf str;
-      default = [];
+      default = [ ];
     };
   };
 
