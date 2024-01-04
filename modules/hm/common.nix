@@ -23,6 +23,7 @@ in {
       libtool
       perl
       firefox
+      google-chrome
       qbittorrent
       libreoffice
       hunspell
