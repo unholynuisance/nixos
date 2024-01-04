@@ -29,6 +29,8 @@
           enable = true;
           instances.gtnh.enable = true;
         };
+
+        cataclysm-dda.enable = true;
       };
     };
   };
