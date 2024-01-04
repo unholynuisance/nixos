@@ -12,8 +12,11 @@ in {
   };
 
   config = lib.mkIf cfg.enable {
-    environment.systemPackages = with pkgs; [ protontricks mangohud ];
-
     programs.steam = { enable = true; };
+
+    environment.systemPackages = with pkgs; [ protontricks mangohud ];
+    environment.sessionVariables = {
+      STEAM_EXTRA_COMPAT_TOOLS_PATHS = "${pkgs.nuisance.proton.proton-ge}";
+    };
   };
 }
