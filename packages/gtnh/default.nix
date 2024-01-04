@@ -6,24 +6,16 @@ let
     hash = "sha256-5sdOtCYm+Hg698Xlk4wZBsg43mRjMLd8LloAFN1YMb4=";
   };
 
-  mc-gtnh-server-src = fetchzip {
-    url =
-      "https://downloads.gtnewhorizons.com/ServerPacks/GT_New_Horizons_2.4.0_Server_Java_17-20.zip";
-    hash = "sha256-2OtwaJuAa83u9iyMGKfeOUgJlqxsFtKVdTA4dliCBnQ=";
-    stripRoot = false;
-  };
-
-  mc-gtnh-client-src = fetchzip {
-    url =
-      "https://downloads.gtnewhorizons.com/Multi_mc_downloads/GT_New_Horizons_2.4.0_Java_17-20.zip";
-    hash = "sha256-18ek/jTlTOnaBa1MUy7qyyffzeaBSynCJHYRJJVAt10=";
-    stripRoot = false;
-  };
 in {
-  mc-gtnh-server = stdenv.mkDerivation {
+  mc-gtnh-server = stdenv.mkDerivation rec {
     pname = "mc-gtnh-server";
-    version = "2.4.0";
-    src = mc-gtnh-server-src;
+    version = "2.5.1";
+    src = fetchzip {
+      url =
+        "https://downloads.gtnewhorizons.com/ServerPacks/GT_New_Horizons_${version}_Server_Java_17-21.zip";
+      hash = "sha256-CNPws8OjFsNyLe2ZtJaWRd20qVTFf4r/9yKzvvkXlyY=";
+      stripRoot = false;
+    };
     nativeBuildInputs = [ unzip ];
 
     installPhase = ''
@@ -55,8 +47,13 @@ in {
 
   mc-gtnh-client = stdenv.mkDerivation rec {
     pname = "mc-gtnh-client";
-    version = "2.4.0";
-    src = mc-gtnh-client-src;
+    version = "2.5.1";
+    src = fetchzip {
+      url =
+        "https://downloads.gtnewhorizons.com/Multi_mc_downloads/GT_New_Horizons_${version}_Java_17-21.zip";
+      hash = "sha256-y0SqMIt/PToBEtTnWWgYQWNeUH+t8FWh/u3K5ad8lGI=";
+      stripRoot = false;
+    };
     nativeBuildInputs = [ unzip ];
     installPhase = ''
       cp -rTv --no-preserve mode "$src/GT New Horizons ${version}" $out
