@@ -12,7 +12,6 @@
 
     nuisance.modules.hm = {
       common.enable = true;
-      git.enable = true;
       gnome.enable = true;
       gtk.enable = true;
 
@@ -33,7 +32,10 @@
         cataclysm-dda.enable = true;
       };
 
-      tools = { nix.enable = true; };
+      tools = {
+        nix.enable = true;
+        git.enable = true;
+      };
     };
   };
 }

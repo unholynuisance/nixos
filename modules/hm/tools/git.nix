@@ -1,11 +1,8 @@
 { config, lib, pkgs, ... }@args:
-let cfg = config.nuisance.modules.hm.git;
+let cfg = config.nuisance.modules.hm.tools.git;
 in {
-  options.nuisance.modules.hm.git = {
+  options.nuisance.modules.hm.tools.git = {
     enable = lib.mkOption {
-      description = ''
-        Whether to enable this module.
-      '';
       type = lib.types.bool;
       default = false;
     };
