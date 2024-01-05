@@ -9,6 +9,11 @@ in {
       type = lib.types.bool;
       default = false;
     };
+
+    extraCompatTools = lib.mkOption {
+      type = with lib.types; listOf package;
+      default = [ ];
+    };
   };
 
   config = lib.mkIf cfg.enable {
@@ -16,7 +21,8 @@ in {
 
     environment.systemPackages = with pkgs; [ protontricks mangohud ];
     environment.sessionVariables = {
-      STEAM_EXTRA_COMPAT_TOOLS_PATHS = "${pkgs.nuisance.proton.proton-ge}";
+      STEAM_EXTRA_COMPAT_TOOLS_PATHS =
+        lib.concatStringsSep ":" cfg.extraCompatTools;
     };
   };
 }

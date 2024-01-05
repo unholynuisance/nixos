@@ -24,7 +24,12 @@
       networkmanager.enable = true;
       pipewire.enable = true;
       rtkit.enable = true;
-      steam.enable = true;
+
+      steam = {
+        enable = true;
+        extraCompatTools = with pkgs.nuisance.proton; [ proton-ge ];
+      };
+
       libvirt.enable = true;
       xserver.enable = true;
 
