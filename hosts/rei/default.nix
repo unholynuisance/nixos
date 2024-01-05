@@ -27,7 +27,10 @@
 
       steam = {
         enable = true;
-        extraCompatTools = with pkgs.nuisance.proton; [ proton-ge ];
+        extraCompatTools = with pkgs.nuisance.proton; [
+          ge-proton8-16
+          ge-proton8-25
+        ];
       };
 
       libvirt.enable = true;
