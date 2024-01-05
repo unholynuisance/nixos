@@ -32,6 +32,8 @@
 
         cataclysm-dda.enable = true;
       };
+
+      tools = { nix.enable = true; };
     };
   };
 }
