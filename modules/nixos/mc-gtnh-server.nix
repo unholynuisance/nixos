@@ -162,7 +162,7 @@ in {
       preStart = ''
         function overwrite {
           SOURCE="${cfg.package}/lib/mc-gtnh-server/$1"
-          DEST="./$1"
+          DEST="$1"
 
           [[ -e "$DEST" ]] && rm -r "$DEST"
           cp -rTv --no-preserve mode "$SOURCE" "$DEST"
@@ -173,6 +173,8 @@ in {
 
         if [[ ! -e .lock ]] then
           touch .lock
+
+          rm -r scripts
 
           # configuration
           cp -bv --no-preserve mode --suffix .old ${serverPropertiesFile} ./server.properties
