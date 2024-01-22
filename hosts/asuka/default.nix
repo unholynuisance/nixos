@@ -18,6 +18,10 @@
         };
       };
 
+      shells = {
+        zsh.enable = true;
+      };
+
       gnome.enable = true;
       guest.enable = true;
       home-manager.enable = true;
@@ -44,6 +48,7 @@
 
       users.unholynuisance = {
         enable = true;
+        shell = pkgs.zsh;
         extraGroups = [ "wheel" "networkmanager" "libvirtd" ];
       };
     };

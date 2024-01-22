@@ -15,6 +15,10 @@
       gnome.enable = true;
       gtk.enable = true;
 
+      shells = {
+        zsh.enable = true;
+      };
+
       applications = {
         discord.enable = true;
         emacs = {
