@@ -2,13 +2,9 @@
 let cfg = config.nuisance.modules.nixos.users.unholynuisance;
 in {
   options.nuisance.modules.nixos.users.unholynuisance = {
-    enable = lib.mkOption {
-      description = ''
-        Whether to enable this module.
-      '';
-      type = lib.types.bool;
-      default = false;
-    };
+    enable = lib.mkEnableOption "users.unholynuisance";
+
+    shell = lib.mkPackageOption pkgs "bash" {};
 
     extraGroups = lib.mkOption {
       description = ''
@@ -23,6 +19,7 @@ in {
     users.users.unholynuisance = {
       isNormalUser = true;
       description = "Unholy Nuisance";
+      shell = cfg.shell;
       extraGroups = cfg.extraGroups;
     };
 
