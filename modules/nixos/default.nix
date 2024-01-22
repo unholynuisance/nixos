@@ -1,6 +1,7 @@
 { config, lib, pkgs, self, ... }: {
   imports = [
     ./boot
+    ./shells
     ./common.nix
     ./gnome.nix
     ./guest.nix
