@@ -1,6 +1,13 @@
 { config, lib, pkgs, ... }: {
-  imports =
-    [ ./applications ./games ./tools ./common.nix ./gnome.nix ./gtk.nix ];
+  imports = [
+    ./applications
+    ./games
+    ./shells
+    ./tools
+    ./common.nix
+    ./gnome.nix
+    ./gtk.nix
+  ];
 
   config = {
     # see https://github.com/nix-community/home-manager/issues/2942
