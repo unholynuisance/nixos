@@ -24,6 +24,7 @@
       networkmanager.enable = true;
       pipewire.enable = true;
       rtkit.enable = true;
+      shells.zsh.enable = true;
 
       steam = {
         enable = true;
@@ -46,6 +47,7 @@
 
       users.unholynuisance = {
         enable = true;
+        shell = pkgs.zsh;
         extraGroups = [ "wheel" "networkmanager" "libvirtd" "mc-gtnh-server" ];
       };
     };

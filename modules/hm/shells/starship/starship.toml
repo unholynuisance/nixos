@@ -1,0 +1,22 @@
+add_newline = false
+
+format = """
+$username\
+[@]()\
+$hostname\
+[:]()\
+$directory\
+$git_branch\
+$git_state\
+$git_status\
+$cmd_duration\
+$line_break\
+$character"""
+
+[username]
+format = "[$user]($style)"
+show_always = true
+
+[hostname]
+format = "[$hostname]($style)"
+ssh_only = false

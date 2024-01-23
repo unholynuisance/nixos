@@ -17,6 +17,7 @@
 
       shells = {
         zsh.enable = true;
+        starship.enable = true;
       };
 
       applications = {
