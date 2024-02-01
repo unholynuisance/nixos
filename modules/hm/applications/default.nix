@@ -1,1 +1,3 @@
-{ config, lib, pkgs, ... }: { imports = [ ./discord.nix ./emacs.nix ]; }
+{ config, lib, pkgs, ... }: {
+  imports = [ ./calibre.nix ./discord.nix ./emacs.nix ];
+}

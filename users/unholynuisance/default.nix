@@ -21,6 +21,7 @@
       };
 
       applications = {
+        calibre.enable = true;
         discord.enable = true;
         emacs = {
           enable = true;
