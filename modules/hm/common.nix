@@ -17,6 +17,7 @@ in {
     home.packages = with pkgs; [
       fd
       ripgrep
+      xdg-launch
       gcc
       gnumake
       cmake
