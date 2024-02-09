@@ -32,9 +32,17 @@ in {
       package = cfg.package;
     };
 
-    # services.emacs = {
-    #   enable = true;
-    #   package = cfg.package;
-    # };
+    services.emacs = {
+      enable = true;
+      package = cfg.package;
+
+      socketActivation.enable = true;
+      startWithUserSession = "graphical";
+
+      client = {
+        enable = true;
+        arguments = [ "--create-frame" ];
+      };
+    };
   };
 }
