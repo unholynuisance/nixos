@@ -224,6 +224,19 @@ in {
           "freon@UshakovVasilii_Github.yahoo.com"
         ];
       };
+
+      "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/emacsclient" =
+        {
+          name = "Launch emacsclient";
+          command = "xdg-launch emacsclient.desktop";
+          binding = "<Ctrl><Super>e";
+        };
+
+      "org/gnome/settings-daemon/plugins/media-keys" = {
+        custom-keybindings = [
+          "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/emacsclient/"
+        ];
+      };
     };
   };
 }
