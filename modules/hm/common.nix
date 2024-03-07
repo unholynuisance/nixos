@@ -21,6 +21,7 @@ in {
       gcc
       gnumake
       cmake
+      unzip
       libtool
       perl
       firefox
