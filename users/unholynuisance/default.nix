@@ -39,8 +39,9 @@
       };
 
       tools = {
-        nix.enable = true;
+        direnv.enable = true;
         git.enable = true;
+        nix.enable = true;
       };
     };
   };

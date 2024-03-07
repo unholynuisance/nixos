@@ -1,1 +1,7 @@
-{ config, lib, pkgs, ... }: { imports = [ ./nix.nix ./git.nix ]; }
+{ config, lib, pkgs, ... }: {
+  imports = [ # #
+    ./direnv.nix
+    ./git.nix
+    ./nix.nix
+  ];
+}
