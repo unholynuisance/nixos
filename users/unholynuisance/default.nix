@@ -21,6 +21,7 @@
       };
 
       applications = {
+        zotero.enable = true;
         calibre.enable = true;
         discord.enable = true;
         emacs = {
