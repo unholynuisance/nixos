@@ -187,11 +187,17 @@
                 name = "media";
                 size = "100%FREE";
                 subvolumes = {
-                  "?unholynuisance?games" = {
+                  "?unholynuisance?games" = { # #
                     mountpoint = "/media/unholynuisance/games/secondary";
                   };
-                  "?unholynuisance?vms" = {
+                  "?unholynuisance?vms" = { # #
                     mountpoint = "/media/unholynuisance/vms/secondary";
+                  };
+                  "?var?lib?libvirt" = { # #
+                    mountpoint = "/var/lib/libvirt";
+                  };
+                  "?var?lib?minecraft" = { # #
+                    mountpoint = "/var/lib/minecraft";
                   };
                 };
                 encrypt = true;
