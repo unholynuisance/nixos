@@ -102,16 +102,17 @@
               })
             ];
           })
-          # (mkDisk {
-          #   name = "sdb";
-          #   device = "/dev/disk/by-id/ata-KINGSTON_SA400S37960G_50026B76835CE2EE";
-          #   partitions = [
-          #     (mkPhysicalVolumePartition {
-          #       size = "100%";
-          #       vg = "secondary";
-          #     })
-          #   ];
-          # })
+          (mkDisk {
+            name = "sdb";
+            device =
+              "/dev/disk/by-id/ata-KINGSTON_SA400S37960G_50026B76835CE2EE";
+            partitions = [
+              (mkPhysicalVolumePartition {
+                size = "100%";
+                vg = "secondary";
+              })
+            ];
+          })
           # (mkDisk {
           #   name = "sdd";
           #   device = "/dev/disk/by-id/ata-ST2000DM008-2FR102_ZFL4EW68";
