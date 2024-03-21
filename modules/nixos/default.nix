@@ -1,21 +1,21 @@
 { config, lib, pkgs, self, ... }: {
   imports = [
     ./boot
+    ./services
     ./shells
+    ./users
     ./common.nix
     ./gnome.nix
     ./guest.nix
     ./home-manager.nix
     ./libvirt.nix
-    ./mc-gtnh-server.nix
     ./networkmanager.nix
     ./pipewire.nix
+    ./podman.nix
     ./pulseaudio.nix
     ./rtkit.nix
     ./steam.nix
-    ./users
     ./xserver.nix
-    ./podman.nix
   ];
 
   config = {
