@@ -21,9 +21,11 @@
       };
 
       applications = {
-        zotero.enable = true;
         calibre.enable = true;
         discord.enable = true;
+        obs-studio.enable = true;
+        zotero.enable = true;
+
         emacs = {
           enable = true;
           package = pkgs.emacs29-gtk3;
