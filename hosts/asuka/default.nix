@@ -18,7 +18,7 @@
         };
       };
 
-      shells = {
+      shells = { # #
         zsh.enable = true;
       };
 
@@ -39,12 +39,6 @@
 
       libvirt.enable = true;
       xserver.enable = true;
-
-      mc-gtnh-server = {
-        enable = true;
-        enableRcon = true;
-        openFirewall = true;
-      };
 
       users.unholynuisance = {
         enable = true;
