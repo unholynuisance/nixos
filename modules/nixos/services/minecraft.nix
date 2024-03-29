@@ -1,21 +1,19 @@
 { config, lib, pkgs, ... }@args:
 let
-  cfg = config.nuisance.modules.nixos.mc-gtnh-server;
+  cfg = config.nuisance.modules.nixos.services.minecraft;
 
   eulaFile = builtins.toFile "eula.txt" ''
     eula=true
   '';
 
-  serverPropertiesDefaults = {
+  serverProperties = {
     op-permission-level = 2;
     allow-nether = true;
     level-name = "World";
     enable-query = false;
     allow-flight = true;
     announce-player-achievements = true;
-    server-port = 25565;
     level-type = "rwg";
-    enable-rcon = false;
     force-gamemode = false;
     max-build-height = 256;
     spawn-npcs = true;
@@ -36,9 +34,7 @@ let
     view-distance = 8;
     spawn-protection = 1;
     motd = "GT New Horizons 2.4.0";
-  };
-
-  serverProperties = serverPropertiesDefaults // cfg.serverProperties // {
+  } // cfg.serverProperties // {
     server-port = cfg.serverPort;
     enable-rcon = cfg.enableRcon;
     rcon-port = cfg.rconPort;
@@ -50,7 +46,7 @@ let
       globalSection = serverProperties;
     });
 in {
-  options.nuisance.modules.nixos.mc-gtnh-server = {
+  options.nuisance.modules.nixos.services.minecraft = {
     enable = lib.mkOption {
       description = ''
         Whether to enable this module.
@@ -66,12 +62,12 @@ in {
 
     package = lib.mkOption {
       type = lib.types.package;
-      default = pkgs.nuisance.gtnh.mc-gtnh-server;
+      default = pkgs.nuisance.gtnh-server;
     };
 
     stateDirectory = lib.mkOption {
       type = lib.types.path;
-      default = "/var/lib/mc-gtnh-sever";
+      default = "/var/lib/minecraft";
     };
 
     serverProperties = lib.mkOption {
@@ -116,41 +112,41 @@ in {
   };
 
   config = lib.mkIf cfg.enable {
-    users.users.mc-gtnh-server = {
-      description = "GT New Horizons Server service user";
-      group = "mc-gtnh-server";
+    users.users.minecraft = {
+      description = "Minecraft service user";
+      group = "minecraft";
       isSystemUser = true;
       createHome = true;
       home = cfg.stateDirectory;
       homeMode = "770";
     };
 
-    users.groups.mc-gtnh-server = { };
+    users.groups.minecraft = { };
 
-    systemd.sockets.mc-gtnh-server = {
-      bindsTo = [ "mc-gtnh-server.service" ];
+    systemd.sockets.minecraft = {
+      bindsTo = [ "minecraft.service" ];
       socketConfig = {
-        ListenFIFO = "/run/mc-gtnh-server.stdin";
+        ListenFIFO = "/run/minecraft.stdin";
         SocketMode = "0660";
-        SocketUser = "mc-gtnh-server";
-        SocketGroup = "mc-gtnh-server";
+        SocketUser = "minecraft";
+        SocketGroup = "minecraft";
         RemoveOnStop = true;
         FlushPending = true;
       };
     };
 
-    systemd.services.mc-gtnh-server = {
+    systemd.services.minecraft = {
       description = "GT New Horizons Server service";
       wantedBy = if cfg.startOnBoot then [ "multi-user.target" ] else [ ];
-      requires = [ "mc-gtnh-server.socket" ];
-      after = [ "network.target" "mc-gtnh-server.socket" ];
+      requires = [ "minecraft.socket" ];
+      after = [ "network.target" "minecraft.socket" ];
 
       serviceConfig = {
         ExecStart =
-          "${cfg.package}/bin/mc-gtnh-server-start -Xms${cfg.minMemory} -Xmx${cfg.maxMemory}";
+          "${cfg.package}/bin/minecraft-start -Xms${cfg.minMemory} -Xmx${cfg.maxMemory}";
         ExecStop =
-          "${cfg.package}/bin/mc-gtnh-server-stop $MAINPID ${config.systemd.sockets.mc-gtnh-server.socketConfig.ListenFIFO}";
-        User = "mc-gtnh-server";
+          "${cfg.package}/bin/minecraft-stop $MAINPID ${config.systemd.sockets.minecraft.socketConfig.ListenFIFO}";
+        User = "minecraft";
         WorkingDirectory = cfg.stateDirectory;
         Restart = "always";
 
@@ -161,7 +157,7 @@ in {
 
       preStart = ''
         function overwrite {
-          SOURCE="${cfg.package}/lib/mc-gtnh-server/$1"
+          SOURCE="${cfg.package}/lib/minecraft/$1"
           DEST="$1"
 
           [[ -e "$DEST" ]] && rm -r "$DEST"
@@ -169,12 +165,12 @@ in {
         }
 
         # eula
-        ln -sf ${eulaFile} ./eula.txt
+        ln -sf ${eulaFile} eula.txt
 
         if [[ ! -e .lock ]] then
           touch .lock
 
-          rm -r scripts
+          [[ -e scripts ]] && rm -r scripts
 
           # configuration
           cp -bv --no-preserve mode --suffix .old ${serverPropertiesFile} ./server.properties

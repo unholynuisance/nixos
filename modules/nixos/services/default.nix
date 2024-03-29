@@ -1,1 +1,1 @@
-{ config, lib, pkgs, ... }: { imports = [ ./minecraft ]; }
+{ config, lib, pkgs, ... }: { imports = [ ./minecraft.nix ]; }

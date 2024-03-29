@@ -28,7 +28,7 @@
 
       steam = {
         enable = true;
-        extraCompatTools = with pkgs.nuisance.proton; [
+        extraCompatTools = with pkgs.nuisance; [ # #
           ge-proton8-16
           ge-proton8-25
         ];
@@ -37,7 +37,7 @@
       libvirt.enable = true;
       xserver.enable = true;
 
-      mc-gtnh-server = {
+      services.minecraft = {
         enable = true;
         enableRcon = true;
         openFirewall = true;
@@ -48,7 +48,7 @@
       users.unholynuisance = {
         enable = true;
         shell = pkgs.zsh;
-        extraGroups = [ "wheel" "networkmanager" "libvirtd" "mc-gtnh-server" ];
+        extraGroups = [ "wheel" "networkmanager" "libvirtd" "minecraft" ];
       };
     };
 

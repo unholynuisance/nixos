@@ -1,4 +1,4 @@
-{ lib, stdenv, fetchurl, fetchzip, unzip, jdk21, ... }:
+{ lib, stdenv, writeShellScript, fetchurl, fetchzip, unzip, jdk21, ... }:
 let
   server-utilities = fetchurl {
     url =
@@ -6,9 +6,23 @@ let
     hash = "sha256-5sdOtCYm+Hg698Xlk4wZBsg43mRjMLd8LloAFN1YMb4=";
   };
 
+  startScript = writeShellScript "minecraft-start" ''
+    exec ${jdk21}/bin/java $@ -Dfml.readTimeout=180 @java9args.txt nogui
+  '';
+
+  stopScript = writeShellScript "minecraft-stop" ''
+    echo stop > "$2"
+
+    # Wait for the PID of the minecraft server to disappear before
+    # returning, so systemd doesn't attempt to SIGKILL it.
+    while kill -0 "$1" 2> /dev/null; do
+      sleep 1s
+    done
+  '';
+
 in {
-  mc-gtnh-server = stdenv.mkDerivation rec {
-    pname = "mc-gtnh-server";
+  gtnh-server = stdenv.mkDerivation rec {
+    pname = "gtnh-server";
     version = "2.5.1";
     src = fetchzip {
       url =
@@ -19,34 +33,18 @@ in {
     nativeBuildInputs = [ unzip ];
 
     installPhase = ''
-      mkdir -p $out/lib/mc-gtnh-server
-      cp -rTv --no-preserve mode $src/ $out/lib/mc-gtnh-server
-      cp -v ${server-utilities} $out/lib/mc-gtnh-server/mods/
+      mkdir -p $out/lib/minecraft
+      cp -rTv --no-preserve mode $src/ $out/lib/minecraft
+      cp -v ${server-utilities} $out/lib/minecraft
 
       mkdir -p $out/bin
-      cat > $out/bin/mc-gtnh-server-start << EOF
-      #!/bin/sh
-      exec ${jdk21}/bin/java \$@ -Dfml.readTimeout=180 @java9args.txt nogui
-      EOF
-
-      cat > $out/bin/mc-gtnh-server-stop << EOF
-      #!/bin/sh
-      echo stop > "\$2"
-
-      # Wait for the PID of the minecraft server to disappear before
-      # returning, so systemd doesn't attempt to SIGKILL it.
-      while kill -0 "\$1" 2> /dev/null; do
-        sleep 1s
-      done
-      EOF
-
-      chmod +x $out/bin/mc-gtnh-server-start
-      chmod +x $out/bin/mc-gtnh-server-stop
+      cp -v ${startScript} $out/bin/minecraft-start
+      cp -v ${stopScript} $out/bin/minecraft-stop
     '';
   };
 
-  mc-gtnh-client = stdenv.mkDerivation rec {
-    pname = "mc-gtnh-client";
+  gtnh-client = stdenv.mkDerivation rec {
+    pname = "gtnh-client";
     version = "2.5.1";
     src = fetchzip {
       url =

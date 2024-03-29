@@ -4,7 +4,7 @@ in {
   options.nuisance.modules.nixos.users.unholynuisance = {
     enable = lib.mkEnableOption "users.unholynuisance";
 
-    shell = lib.mkPackageOption pkgs "bash" {};
+    shell = lib.mkPackageOption pkgs "bash" { };
 
     extraGroups = lib.mkOption {
       description = ''
@@ -21,6 +21,7 @@ in {
       description = "Unholy Nuisance";
       shell = cfg.shell;
       extraGroups = cfg.extraGroups;
+      initialPassword = "changeme";
     };
 
     home-manager.users = {

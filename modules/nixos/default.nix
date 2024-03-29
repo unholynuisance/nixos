@@ -4,6 +4,7 @@
     ./services
     ./shells
     ./users
+    ./virtualisation
     ./common.nix
     ./gnome.nix
     ./guest.nix

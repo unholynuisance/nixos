@@ -31,7 +31,7 @@
 
       steam = {
         enable = true;
-        extraCompatTools = with pkgs.nuisance.proton; [
+        extraCompatTools = with pkgs.nuisance; [ # #
           ge-proton8-16
           ge-proton8-25
         ];

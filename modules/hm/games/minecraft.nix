@@ -27,7 +27,7 @@ in {
 
       package = lib.mkOption {
         type = lib.types.package;
-        default = pkgs.nuisance.gtnh.mc-gtnh-client;
+        default = pkgs.nuisance.gtnh-client;
       };
     };
   };
@@ -36,7 +36,7 @@ in {
     home.packages = with pkgs; [ prismlauncher-qt5 ];
 
     home.activation = {
-      mc-gtnh-client = ''
+      minecraft = ''
         function overwrite {
           SOURCE="${cfg.instances.gtnh.package}/$1"
           DEST="./$1"
