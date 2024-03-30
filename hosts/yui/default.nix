@@ -10,9 +10,11 @@
 
     wsl = {
       enable = true;
-      automountPath = "/mnt";
       defaultUser = "unholynuisance";
       startMenuLaunchers = true;
+      wslConf = { # #
+        automount.root = "/mnt";
+      };
     };
 
     nuisance.modules.nixos = {
