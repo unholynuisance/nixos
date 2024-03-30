@@ -2,7 +2,7 @@
   imports = [
     inputs.wsl.nixosModules.wsl
     inputs.home-manager.nixosModules.home-manager
-    self.nixosModules.nuisance
+    self.nixosModules.all
   ];
 
   config = {

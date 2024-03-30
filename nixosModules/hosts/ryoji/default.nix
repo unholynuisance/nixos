@@ -2,7 +2,7 @@
   imports = [
     "${modulesPath}/installer/cd-dvd/installation-cd-graphical-gnome.nix"
     inputs.home-manager.nixosModules.home-manager
-    self.nixosModules.nuisance
+    self.nixosModules.all
   ];
 
   config = {

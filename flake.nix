@@ -33,7 +33,31 @@
   outputs = { self, flake-parts, ... }@inputs:
     flake-parts.lib.mkFlake { inherit inputs; }
     ({ config, lib, inputs, withSystem, ... }: {
-      imports = [ ./lib ./overlays ];
+      imports = [ # #
+        ./lib
+        ./overlays
+        ({ config, lib, inputs, ... }: {
+          config.flake = {
+            nixosModules = rec { # #
+              default = all;
+              all = import ./nixosModules;
+
+              rei = import ./nixosModules/hosts/rei;
+              asuka = import ./nixosModules/hosts/asuka;
+              kaworu = import ./nixosModules/hosts/kaworu;
+              ryoji = import ./nixosModules/hosts/ryoji;
+              yui = import ./nixosModules/hosts/yui;
+            };
+
+            hmModules = rec { # #
+              default = all;
+              all = import ./hmModules;
+
+              unholynuisance = import ./hmModules/users/unholynuisance;
+            };
+          };
+        })
+      ];
 
       config = {
         systems = [ "x86_64-linux" "aarch64-linux" ];
@@ -51,74 +75,55 @@
           mkHomeConfiguration =
             self.lib.utils.mkHomeConfiguration { inherit self inputs; };
         in {
-          nixosModules = rec { # #
-            nuisance = import ./nixosModules;
-            default = nuisance;
-          };
-
-          hmModules = rec { # #
-            nuisance = import ./hmModules;
-            default = nuisance;
-          };
-
-          hosts = {
-            rei = import ./hosts/rei;
-            asuka = import ./hosts/asuka;
-            kaworu = import ./hosts/kaworu;
-            ryoji = import ./hosts/ryoji;
-            yui = import ./hosts/yui;
-          };
-
-          users = { unholynuisance = import ./users/unholynuisance; };
 
           nixosConfigurations = {
-            # personal hosts: shinji, rei, asuka, toji, mari
-            # virtual hosts: kaworu
-            # work hosts: misato ritsuko
+            # personal. shinji, rei, asuka, toji, mari
+            # virtual. kaworu
+            # work. misato ritsuko
             # _: gendo kozo
             # _: makoto maya shigeru
-            # server hosts: adam lilith sachiel shamshel ramiel gaghiel israfel sahaquiel bardiel zeruel arael armisael tabris lilin
+            # server. adam lilith sachiel shamshel ramiel gaghiel israfel sahaquiel bardiel zeruel arael armisael tabris lilin
             # wsl: naoko, kyoko, yui
             # iso: ryoji
 
-            # primary personal laptop
+            # primary personal desktop
             rei = mkNixosConfiguration {
               system = "x86_64-linux";
-              modules = [ self.hosts.rei ];
+              modules = [ self.nixosModules.rei ];
             };
 
             # primary personal laptop
             asuka = mkNixosConfiguration {
               system = "x86_64-linux";
-              modules = [ self.hosts.asuka ];
+              modules = [ self.nixosModules.asuka ];
             };
 
             # primary virtual host:
             kaworu = mkNixosConfiguration {
               system = "x86_64-linux";
-              modules = [ self.hosts.kaworu ];
+              modules = [ self.nixosModules.kaworu ];
             };
 
-            # # primary work laptop
-            # # misato = ...
+            # primary work laptop
+            # misato = ...
 
             # wsl
             yui = mkNixosConfiguration {
               system = "x86_64-linux";
-              modules = [ self.hosts.yui ];
+              modules = [ self.nixosModules.yui ];
             };
 
             # iso
             ryoji = mkNixosConfiguration {
               system = "x86_64-linux";
-              modules = [ self.hosts.ryoji ];
+              modules = [ self.nixosModules.ryoji ];
             };
           };
 
           homeConfigurations = {
             unholynuisance = mkHomeConfiguration {
               system = "x86_64-linux";
-              modules = [ self.users.unholynuisance ];
+              modules = [ self.modules.unholynuisance ];
             };
           };
         };

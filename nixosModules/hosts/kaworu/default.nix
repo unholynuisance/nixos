@@ -2,7 +2,7 @@
   imports = [
     inputs.home-manager.nixosModules.home-manager
     inputs.disko.nixosModules.disko
-    self.nixosModules.nuisance
+    self.nixosModules.all
   ];
 
   config = {

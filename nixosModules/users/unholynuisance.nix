@@ -29,7 +29,7 @@ in {
     };
 
     home-manager.users = { # #
-      unholynuisance = self.users.unholynuisance;
+      unholynuisance = self.hmModules.unholynuisance;
     };
   };
 }
