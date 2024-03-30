@@ -59,8 +59,11 @@
           nixosConfigurations = {
             # personal hosts: shinji, rei, asuka, toji, mari
             # virtual hosts: kaworu
-            # work hosts: misato ritsuko gendo kozo naoko yui kyoko ryoji maya shigeru
+            # work hosts: misato ritsuko
+            # _: gendo kozo
+            # _: makoto maya shigeru
             # server hosts: adam lilith sachiel shamshel ramiel gaghiel israfel sahaquiel bardiel zeruel arael armisael tabris lilin
+            # wsl: naoko, kyoko, yui
             # iso: ryoji
 
             # primary personal laptop
