@@ -1,4 +1,4 @@
-{ config, lib, pkgs, ... }@args:
+{ config, lib, pkgs, self, ... }@args:
 let cfg = config.nuisance.modules.nixos.users.unholynuisance;
 in {
   options.nuisance.modules.nixos.users.unholynuisance = {
@@ -20,7 +20,7 @@ in {
       home-manager.enable = true;
     };
 
-    users.users.unholynuisance = {
+    users.users.unholynuisance = { # #
       isNormalUser = true;
       description = "Unholy Nuisance";
       shell = cfg.shell;
@@ -28,8 +28,8 @@ in {
       initialPassword = "changeme";
     };
 
-    home-manager.users = {
-      unholynuisance = import ../../../users/unholynuisance;
+    home-manager.users = { # #
+      unholynuisance = self.users.unholynuisance;
     };
   };
 }

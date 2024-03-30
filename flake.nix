@@ -33,7 +33,7 @@
   outputs = { self, flake-parts, ... }@inputs:
     flake-parts.lib.mkFlake { inherit inputs; }
     ({ config, lib, inputs, withSystem, ... }: {
-      imports = [ ./lib ./overlays ./modules ];
+      imports = [ ./lib ./overlays ];
 
       config = {
         systems = [ "x86_64-linux" "aarch64-linux" ];
@@ -51,6 +51,16 @@
           mkHomeConfiguration =
             self.lib.utils.mkHomeConfiguration { inherit self inputs; };
         in {
+          nixosModules = rec { # #
+            nuisance = import ./nixosModules;
+            default = nuisance;
+          };
+
+          hmModules = rec { # #
+            nuisance = import ./hmModules;
+            default = nuisance;
+          };
+
           hosts = {
             rei = import ./hosts/rei;
             asuka = import ./hosts/asuka;
