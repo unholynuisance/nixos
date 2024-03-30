@@ -1,4 +1,6 @@
-{ callPackage, ... }: {
+{ pkgs }:
+let inherit (pkgs) callPackage;
+in {
   ge-proton8-16 = callPackage ./ge-proton.nix rec {
     version = "GE-Proton8-16";
     url =
