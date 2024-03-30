@@ -15,13 +15,7 @@ let
   };
 in {
   options.nuisance.modules.nixos.boot.grub = {
-    enable = lib.mkOption {
-      description = ''
-        Whether to enable this module.
-      '';
-      type = lib.types.bool;
-      default = false;
-    };
+    enable = lib.mkEnableOption "grub";
 
     resolution = lib.mkOption {
       type = lib.types.str;

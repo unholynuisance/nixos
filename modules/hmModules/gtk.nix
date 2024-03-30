@@ -1,15 +1,7 @@
 { config, lib, pkgs, ... }@args:
 let cfg = config.nuisance.modules.hm.gtk;
 in {
-  options.nuisance.modules.hm.gtk = {
-    enable = lib.mkOption {
-      description = ''
-        Whether to enable this module.
-      '';
-      type = lib.types.bool;
-      default = false;
-    };
-  };
+  options.nuisance.modules.hm.gtk = { enable = lib.mkEnableOption "gtk"; };
 
   config = lib.mkIf cfg.enable {
     gtk = {

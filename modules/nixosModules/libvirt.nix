@@ -2,13 +2,7 @@
 let cfg = config.nuisance.modules.nixos.libvirt;
 in {
   options.nuisance.modules.nixos.libvirt = {
-    enable = lib.mkOption {
-      description = ''
-        Whether to enable this module.
-      '';
-      type = lib.types.bool;
-      default = false;
-    };
+    enable = lib.mkEnableOption "libvirt";
   };
 
   config = lib.mkIf cfg.enable {

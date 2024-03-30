@@ -2,22 +2,10 @@
 let cfg = config.nuisance.modules.hm.games.minecraft;
 in {
   options.nuisance.modules.hm.games.minecraft = {
-    enable = lib.mkOption {
-      description = ''
-        Whether to enable this module.
-      '';
-      type = lib.types.bool;
-      default = false;
-    };
+    enable = lib.mkEnableOption "minecraft";
 
     instances.gtnh = {
-      enable = lib.mkOption {
-        description = ''
-          Whether to enable this instance.
-        '';
-        type = lib.types.bool;
-        default = false;
-      };
+      enable = lib.mkEnableOption "gtnh";
 
       directory = lib.mkOption {
         type = lib.types.path;

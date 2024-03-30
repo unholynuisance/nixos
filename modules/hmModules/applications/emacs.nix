@@ -2,13 +2,7 @@
 let cfg = config.nuisance.modules.hm.applications.emacs;
 in {
   options.nuisance.modules.hm.applications.emacs = {
-    enable = lib.mkOption {
-      description = ''
-        Whether to enable this module.
-      '';
-      type = lib.types.bool;
-      default = false;
-    };
+    enable = lib.mkEnableOption "emacs";
 
     package = lib.mkOption {
       description = ''

@@ -2,13 +2,7 @@
 let cfg = config.nuisance.modules.hm.common;
 in {
   options.nuisance.modules.hm.common = {
-    enable = lib.mkOption {
-      description = ''
-        Whether to enable this module.
-      '';
-      type = lib.types.bool;
-      default = false;
-    };
+    enable = lib.mkEnableOption "common";
   };
 
   config = lib.mkIf cfg.enable {

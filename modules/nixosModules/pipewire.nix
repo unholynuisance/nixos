@@ -1,16 +1,8 @@
 { config, lib, pkgs, ... }@args:
-let
-  name = "pipewire";
-  cfg = config.nuisance.modules.nixos.${name};
+let cfg = config.nuisance.modules.nixos.pipewire;
 in {
-  options.nuisance.modules.nixos.${name} = {
-    enable = lib.mkOption {
-      description = ''
-        Whether to enable this module.
-      '';
-      type = lib.types.bool;
-      default = false;
-    };
+  options.nuisance.modules.nixos.pipewire = {
+    enable = lib.mkEnableOption "pipewire";
   };
 
   config = lib.mkIf cfg.enable {

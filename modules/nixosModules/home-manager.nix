@@ -1,16 +1,8 @@
 { config, lib, pkgs, self, ... }@args:
-let
-  name = "home-manager";
-  cfg = config.nuisance.modules.nixos.${name};
+let cfg = config.nuisance.modules.nixos.home-manager;
 in {
-  options.nuisance.modules.nixos.${name} = {
-    enable = lib.mkOption {
-      description = ''
-        Whether to enable this module.
-      '';
-      type = lib.types.bool;
-      default = false;
-    };
+  options.nuisance.modules.nixos.home-manager = {
+    enable = lib.mkEnableOption "home-manager";
   };
 
   config = lib.mkIf cfg.enable {

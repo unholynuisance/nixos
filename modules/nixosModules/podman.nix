@@ -2,13 +2,7 @@
 let cfg = config.nuisance.modules.nixos.virtualisation.podman;
 in {
   options.nuisance.modules.nixos.virtualisation.podman = {
-    enable = lib.mkOption {
-      description = ''
-        Whether to enable this module.
-      '';
-      type = lib.types.bool;
-      default = false;
-    };
+    enable = lib.mkEnableOption "podman";
   };
 
   config = lib.mkIf cfg.enable {

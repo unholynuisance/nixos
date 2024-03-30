@@ -2,13 +2,7 @@
 let cfg = config.nuisance.modules.hm.applications.discord;
 in {
   options.nuisance.modules.hm.applications.discord = {
-    enable = lib.mkOption {
-      description = ''
-        Whether to enable this module.
-      '';
-      type = lib.types.bool;
-      default = false;
-    };
+    enable = lib.mkEnableOption "discord";
   };
 
   config = lib.mkIf cfg.enable {

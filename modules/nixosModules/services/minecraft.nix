@@ -47,13 +47,7 @@ let
     });
 in {
   options.nuisance.modules.nixos.services.minecraft = {
-    enable = lib.mkOption {
-      description = ''
-        Whether to enable this module.
-      '';
-      type = lib.types.bool;
-      default = false;
-    };
+    enable = lib.mkEnableOption "minecraft";
 
     startOnBoot = lib.mkOption {
       type = lib.types.bool;
@@ -80,10 +74,7 @@ in {
       default = 25565;
     };
 
-    enableRcon = lib.mkOption {
-      type = lib.types.bool;
-      default = false;
-    };
+    enableRcon = lib.mkEnableOption "rcon";
 
     rconPort = lib.mkOption {
       type = lib.types.port;

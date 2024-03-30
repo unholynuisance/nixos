@@ -1,16 +1,8 @@
 { config, lib, pkgs, ... }@args:
-let
-  name = "rtkit";
-  cfg = config.nuisance.modules.nixos.${name};
+let cfg = config.nuisance.modules.nixos.rtkit;
 in {
-  options.nuisance.modules.nixos.${name} = {
-    enable = lib.mkOption {
-      description = ''
-        Whether to enable this module.
-      '';
-      type = lib.types.bool;
-      default = false;
-    };
+  options.nuisance.modules.nixos.rtkit = {
+    enable = lib.mkEnableOption "rtkit";
   };
 
   config = lib.mkIf cfg.enable { security.rtkit.enable = true; };

@@ -97,7 +97,6 @@
               modules = [ self.users.unholynuisance ];
             };
           };
-
         };
       };
     });

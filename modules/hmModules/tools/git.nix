@@ -2,10 +2,7 @@
 let cfg = config.nuisance.modules.hm.tools.git;
 in {
   options.nuisance.modules.hm.tools.git = {
-    enable = lib.mkOption {
-      type = lib.types.bool;
-      default = false;
-    };
+    enable = lib.mkEnableOption "git";
   };
 
   config = lib.mkIf cfg.enable {

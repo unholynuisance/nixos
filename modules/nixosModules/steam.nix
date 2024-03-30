@@ -2,13 +2,7 @@
 let cfg = config.nuisance.modules.nixos.steam;
 in {
   options.nuisance.modules.nixos.steam = {
-    enable = lib.mkOption {
-      description = ''
-        Whether to enable this module.
-      '';
-      type = lib.types.bool;
-      default = false;
-    };
+    enable = lib.mkEnableOption "steam";
 
     extraCompatTools = lib.mkOption {
       type = with lib.types; listOf package;
