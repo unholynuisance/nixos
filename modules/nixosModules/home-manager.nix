@@ -1,4 +1,4 @@
-{ config, lib, pkgs, self, ... }@args:
+{ config, lib, pkgs, self, self', inputs, inputs', ... }@args:
 let cfg = config.nuisance.modules.nixos.home-manager;
 in {
   options.nuisance.modules.nixos.home-manager = {
@@ -12,7 +12,7 @@ in {
       useGlobalPkgs = true;
       useUserPackages = true;
 
-      extraSpecialArgs = { inherit self; };
+      extraSpecialArgs = { inherit self self' inputs inputs'; };
     };
   };
 }
