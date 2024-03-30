@@ -20,6 +20,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    wsl = { # #
+      url = "github:nix-community/nixos-wsl";
+    };
+
     xkeyboard-config-src = { # #
       url = "github:unholynuisance/xkeyboard-config";
       flake = false;
@@ -52,6 +56,7 @@
             asuka = import ./hosts/asuka;
             kaworu = import ./hosts/kaworu;
             ryoji = import ./hosts/ryoji;
+            yui = import ./hosts/yui;
           };
 
           users = { unholynuisance = import ./users/unholynuisance; };
@@ -86,6 +91,12 @@
 
             # # primary work laptop
             # # misato = ...
+
+            # wsl
+            yui = mkNixosConfiguration {
+              system = "x86_64-linux";
+              modules = [ self.hosts.yui ];
+            };
 
             # iso
             ryoji = mkNixosConfiguration {
