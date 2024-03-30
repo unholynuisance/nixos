@@ -16,6 +16,10 @@ in {
   };
 
   config = lib.mkIf cfg.enable {
+    nuisance.modules.nixos = { # #
+      home-manager.enable = true;
+    };
+
     users.users.unholynuisance = {
       isNormalUser = true;
       description = "Unholy Nuisance";
