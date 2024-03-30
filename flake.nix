@@ -2,96 +2,103 @@
   description = "A very basic flake";
 
   inputs = {
-    nixpkgs = { url = "github:nixos/nixpkgs/nixos-unstable"; };
+    nixpkgs = { # #
+      url = "github:nixos/nixpkgs/nixos-unstable";
+    };
 
-    home-manager = {
+    flake-parts = { # #
+      url = "github:hercules-ci/flake-parts";
+    };
+
+    home-manager = { # #
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    disko = {
+    disko = { # #
       url = "github:nix-community/disko";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    xkeyboard-config-src = {
+    xkeyboard-config-src = { # #
       url = "github:unholynuisance/xkeyboard-config";
       flake = false;
     };
   };
 
-  outputs = { self, nixpkgs, home-manager, ... }@args: {
-    lib = import ./lib args;
-    packages = import ./packages args;
-    overlays = import ./overlays args;
+  outputs = { self, flake-parts, ... }@inputs:
+    flake-parts.lib.mkFlake { inherit inputs; }
+    ({ config, lib, inputs, withSystem, ... }: {
+      imports = [ ./lib ./overlays ./modules ];
 
-    nixosModules = rec {
-      combined = import ./modules/nixos;
-      default = combined;
-    };
+      config = {
+        systems = [ "x86_64-linux" "aarch64-linux" ];
 
-    homeModules = rec {
-      combined = import ./modules/hm;
-      default = combined;
-    };
+        perSystem = { config, lib, pkgs, ... }: { # #
+          imports = [ ./packages ];
+          config = { # #
+            formatter = pkgs.nixfmt;
+          };
+        };
 
-    hosts = {
-      rei = import ./hosts/rei;
-      asuka = import ./hosts/asuka;
-      kaworu = import ./hosts/kaworu;
-      ryoji = import ./hosts/ryoji;
-    };
+        flake = let
+          mkNixosConfiguration =
+            self.lib.utils.mkNixosConfiguration { inherit self inputs; };
+          mkHomeConfiguration =
+            self.lib.utils.mkHomeConfiguration { inherit self inputs; };
+        in {
+          hosts = {
+            rei = import ./hosts/rei;
+            asuka = import ./hosts/asuka;
+            kaworu = import ./hosts/kaworu;
+            ryoji = import ./hosts/ryoji;
+          };
 
-    users = { unholynuisance = import ./users/unholynuisance; };
+          users = { unholynuisance = import ./users/unholynuisance; };
 
-    nixosConfigurations = {
-      # personal hosts: shinji, rei, asuka, toji, mari
-      # virtual hosts: kaworu
-      # work hosts: misato ritsuko gendo kozo naoko yui kyoko ryoji maya shigeru
-      # server hosts: adam lilith sachiel shamshel ramiel gaghiel israfel sahaquiel bardiel zeruel arael armisael tabris lilin
-      # iso: ryoji
+          nixosConfigurations = {
+            # personal hosts: shinji, rei, asuka, toji, mari
+            # virtual hosts: kaworu
+            # work hosts: misato ritsuko gendo kozo naoko yui kyoko ryoji maya shigeru
+            # server hosts: adam lilith sachiel shamshel ramiel gaghiel israfel sahaquiel bardiel zeruel arael armisael tabris lilin
+            # iso: ryoji
 
-      # primary personal workstation
-      rei = nixpkgs.lib.nixosSystem {
-        system = "x86_64-linux";
-        modules = [ self.hosts.rei ];
-        specialArgs = args;
+            # primary personal laptop
+            rei = mkNixosConfiguration {
+              system = "x86_64-linux";
+              modules = [ self.hosts.rei ];
+            };
+
+            # primary personal laptop
+            asuka = mkNixosConfiguration {
+              system = "x86_64-linux";
+              modules = [ self.hosts.asuka ];
+            };
+
+            # primary virtual host:
+            kaworu = mkNixosConfiguration {
+              system = "x86_64-linux";
+              modules = [ self.hosts.kaworu ];
+            };
+
+            # # primary work laptop
+            # # misato = ...
+
+            # iso
+            ryoji = mkNixosConfiguration {
+              system = "x86_64-linux";
+              modules = [ self.hosts.ryoji ];
+            };
+          };
+
+          homeConfigurations = {
+            unholynuisance = mkHomeConfiguration {
+              system = "x86_64-linux";
+              modules = [ self.users.unholynuisance ];
+            };
+          };
+
+        };
       };
-
-      # primary personal laptop
-      asuka = nixpkgs.lib.nixosSystem {
-        system = "x86_64-linux";
-        modules = [ self.hosts.asuka ];
-        specialArgs = args;
-      };
-
-      # primary virtual host:
-      kaworu = nixpkgs.lib.nixosSystem {
-        system = "x86_64-linux";
-        modules = [ self.hosts.kaworu ];
-        specialArgs = args;
-      };
-
-      # primary work laptop
-      # misato = ...
-
-      # iso
-      ryoji = nixpkgs.lib.nixosSystem {
-        system = "x86_64-linux";
-        modules = [ self.hosts.ryoji ];
-        specialArgs = args;
-      };
-    };
-
-    homeConfigurations = {
-      unholynuisance = home-manager.lib.homeManagerConfiguration {
-        pkgs = nixpkgs.legacyPackages.x86_64-linux;
-        modules = [ self.users.unholynuisance ];
-        extraSpecialArgs = args;
-      };
-    };
-
-    formatter =
-      self.lib.forAllSystems (system: nixpkgs.legacyPackages.${system}.nixfmt);
-  };
+    });
 }

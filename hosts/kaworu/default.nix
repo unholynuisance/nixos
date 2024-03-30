@@ -1,8 +1,8 @@
-{ config, lib, pkgs, self, home-manager, disko, ... }@args: {
+{ config, lib, pkgs, self, self', inputs, inputs', ... }@args: {
   imports = [
-    home-manager.nixosModules.home-manager
-    disko.nixosModules.disko
-    self.nixosModules.combined
+    inputs.home-manager.nixosModules.home-manager
+    inputs.disko.nixosModules.disko
+    self.nixosModules.nuisance
   ];
 
   config = {

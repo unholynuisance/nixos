@@ -1,4 +1,4 @@
-{ config, lib, pkgs, xkeyboard-config-src, ... }@args:
+{ config, lib, pkgs, inputs, ... }@args:
 let cfg = config.nuisance.modules.nixos.xserver;
 in {
   options.nuisance.modules.nixos.xserver = {
@@ -15,7 +15,7 @@ in {
     nixpkgs.overlays = [
       (final: prev: {
         xkeyboard_config = prev.xkeyboard_config.overrideAttrs
-          (old: { src = xkeyboard-config-src; });
+          (old: { src = inputs.xkeyboard-config-src; });
       })
     ];
 

@@ -1,5 +1,5 @@
 { config, lib, pkgs, self, ... }@args: {
-  imports = [ self.homeModules.combined ];
+  imports = [ self.hmModules.nuisance ];
 
   config = {
     home.username = "unholynuisance";

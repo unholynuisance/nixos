@@ -1,12 +1,34 @@
-{ nixpkgs, ... }:
-let lib = nixpkgs.lib;
-in {
-  forAllSystems = lib.genAttrs lib.systems.flakeExposed;
+{ config, inputs, withSystem, ... }: {
+  config.flake = {
+    lib = let inherit (inputs.nixpkgs) lib;
+    in {
+      utils = {
+        mkNixosConfiguration = # #
+          { self, inputs }:
+          { system, modules }:
+          withSystem "x86_64-linux" ({ inputs', self', system, ... }@context:
+            inputs.nixpkgs.lib.nixosSystem {
+              inherit system modules;
+              specialArgs = { inherit self self' inputs inputs'; };
+            });
 
-  types = {
-    uuid = lib.types.strMatching
-      "[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}";
+        mkHomeConfiguration = # #
+          { self, inputs }:
+          { system, modules }:
+          withSystem "x86_64-linux" ({ inputs', self', pkgs, ... }@context:
+            inputs.home-manager.lib.homeManagerConfiguration {
+              inherit pkgs modules;
+              extraSpecialArgs = { inherit self self' inputs inputs'; };
+            });
+
+      };
+
+      types = {
+        uuid = lib.types.strMatching
+          "[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}";
+      };
+
+      storage = import ./storage.nix { inherit lib; };
+    };
   };
-
-  storage = import ./storage.nix { inherit lib; };
 }

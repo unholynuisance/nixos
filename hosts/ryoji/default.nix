@@ -1,8 +1,8 @@
-{ config, lib, pkgs, modulesPath, self, home-manager, ... }@args: {
+{ config, lib, pkgs, modulesPath, self, self', inputs, inputs', ... }@args: {
   imports = [
     "${modulesPath}/installer/cd-dvd/installation-cd-graphical-gnome.nix"
-    home-manager.nixosModules.home-manager
-    self.nixosModules.combined
+    inputs.home-manager.nixosModules.home-manager
+    self.nixosModules.nuisance
   ];
 
   config = {
