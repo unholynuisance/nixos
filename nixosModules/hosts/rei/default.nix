@@ -17,7 +17,6 @@
       };
 
       gnome.enable = true;
-      guest.enable = true;
       networkmanager.enable = true;
       pipewire.enable = true;
       rtkit.enable = true;
