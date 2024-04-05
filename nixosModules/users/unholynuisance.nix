@@ -2,7 +2,7 @@
 let cfg = config.nuisance.modules.nixos.users.unholynuisance;
 in {
   options.nuisance.modules.nixos.users.unholynuisance = {
-    enable = lib.mkEnableOption "users.unholynuisance";
+    enable = lib.mkEnableOption "unholynuisance";
 
     shell = lib.mkPackageOption pkgs "bash" { };
 
@@ -17,7 +17,7 @@ in {
 
   config = lib.mkIf cfg.enable {
     nuisance.modules.nixos = { # #
-      home-manager.enable = true;
+      users.enable = true;
     };
 
     users.users.unholynuisance = { # #

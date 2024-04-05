@@ -20,7 +20,6 @@
 
       gnome.enable = true;
       guest.enable = true;
-      home-manager.enable = true;
       networkmanager.enable = true;
       pipewire.enable = true;
       rtkit.enable = true;
