@@ -1,9 +1,5 @@
 { config, lib, pkgs, self, self', inputs, inputs', ... }@args: {
-  imports = [
-    inputs.home-manager.nixosModules.home-manager
-    inputs.disko.nixosModules.disko
-    self.nixosModules.all
-  ];
+  imports = [ inputs.disko.nixosModules.disko self.nixosModules.all ];
 
   config = {
     networking.hostName = "kaworu";

@@ -1,6 +1,8 @@
 { config, lib, pkgs, self, self', inputs, inputs', ... }@args:
 let cfg = config.nuisance.modules.nixos.home-manager;
 in {
+  imports = [ inputs.home-manager.nixosModules.home-manager ];
+
   options.nuisance.modules.nixos.home-manager = {
     enable = lib.mkEnableOption "home-manager";
   };
