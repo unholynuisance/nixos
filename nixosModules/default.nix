@@ -6,6 +6,7 @@
     ./users
     ./virtualisation
     ./common.nix
+    ./disko.nix
     ./gnome.nix
     ./guest.nix
     ./libvirt.nix

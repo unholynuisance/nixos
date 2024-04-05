@@ -1,5 +1,7 @@
 { config, lib, pkgs, self, self', inputs, inputs', ... }@args: {
-  imports = [ inputs.disko.nixosModules.disko self.nixosModules.all ];
+  imports = [ # #
+    self.nixosModules.all
+  ];
 
   config = {
     networking.hostName = "asuka";
@@ -68,56 +70,61 @@
 
     networking.useDHCP = lib.mkDefault true;
 
-    disko.devices = with self.lib.storage;
-      mkDevices {
-        disks = [
-          (mkDisk {
-            name = "nvme0n1";
-            device =
-              "/dev/disk/by-id/nvme-SKHynix_HFS001TEJ4X112N_4JC5N4835101A5L1A";
-            partitions = [
-              (mkEfiPartition { size = "128M"; })
-              (mkPhysicalVolumePartition {
-                size = "100%";
-                vg = "primary";
-              })
-            ];
-          })
-        ];
-        volumeGroups = [
-          (mkVolumeGroup {
-            name = "primary";
-            volumes = [
-              (mkBootVolume { size = "1G"; })
-              (mkSwapVolume {
-                size = "32G";
-                encrypt = true;
-                unlock = true;
-              })
-              (mkBtrfsVolume {
-                name = "root";
-                size = "128G";
-                subvolumes = {
-                  "?" = { mountpoint = "/"; };
-                  "?nix" = { mountpoint = "/nix"; };
-                  "?var?log" = { mountpoint = "/var/log"; };
-                };
-                encrypt = true;
-                unlock = true;
-              })
-              (mkBtrfsVolume {
-                name = "home";
-                size = "100%FREE";
-                subvolumes = {
-                  "?" = { mountpoint = "/home"; };
-                  "?unholynuisance" = { mountpoint = "/home/unholynuisance"; };
-                };
-                encrypt = true;
-                unlock = true;
-              })
-            ];
-          })
-        ];
-      };
+    nuisance.modules.nixos.disko = {
+      enable = true;
+      config.devices = with self.lib.storage;
+        mkDevices {
+          disks = [
+            (mkDisk {
+              name = "nvme0n1";
+              device =
+                "/dev/disk/by-id/nvme-SKHynix_HFS001TEJ4X112N_4JC5N4835101A5L1A";
+              partitions = [
+                (mkEfiPartition { size = "128M"; })
+                (mkPhysicalVolumePartition {
+                  size = "100%";
+                  vg = "primary";
+                })
+              ];
+            })
+          ];
+          volumeGroups = [
+            (mkVolumeGroup {
+              name = "primary";
+              volumes = [
+                (mkBootVolume { size = "1G"; })
+                (mkSwapVolume {
+                  size = "32G";
+                  encrypt = true;
+                  unlock = true;
+                })
+                (mkBtrfsVolume {
+                  name = "root";
+                  size = "128G";
+                  subvolumes = {
+                    "?" = { mountpoint = "/"; };
+                    "?nix" = { mountpoint = "/nix"; };
+                    "?var?log" = { mountpoint = "/var/log"; };
+                  };
+                  encrypt = true;
+                  unlock = true;
+                })
+                (mkBtrfsVolume {
+                  name = "home";
+                  size = "100%FREE";
+                  subvolumes = {
+                    "?" = { mountpoint = "/home"; };
+                    "?unholynuisance" = {
+                      mountpoint = "/home/unholynuisance";
+                    };
+                  };
+                  encrypt = true;
+                  unlock = true;
+                })
+              ];
+            })
+          ];
+        };
+    };
   };
 }

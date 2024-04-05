@@ -1,5 +1,7 @@
 { config, lib, pkgs, self, self', inputs, inputs', ... }@args: {
-  imports = [ inputs.disko.nixosModules.disko self.nixosModules.all ];
+  imports = [ # #
+    self.nixosModules.all
+  ];
 
   config = {
     networking.hostName = "kaworu";
@@ -32,42 +34,45 @@
 
     networking.useDHCP = lib.mkDefault true;
 
-    disko.devices = with self.lib.storage;
-      mkDevices {
-        disks = [
-          (mkDisk {
-            name = "nvme0n1";
-            device = "/dev/disk/by-id/ata-QEMU_DVD-ROM_QM00001";
-            partitions = [
-              (mkEfiPartition { size = "128M"; })
-              (mkPhysicalVolumePartition {
-                size = "100%";
-                vg = "primary";
-              })
-            ];
-          })
-        ];
-        volumeGroups = [
-          (mkVolumeGroup {
-            name = "primary";
-            volumes = [
-              (mkBootVolume { size = "1G"; })
-              (mkSwapVolume { size = "4G"; })
-              (mkBtrfsVolume {
-                name = "root";
-                size = "100%FREE";
-                subvolumes = {
-                  "?" = { mountpoint = "/"; };
-                  "?nix" = { mountpoint = "/nix"; };
-                  "?var?log" = { mountpoint = "/var/log"; };
-                  "?home?unholynuisance" = {
-                    mountpoint = "/home/unholynuisance";
+    nuisance.modules.nixos.disko = {
+      enable = true;
+      config.devices = with self.lib.storage;
+        mkDevices {
+          disks = [
+            (mkDisk {
+              name = "nvme0n1";
+              device = "/dev/disk/by-id/ata-QEMU_DVD-ROM_QM00001";
+              partitions = [
+                (mkEfiPartition { size = "128M"; })
+                (mkPhysicalVolumePartition {
+                  size = "100%";
+                  vg = "primary";
+                })
+              ];
+            })
+          ];
+          volumeGroups = [
+            (mkVolumeGroup {
+              name = "primary";
+              volumes = [
+                (mkBootVolume { size = "1G"; })
+                (mkSwapVolume { size = "4G"; })
+                (mkBtrfsVolume {
+                  name = "root";
+                  size = "100%FREE";
+                  subvolumes = {
+                    "?" = { mountpoint = "/"; };
+                    "?nix" = { mountpoint = "/nix"; };
+                    "?var?log" = { mountpoint = "/var/log"; };
+                    "?home?unholynuisance" = {
+                      mountpoint = "/home/unholynuisance";
+                    };
                   };
-                };
-              })
-            ];
-          })
-        ];
-      };
+                })
+              ];
+            })
+          ];
+        };
+    };
   };
 }

@@ -1,5 +1,5 @@
 { config, lib, pkgs, modulesPath, self, self', inputs, inputs', ... }@args: {
-  imports = [
+  imports = [ # #
     "${modulesPath}/installer/cd-dvd/installation-cd-graphical-gnome.nix"
     self.nixosModules.all
   ];
