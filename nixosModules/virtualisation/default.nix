@@ -1,5 +1,9 @@
-{ config, lib, pkgs, self, ... }: {
-  imports = [ ];
+{ config, lib, pkgs, ... }: {
+  imports = [ # #
+    ./guest.nix
+    ./libvirt.nix
+    ./podman.nix
+  ];
 
   config = {
     virtualisation = rec {

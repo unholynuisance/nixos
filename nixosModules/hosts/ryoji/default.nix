@@ -7,6 +7,8 @@
   config = {
     networking.hostName = "ryoji";
 
-    nuisance.modules.nixos = { guest.enable = true; };
+    nuisance.modules.nixos = { # #
+      virtualisation.guest.enable = true;
+    };
   };
 }

@@ -30,7 +30,6 @@
         ];
       };
 
-      libvirt.enable = true;
       xserver.enable = true;
 
       services.minecraft = {
@@ -39,7 +38,10 @@
         openFirewall = true;
       };
 
-      virtualisation = { podman.enable = true; };
+      virtualisation = {
+        podman.enable = true;
+        libvirt.enable = true;
+      };
 
       users.unholynuisance = {
         enable = true;

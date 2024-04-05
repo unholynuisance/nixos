@@ -1,7 +1,7 @@
 { config, lib, pkgs, ... }@args:
-let cfg = config.nuisance.modules.nixos.guest;
+let cfg = config.nuisance.modules.nixos.virtualisation.guest;
 in {
-  options.nuisance.modules.nixos.guest = {
+  options.nuisance.modules.nixos.virtualisation.guest = {
     enable = lib.mkEnableOption "guest";
   };
 

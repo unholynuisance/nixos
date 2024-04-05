@@ -8,11 +8,8 @@
     ./common.nix
     ./disko.nix
     ./gnome.nix
-    ./guest.nix
-    ./libvirt.nix
     ./networkmanager.nix
     ./pipewire.nix
-    ./podman.nix
     ./pulseaudio.nix
     ./rtkit.nix
     ./steam.nix

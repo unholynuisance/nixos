@@ -13,11 +13,14 @@
       };
 
       gnome.enable = true;
-      guest.enable = true;
       networkmanager.enable = true;
       pipewire.enable = true;
       rtkit.enable = true;
       xserver.enable = true;
+
+      virtualisation = { # #
+        guest.enable = true;
+      };
 
       users.unholynuisance = {
         enable = true;
