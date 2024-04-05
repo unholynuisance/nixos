@@ -3,6 +3,7 @@
     ./guest.nix
     ./libvirt.nix
     ./podman.nix
+    ./wsl.nix
   ];
 
   config = {
