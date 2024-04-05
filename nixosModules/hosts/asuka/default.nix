@@ -33,7 +33,6 @@
         ];
       };
 
-      libvirt.enable = true;
       xserver.enable = true;
 
       users.unholynuisance = {
