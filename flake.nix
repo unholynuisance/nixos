@@ -64,8 +64,18 @@
 
         perSystem = { config, lib, pkgs, ... }: { # #
           imports = [ ./packages ];
-          config = { # #
-            formatter = pkgs.nixfmt;
+
+          config = with pkgs; { # #
+            devShells = {
+              default = mkShell {
+                packages = [ # #
+                  nil
+                  nixfmt
+                ];
+              };
+            };
+
+            formatter = nixfmt;
           };
         };
 
