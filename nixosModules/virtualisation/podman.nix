@@ -1,4 +1,4 @@
-{ config, lib, pkgs, ... }@args:
+{ config, lib, pkgs, ... }:
 let cfg = config.nuisance.modules.nixos.virtualisation.podman;
 in {
   options.nuisance.modules.nixos.virtualisation.podman = {

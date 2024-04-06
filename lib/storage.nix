@@ -90,8 +90,7 @@
     };
 
   # Concrete logical volumes
-  mkBtrfsVolume =
-    { name, size, subvolumes, encrypt ? false, unlock ? false, }@args:
+  mkBtrfsVolume = { name, size, subvolumes, encrypt ? false, unlock ? false, }:
     mkVolume {
       inherit name size encrypt unlock;
       content = mkBtrfsContent { inherit subvolumes; };

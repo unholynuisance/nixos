@@ -1,4 +1,4 @@
-{ config, lib, pkgs, ... }@args:
+{ config, lib, pkgs, ... }:
 let cfg = config.nuisance.modules.hm.gnome;
 in {
   options.nuisance.modules.hm.gnome = { enable = lib.mkEnableOption "gnome"; };

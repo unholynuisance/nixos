@@ -1,4 +1,4 @@
-{ config, lib, pkgs, inputs, ... }@args:
+{ config, lib, pkgs, inputs, ... }:
 let cfg = config.nuisance.modules.nixos.xserver;
 in {
   options.nuisance.modules.nixos.xserver = {

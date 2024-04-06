@@ -1,4 +1,4 @@
-{ config, lib, pkgs, ... }@args:
+{ config, lib, pkgs, ... }:
 let cfg = config.nuisance.modules.hm.common;
 in {
   options.nuisance.modules.hm.common = {

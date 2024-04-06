@@ -1,4 +1,4 @@
-{ config, lib, pkgs, self, self', inputs, inputs', ... }@args:
+{ config, lib, pkgs, self, self', inputs, inputs', ... }:
 let cfg = config.nuisance.modules.nixos.users;
 in {
   imports = [ # #

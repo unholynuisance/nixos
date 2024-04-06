@@ -1,4 +1,4 @@
-{ config, lib, pkgs, ... }@args:
+{ config, lib, pkgs, ... }:
 let cfg = config.nuisance.modules.hm.games.cataclysm-dda;
 in {
   options.nuisance.modules.hm.games.cataclysm-dda = {

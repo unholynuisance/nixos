@@ -1,4 +1,4 @@
-{ config, lib, pkgs, self, ... }@args:
+{ config, lib, pkgs, self, ... }:
 let cfg = config.nuisance.modules.nixos.users.unholynuisance;
 in {
   options.nuisance.modules.nixos.users.unholynuisance = {

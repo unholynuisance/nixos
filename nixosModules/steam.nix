@@ -1,4 +1,4 @@
-{ config, lib, pkgs, ... }@args:
+{ config, lib, pkgs, ... }:
 let cfg = config.nuisance.modules.nixos.steam;
 in {
   options.nuisance.modules.nixos.steam = {

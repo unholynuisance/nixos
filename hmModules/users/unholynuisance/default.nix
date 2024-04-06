@@ -1,4 +1,4 @@
-{ config, lib, pkgs, self, ... }@args: {
+{ config, lib, pkgs, self, ... }: {
   imports = [ self.hmModules.all ];
 
   config = {

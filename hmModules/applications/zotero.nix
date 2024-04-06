@@ -1,4 +1,4 @@
-{ config, lib, pkgs, ... }@args:
+{ config, lib, pkgs, ... }:
 let cfg = config.nuisance.modules.hm.applications.zotero;
 in {
   options.nuisance.modules.hm.applications.zotero = {

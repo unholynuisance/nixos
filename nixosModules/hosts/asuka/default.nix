@@ -1,4 +1,4 @@
-{ config, lib, pkgs, self, self', inputs, inputs', ... }@args: {
+{ config, lib, pkgs, self, self', inputs, inputs', ... }: {
   imports = [ # #
     self.nixosModules.all
   ];
