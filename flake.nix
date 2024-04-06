@@ -80,10 +80,13 @@
         };
 
         flake = let
-          mkNixosConfiguration =
-            self.lib.utils.mkNixosConfiguration { inherit self inputs; };
-          mkHomeConfiguration =
-            self.lib.utils.mkHomeConfiguration { inherit self inputs; };
+          mkNixosConfiguration = self.lib.utils.mkNixosConfiguration { # #
+            inherit self inputs;
+          };
+
+          mkHomeConfiguration = self.lib.utils.mkHomeConfiguration { # #
+            inherit self inputs;
+          };
         in {
 
           nixosConfigurations = {
