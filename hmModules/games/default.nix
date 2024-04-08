@@ -1,3 +1,6 @@
 { config, lib, pkgs, ... }: {
-  imports = [ ./minecraft.nix ./cataclysm-dda.nix ];
+  imports = [ # #
+    ./minecraft
+    ./cataclysm-dda.nix
+  ];
 }

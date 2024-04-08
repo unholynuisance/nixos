@@ -65,12 +65,6 @@ let
 
             cp -v ${server-utilities} $out/.minecraft/mods
 
-            cp -v ${./resources/options.txt} $out/.minecraft/options.txt
-            cp -v ${./resources/optionsof.txt} $out/.minecraft/optionsof.txt
-            cp -v ${
-              ./resources/optionsshaders.txt
-            } $out/.minecraft/optionsshaders.txt
-
             cp -rTv ${./resources/resourcepacks} $out/.minecraft/resourcepacks
             cp -rTv ${./resources/shaderpacks} $out/.minecraft/shaderpacks
           '';

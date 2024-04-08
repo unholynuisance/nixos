@@ -47,9 +47,8 @@ in {
           overwrite .minecraft/mods
           overwrite .minecraft/resourcepacks
           overwrite .minecraft/shaderpacks
-          overwrite .minecraft/options.txt
-          overwrite .minecraft/optionsof.txt
-          overwrite .minecraft/optionsshaders.txt
+
+          cp -rTv --no-preserve mode ${./instances/gtnh/.minecraft} .minecraft
         fi
         popd
       '';
