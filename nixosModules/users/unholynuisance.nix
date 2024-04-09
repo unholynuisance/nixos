@@ -1,4 +1,4 @@
-{ config, lib, pkgs, self, ... }:
+{ config, lib, options, pkgs, self, ... }:
 let cfg = config.nuisance.modules.nixos.users.unholynuisance;
 in {
   options.nuisance.modules.nixos.users.unholynuisance = {
@@ -11,6 +11,11 @@ in {
         The user’s auxiliary groups.
       '';
       type = with lib.types; listOf str;
+      default = [ ];
+    };
+
+    modules = lib.mkOption {
+      type = with lib.types; listOf anything;
       default = [ ];
     };
   };
@@ -29,7 +34,9 @@ in {
     };
 
     home-manager.users = { # #
-      unholynuisance = self.hmModules.unholynuisance;
+      unholynuisance = { ... }: {
+        imports = [ self.hmModules.unholynuisance ] ++ cfg.modules;
+      };
     };
   };
 }
