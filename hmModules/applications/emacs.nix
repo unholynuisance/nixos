@@ -13,23 +13,33 @@ in {
     };
   };
 
-  config = lib.mkIf cfg.enable {
-    home.packages = with pkgs; [
-      ibm-plex
-      nerdfonts
-      noto-fonts-cjk-sans
-      libvterm
-    ];
+  config = let
+    package = pkgs.buildEnv {
+      name = "emacs-with-env";
+      paths = with pkgs; [ cfg.package libvterm ];
+    };
+  in lib.mkIf cfg.enable {
+    nuisance.modules.hm = {
+      tools = {
+        fd.enable = true;
+        ripgrep.enable = true;
+      };
+
+      fonts = {
+        ibm-plex.enable = true;
+        nerdfonts.enable = true;
+        noto-fonts-cjk-sans.enable = true;
+      };
+    };
 
     programs.emacs = {
       enable = true;
-      package = cfg.package;
+      inherit package;
     };
 
     services.emacs = {
       enable = true;
-      package = cfg.package;
-
+      inherit package;
       socketActivation.enable = true;
       startWithUserSession = "graphical";
 

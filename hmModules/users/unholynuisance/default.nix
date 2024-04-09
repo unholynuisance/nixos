@@ -28,7 +28,7 @@
 
         emacs = {
           enable = true;
-          package = pkgs.emacs29-gtk3;
+          package = with pkgs; emacs29-gtk3;
         };
       };
 
