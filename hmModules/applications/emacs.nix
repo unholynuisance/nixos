@@ -21,8 +21,14 @@ in {
   in lib.mkIf cfg.enable {
     nuisance.modules.hm = {
       tools = {
+        # doom dependencies
         fd.enable = true;
         ripgrep.enable = true;
+        # vterm dependencies
+        c.enable = true;
+        perl.enable = true;
+        # dictionaries
+        hunspell.enable = true;
       };
 
       fonts = {

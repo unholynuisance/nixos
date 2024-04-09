@@ -11,7 +11,6 @@
     };
 
     nuisance.modules.hm = {
-      common.enable = true;
       gnome.enable = true;
       gtk.enable = true;
 
@@ -21,11 +20,24 @@
       };
 
       applications = {
-        calibre.enable = true;
+        # web
+        firefox.enable = true;
+        chrome.enable = true;
+        # messengers
         discord.enable = true;
-        obs-studio.enable = true;
+        telegram.enable = true;
+        teams.enable = true;
+        slack.enable = true;
+        #
+        calibre.enable = true;
         zotero.enable = true;
-
+        #
+        obs-studio.enable = true;
+        krita.enable = true;
+        xournal.enable = true;
+        #
+        torrent.enable = true;
+        # holy grail of editors
         emacs = {
           enable = true;
           package = with pkgs; emacs29-gtk3;
@@ -42,9 +54,15 @@
       };
 
       tools = {
+        zip.enable = true;
+        xdg-launch.enable = true;
+
+        fd.enable = true;
+        ripgrep.enable = true;
         direnv.enable = true;
         git.enable = true;
         nix.enable = true;
+        latex.enable = true;
       };
     };
   };

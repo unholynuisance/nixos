@@ -47,6 +47,7 @@
         enable = true;
         shell = pkgs.zsh;
         extraGroups = [ "wheel" "networkmanager" "libvirtd" "minecraft" ];
+        modules = [{ nuisance.modules.hm = { shells.zsh.enable = true; }; }];
       };
     };
 

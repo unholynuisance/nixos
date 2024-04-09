@@ -15,6 +15,7 @@ in {
 
       c.enable = lib.mkEnableOption "c";
       perl.enable = lib.mkEnableOption "perl";
+      latex.enable = lib.mkEnableOption "latex";
 
       hunspell.enable = lib.mkEnableOption "hunspell";
 
@@ -38,6 +39,8 @@ in {
         libtool
       ]) ++ (lib.optionals cfg.perl.enable [ # #
         perl
+      ]) ++ (lib.optionals cfg.latex.enable [ # #
+        texlive.combined.scheme-full
       ]) ++ (lib.optionals cfg.hunspell.enable [ # #
         hunspell
         hunspellDicts.uk-ua
