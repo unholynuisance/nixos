@@ -1,5 +1,6 @@
 { config, lib, pkgs, ... }: {
   imports = [ # #
+    ./profiles
     ./applications
     ./fonts
     ./games

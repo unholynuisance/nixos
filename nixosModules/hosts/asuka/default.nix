@@ -39,6 +39,7 @@
         enable = true;
         shell = pkgs.zsh;
         extraGroups = [ "wheel" "networkmanager" "libvirtd" ];
+        modules = [{ nuisance.profiles.hm.asuka.enable = true; }];
       };
     };
 

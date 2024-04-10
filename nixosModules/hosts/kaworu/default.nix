@@ -25,6 +25,7 @@
       users.unholynuisance = {
         enable = true;
         extraGroups = [ "wheel" "networkmanager" "libvirtd" ];
+        modules = [{ nuisance.profiles.hm.kaworu.enable = true; }];
       };
     };
 

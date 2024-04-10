@@ -18,6 +18,7 @@
         enable = true;
         shell = pkgs.zsh;
         extraGroups = [ "wheel" ];
+        modules = [{ nuisance.profiles.hm.yui.enable = true; }];
       };
     };
   };
