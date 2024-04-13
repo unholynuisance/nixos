@@ -8,6 +8,10 @@
     networking.hostName = "ryoji";
 
     nuisance.modules.nixos = { # #
+      services = { # #
+        ssh.enable = true;
+      };
+
       virtualisation.guest.enable = true;
     };
   };

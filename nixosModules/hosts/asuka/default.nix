@@ -16,6 +16,10 @@
         };
       };
 
+      services = { # #
+        ssh.enable = true;
+      };
+
       shells = { # #
         zsh.enable = true;
       };

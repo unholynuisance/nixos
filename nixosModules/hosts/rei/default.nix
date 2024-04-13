@@ -16,6 +16,10 @@
         };
       };
 
+      services = { # #
+        ssh.enable = true;
+      };
+
       gnome.enable = true;
       networkmanager.enable = true;
       pipewire.enable = true;
