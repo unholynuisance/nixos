@@ -5,5 +5,10 @@ in {
     enable = lib.mkEnableOption "nix";
   };
 
-  config = lib.mkIf cfg.enable { home.packages = with pkgs; [ nixd nixfmt ]; };
+  config = lib.mkIf cfg.enable {
+    home.packages = with pkgs; [ # #
+      nixd
+      nixfmt-classic
+    ];
+  };
 }

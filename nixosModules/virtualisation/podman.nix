@@ -6,9 +6,10 @@ in {
   };
 
   config = lib.mkIf cfg.enable {
+    virtualisation.containers.cdi.dynamic.nvidia.enable = true;
+
     virtualisation.podman = {
       enable = true;
-      enableNvidia = true;
       dockerSocket.enable = true;
     };
   };

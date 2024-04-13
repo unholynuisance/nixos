@@ -74,12 +74,13 @@
               default = mkShell {
                 packages = [ # #
                   nil
-                  nixfmt
+                  nixfmt-classic
+                  nix-output-monitor
                 ];
               };
             };
 
-            formatter = nixfmt;
+            formatter = nixfmt-classic;
           };
         };
 

@@ -1,4 +1,4 @@
-{ config, self, ... }: {
+{ config, self, inputs, ... }: {
   config.flake = {
     overlays = {
       lib = final: prev: { # #
@@ -7,6 +7,11 @@
 
       pkgs = final: prev: { # #
         nuisance = self.packages.${prev.system};
+        master = inputs.nixpkgs-master.legacyPackages.${prev.system};
+      };
+
+      electron = final: prev: { # #
+        inherit (prev.master) electron electron_28;
       };
     };
   };

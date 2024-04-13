@@ -15,7 +15,7 @@ in {
       gnome-tour
       gnome.epiphany
       gnome.geary
-      gnome.gedit
+      pkgs.gedit
     ];
   };
 }

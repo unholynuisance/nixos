@@ -17,7 +17,13 @@
   ];
 
   config = {
-    nixpkgs.overlays = [ self.overlays.lib self.overlays.pkgs ];
+    nix.package = pkgs.nixUnstable;
+
+    nixpkgs.overlays = with self; [ # #
+      overlays.lib
+      overlays.pkgs
+      overlays.electron
+    ];
 
     nixpkgs.config.allowUnfree = true;
     system.stateVersion = "23.05";
