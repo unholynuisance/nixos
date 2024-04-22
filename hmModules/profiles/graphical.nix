@@ -26,6 +26,7 @@ in {
         obs-studio.enable = true;
         krita.enable = true;
         xournal.enable = true;
+        office.enable = true;
         #
         torrent.enable = true;
         # holy grail of editors
