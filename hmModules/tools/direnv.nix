@@ -8,6 +8,7 @@ in {
   config = lib.mkIf cfg.enable {
     programs.direnv = {
       enable = true;
+      config = pkgs.lib.importTOML ./direnv.toml;
       nix-direnv.enable = true;
       enableBashIntegration = true;
       enableZshIntegration = true;
