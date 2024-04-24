@@ -6,7 +6,7 @@
         mkNixosConfiguration = # #
           { self, inputs }:
           { system, modules }:
-          withSystem "x86_64-linux" ({ inputs', self', system, ... }@context:
+          withSystem system ({ inputs', self', system, ... }@context:
             inputs.nixpkgs.lib.nixosSystem {
               inherit system modules;
               specialArgs = { inherit self self' inputs inputs'; };
@@ -15,7 +15,7 @@
         mkHomeConfiguration = # #
           { self, inputs }:
           { system, modules }:
-          withSystem "x86_64-linux" ({ inputs', self', pkgs, ... }@context:
+          withSystem system ({ inputs', self', pkgs, ... }@context:
             inputs.home-manager.lib.homeManagerConfiguration {
               inherit pkgs modules;
               extraSpecialArgs = { inherit self self' inputs inputs'; };

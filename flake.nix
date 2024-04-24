@@ -48,6 +48,7 @@
 
               rei = import ./nixosModules/hosts/rei;
               asuka = import ./nixosModules/hosts/asuka;
+              lilith = import ./nixosModules/hosts/lilith;
               kaworu = import ./nixosModules/hosts/kaworu;
               ryoji = import ./nixosModules/hosts/ryoji;
               yui = import ./nixosModules/hosts/yui;
@@ -114,6 +115,12 @@
             asuka = mkNixosConfiguration {
               system = "x86_64-linux";
               modules = [ self.nixosModules.asuka ];
+            };
+
+            # RPi
+            lilith = mkNixosConfiguration {
+              system = "aarch64-linux";
+              modules = [ self.nixosModules.lilith ];
             };
 
             # primary virtual host:
