@@ -1,6 +1,6 @@
 { config, lib, pkgs, ... }: {
   imports = [ # #
-    ./cli.nix
+    ./headless.nix
     ./graphical.nix
     ./games.nix
     ./rei.nix

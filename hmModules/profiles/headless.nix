@@ -1,8 +1,8 @@
 { config, lib, pkgs, ... }:
-let cfg = config.nuisance.profiles.hm.cli;
+let cfg = config.nuisance.profiles.hm.headless;
 in {
-  options.nuisance.profiles.hm.cli = { # #
-    enable = lib.mkEnableOption "cli";
+  options.nuisance.profiles.hm.headless = { # #
+    enable = lib.mkEnableOption "headless";
   };
 
   config = lib.mkIf cfg.enable {
@@ -16,14 +16,10 @@ in {
 
       tools = {
         zip.enable = true;
-        xdg-launch.enable = true;
-
         fd.enable = true;
         ripgrep.enable = true;
         direnv.enable = true;
         git.enable = true;
-        nix.enable = true;
-        latex.enable = true;
       };
     };
   };

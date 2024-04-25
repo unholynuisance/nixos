@@ -6,6 +6,8 @@ in {
   };
 
   config = lib.mkIf cfg.enable {
+    nuisance.profiles.hm.headless.enable = true;
+
     nuisance.modules.hm = {
       gnome.enable = true;
       gtk.enable = true;
@@ -27,6 +29,7 @@ in {
         krita.enable = true;
         xournal.enable = true;
         office.enable = true;
+        latex.enable = true;
         #
         torrent.enable = true;
         # holy grail of editors

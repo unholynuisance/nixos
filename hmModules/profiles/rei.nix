@@ -7,7 +7,6 @@ in {
 
   config = lib.mkIf cfg.enable {
     nuisance.profiles.hm = {
-      cli.enable = true;
       graphical.enable = true;
       games.enable = true;
     };

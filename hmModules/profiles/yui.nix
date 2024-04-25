@@ -6,8 +6,7 @@ in {
   };
 
   config = lib.mkIf cfg.enable {
-    nuisance.profiles.hm = {
-      cli.enable = true;
+    nuisance.profiles.hm = { # #
       graphical.enable = true;
     };
   };
