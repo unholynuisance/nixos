@@ -43,6 +43,7 @@
 
   mkEfiPartition = { size }:
     mkVfatPartition {
+      inherit size;
       name = "efi";
       mountpoint = "/efi";
     };
@@ -50,6 +51,7 @@
   # Concrete physical partitions
   mkFirmwarePartition = { size }:
     mkVfatPartition {
+      inherit size;
       name = "firmware";
       mountpoint = "/firmware";
     };
