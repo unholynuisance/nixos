@@ -30,16 +30,28 @@
     };
 
   # Concrete physical partitions
-  mkEfiPartition = { size }:
+  mkVfatPartition = { name, size, mountpoint }:
     mkPartition {
-      name = "efi";
-      size = size;
+      inherit name size;
       content = diskName: name: {
         type = "filesystem";
         format = "vfat";
-        mountpoint = "/efi";
+        mountpoint = mountpoint;
         extraArgs = [ "-n ${diskName}-${name}" ];
       };
+    };
+
+  mkEfiPartition = { size }:
+    mkVfatPartition {
+      name = "efi";
+      mountpoint = "/efi";
+    };
+
+  # Concrete physical partitions
+  mkFirmwarePartition = { size }:
+    mkVfatPartition {
+      name = "firmware";
+      mountpoint = "/firmware";
     };
 
   mkPhysicalVolumePartition = { size, vg, }:
