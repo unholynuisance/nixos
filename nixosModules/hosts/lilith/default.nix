@@ -43,7 +43,8 @@
               name = "mmcblk1";
               device = "/dev/disk/by-id/mmc-USDU1_0x300b7c7e";
               partitions = [
-                (mkFirmwarePartition { size = "128M"; })
+                (mkEfiPartition { size = "128M"; })
+                (mkBootPartition { size = "1G"; })
                 (mkPhysicalVolumePartition {
                   size = "100%";
                   vg = "primary";
@@ -55,31 +56,18 @@
             (mkVolumeGroup {
               name = "primary";
               volumes = [
-                (mkBootVolume { size = "1G"; })
                 (mkSwapVolume {
-                  size = "4G";
+                  size = "8G";
                   encrypt = true;
                   unlock = true;
                 })
                 (mkBtrfsVolume {
                   name = "root";
-                  size = "96G";
+                  size = "100%FREE";
                   subvolumes = {
                     "?" = { mountpoint = "/"; };
                     "?nix" = { mountpoint = "/nix"; };
                     "?var?log" = { mountpoint = "/var/log"; };
-                  };
-                  encrypt = true;
-                  unlock = true;
-                })
-                (mkBtrfsVolume {
-                  name = "home";
-                  size = "100%FREE";
-                  subvolumes = {
-                    "?" = { mountpoint = "/home"; };
-                    "?unholynuisance" = {
-                      mountpoint = "/home/unholynuisance";
-                    };
                   };
                   encrypt = true;
                   unlock = true;
