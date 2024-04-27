@@ -33,12 +33,7 @@
   mkVfatPartition = { name, size, mountpoint }:
     mkPartition {
       inherit name size;
-      content = diskName: name: {
-        type = "filesystem";
-        format = "vfat";
-        mountpoint = mountpoint;
-        extraArgs = [ "-n ${diskName}-${name}" ];
-      };
+      content = mkVfatContent { inherit mountpoint; };
     };
 
   mkEfiPartition = { size }:
@@ -48,12 +43,17 @@
       mountpoint = "/efi";
     };
 
-  # Concrete physical partitions
-  mkFirmwarePartition = { size }:
-    mkVfatPartition {
+  mkBtrfsPartition = { name, size, subvolumes }:
+    mkPartition {
+      inherit name size;
+      content = mkBtrfsContent { inherit subvolumes; };
+    };
+
+  mkBootPartition = { size }:
+    mkBtrfsPartition {
       inherit size;
-      name = "firmware";
-      mountpoint = "/firmware";
+      name = "boot";
+      subvolumes = { "?" = { mountpoint = "/boot"; }; };
     };
 
   mkPhysicalVolumePartition = { size, vg, }:
@@ -126,10 +126,18 @@
 
   # Content
   mkBtrfsContent = { subvolumes }:
-    vgName: name: {
+    oName: name: {
       type = "btrfs";
-      extraArgs = [ "--label ${vgName}-${name}" ];
+      extraArgs = [ "--label ${oName}-${name}" ];
       subvolumes = subvolumes;
+    };
+
+  mkVfatContent = { mountpoint }:
+    oName: name: {
+      type = "filesystem";
+      format = "vfat";
+      mountpoint = mountpoint;
+      extraArgs = [ "-n ${oName}-${name}" ];
     };
 
   mkSwapContent = { }: vgName: name: { type = "swap"; };
