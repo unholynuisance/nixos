@@ -24,6 +24,10 @@
         zsh.enable = true;
       };
 
+      virtualisation = { # #
+        libvirt.enable = true;
+      };
+
       gnome.enable = true;
       networkmanager.enable = true;
       pipewire.enable = true;
