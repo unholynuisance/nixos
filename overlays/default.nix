@@ -13,6 +13,10 @@
       electron = final: prev: { # #
         inherit (prev.master) electron electron_28;
       };
+
+      teams = final: prev: { # #
+        inherit (prev.master) teams-for-linux;
+      };
     };
   };
 }
