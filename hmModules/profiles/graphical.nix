@@ -7,7 +7,15 @@ in {
 
   config = lib.mkIf cfg.enable {
     nuisance.modules.hm = {
-      gnome.enable = true;
+      gnome = {
+        enable = true;
+        extensions = with pkgs.gnomeExtensions; [
+          appindicator
+          ip-finder
+          freon
+        ];
+      };
+
       gtk.enable = true;
 
       applications = {

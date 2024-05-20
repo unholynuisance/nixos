@@ -1,14 +1,17 @@
 { config, lib, pkgs, ... }:
 let cfg = config.nuisance.modules.hm.gnome;
 in {
-  options.nuisance.modules.hm.gnome = { enable = lib.mkEnableOption "gnome"; };
+  options.nuisance.modules.hm.gnome = {
+    enable = lib.mkEnableOption "gnome";
+
+    extensions = lib.mkOption {
+      type = with lib.types; listOf package;
+      default = [ ];
+    };
+  };
 
   config = lib.mkIf cfg.enable {
-    home.packages = with pkgs; [
-      gnomeExtensions.tray-icons-reloaded
-      gnomeExtensions.ip-finder
-      gnomeExtensions.freon
-    ];
+    home.packages = cfg.extensions;
 
     dconf.settings = {
       # Launchers
@@ -210,11 +213,8 @@ in {
 
         disable-user-extensions = false;
 
-        enabled-extensions = [
-          "trayIconsReloaded@selfmade.pl"
-          "IP-Finder@linxgem33.com"
-          "freon@UshakovVasilii_Github.yahoo.com"
-        ];
+        enabled-extensions =
+          lib.lists.forEach cfg.extensions (x: x.passthru.extensionUuid);
       };
 
       "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/emacsclient" =
