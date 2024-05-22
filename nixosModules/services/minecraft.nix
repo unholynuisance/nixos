@@ -1,4 +1,4 @@
-{ config, lib, pkgs, ... }:
+{ config, lib, pkgs, ... }@args:
 let
   cfg = config.nuisance.modules.nixos.services.minecraft;
 
@@ -170,6 +170,7 @@ in {
           overwrite config
           overwrite mods
           overwrite libraries
+          overwrite serverutilities
           overwrite minecraft_server.1.7.10.jar
           overwrite forge-1.7.10-10.13.4.1614-1.7.10-universal.jar
           overwrite lwjgl3ify-forgePatches.jar

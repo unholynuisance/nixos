@@ -40,12 +40,14 @@ in {
 
           overwrite instance.cfg
           overwrite mmc-pack.json
+          overwrite libraries
           overwrite patches
 
           mkdir -p .minecraft
           overwrite .minecraft/config
           overwrite .minecraft/mods
           overwrite .minecraft/resourcepacks
+          overwrite .minecraft/serverutilities
           overwrite .minecraft/shaderpacks
 
           cp -rTv --no-preserve mode ${./instances/gtnh/.minecraft} .minecraft

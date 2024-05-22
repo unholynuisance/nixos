@@ -38,6 +38,8 @@
 
       services.minecraft = {
         enable = true;
+        stateDirectory = "/var/lib/minecraft/gtnh";
+
         enableRcon = true;
         openFirewall = true;
       };
