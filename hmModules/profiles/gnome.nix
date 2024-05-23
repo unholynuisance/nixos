@@ -16,6 +16,13 @@ in {
           freon
         ];
 
+        favouriteApps = [ # #
+          "firefox"
+          "org.gnome.Console"
+          "emacs"
+          "org.gnome.Nautilus"
+        ];
+
         keyboard-shortcuts = {
           customShortcuts = {
             launch-emacsclient = {

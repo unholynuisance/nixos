@@ -3,21 +3,22 @@ let cfg = config.nuisance.modules.hm.gnome;
 in {
   imports = [ ./keyboard-shortcuts.nix ];
 
-  options.nuisance.modules.hm.gnome = {
+  options.nuisance.modules.hm.gnome = with lib.types; {
     enable = lib.mkEnableOption "gnome";
 
     extensions = lib.mkOption {
-      type = with lib.types; listOf package;
+      type = listOf package;
+      default = [ ];
+    };
+
+    favouriteApps = lib.mkOption {
+      type = listOf str;
       default = [ ];
     };
   };
 
-  config = lib.mkIf cfg.enable {
-    nuisance.modules.hm.gnome = { keyboard-shortcuts.enable = true; };
-
-    home.packages = cfg.extensions;
-
-    dconf.settings = {
+  config = let
+    settings = {
       # Touchpad
       "org/gnome/desktop/peripherals/touchpad" = {
         # Tap to click
@@ -51,20 +52,32 @@ in {
         # App switching
         current-workspace-only = true;
       };
+    };
 
+    extensions = {
       "org/gnome/shell" = {
-        favorite-apps = [
-          "firefox.desktop"
-          "org.gnome.Console.desktop"
-          "emacs.desktop"
-          "org.gnome.Nautilus.desktop"
-        ];
-
         disable-user-extensions = false;
 
         enabled-extensions =
           lib.lists.forEach cfg.extensions (x: x.passthru.extensionUuid);
       };
     };
-  };
+
+    favouriteApps = {
+      "org/gnome/shell" = {
+        favorite-apps = map (n: "${n}.desktop") cfg.favouriteApps;
+      };
+    };
+
+  in lib.mkIf cfg.enable (lib.mkMerge [
+    {
+      nuisance.modules.hm.gnome = { keyboard-shortcuts.enable = true; };
+      dconf.settings = settings;
+    }
+    {
+      home.packages = cfg.extensions;
+      dconf.settings = extensions;
+    }
+    { dconf.settings = favouriteApps; }
+  ]);
 }
