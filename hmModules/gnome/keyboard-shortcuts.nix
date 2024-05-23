@@ -17,7 +17,7 @@ in {
 
       customShortcuts = lib.mkOption {
         type = attrsOf customShortcut;
-        default = [ ];
+        default = { };
       };
     };
 

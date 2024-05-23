@@ -23,6 +23,23 @@ in {
           "org.gnome.Nautilus"
         ];
 
+        appFolders = { # #
+          games = {
+            name = "Games";
+            categories = [ "Game" ];
+          };
+
+          preferred-apps = {
+            name = "Preferred Apps";
+            categories = [ "Preferred" ];
+          };
+
+          office = {
+            name = "Office";
+            categories = [ "Office" ];
+          };
+        };
+
         keyboard-shortcuts = {
           customShortcuts = {
             launch-emacsclient = {
