@@ -2,6 +2,7 @@
   imports = [ # #
     ./cli.nix
     ./graphical.nix
+    ./gnome.nix
     ./games.nix
     ./rei.nix
     ./asuka.nix

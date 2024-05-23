@@ -6,35 +6,11 @@ in {
   };
 
   config = lib.mkIf cfg.enable {
+    nuisance.profiles.hm = { # #
+      gnome.enable = true;
+    };
+
     nuisance.modules.hm = {
-      gnome = {
-        enable = true;
-
-        extensions = with pkgs.gnomeExtensions; [
-          appindicator
-          ip-finder
-          freon
-        ];
-
-        keyboard-shortcuts = {
-          customShortcuts = {
-            launch-emacsclient = {
-              name = "Launch emacsclient";
-              command = "xdg-launch emacsclient.desktop";
-              binding = "<Ctrl><Super>e";
-            };
-
-            open-private-firefox-window = {
-              name = "Open private firefox window";
-              command = "xdg-launch firefox.desktop:new-private-window";
-              binding = "<Ctrl><Super>p";
-            };
-          };
-        };
-      };
-
-      gtk.enable = true;
-
       applications = {
         # web
         firefox.enable = true;
