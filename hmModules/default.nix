@@ -1,12 +1,12 @@
 { config, lib, pkgs, ... }: {
   imports = [ # #
     ./profiles
+    ./gnome
     ./applications
     ./fonts
     ./games
     ./shells
     ./tools
-    ./gnome.nix
     ./gtk.nix
   ];
 
