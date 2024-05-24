@@ -48,10 +48,22 @@ in {
               binding = "<Ctrl><Super>e";
             };
 
+            launch-emacs = {
+              name = "Launch emacs";
+              command = "xdg-launch emacsc.desktop";
+              binding = "<Ctrl><Alt><Super>e";
+            };
+
             open-private-firefox-window = {
               name = "Open private firefox window";
               command = "xdg-launch firefox.desktop:new-private-window";
               binding = "<Ctrl><Alt><Super>b";
+            };
+
+            open-terminal = {
+              name = "Open terminal";
+              command = "xdg-launch org.gnome.Console";
+              binding = "<Ctrl><Super>t";
             };
           };
         };
