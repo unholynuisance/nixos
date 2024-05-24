@@ -51,7 +51,7 @@ in {
             open-private-firefox-window = {
               name = "Open private firefox window";
               command = "xdg-launch firefox.desktop:new-private-window";
-              binding = "<Ctrl><Super>p";
+              binding = "<Ctrl><Alt><Super>b";
             };
           };
         };
