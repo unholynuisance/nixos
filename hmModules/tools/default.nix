@@ -5,6 +5,7 @@ in {
     ./direnv.nix
     ./git.nix
     ./nix.nix
+    ./xdg.nix
   ];
 
   options = {
@@ -18,8 +19,6 @@ in {
       latex.enable = lib.mkEnableOption "latex";
 
       hunspell.enable = lib.mkEnableOption "hunspell";
-
-      xdg-launch.enable = lib.mkEnableOption "xdg-launch";
     };
   };
 
@@ -45,8 +44,6 @@ in {
         hunspell
         hunspellDicts.uk-ua
         hunspellDicts.en-us-large
-      ]) ++ (lib.optionals cfg.xdg-launch.enable [ # #
-        xdg-launch
       ]);
   };
 }

@@ -16,7 +16,7 @@ in {
 
       tools = {
         zip.enable = true;
-        xdg-launch.enable = true;
+        xdg.enable = true;
 
         fd.enable = true;
         ripgrep.enable = true;
