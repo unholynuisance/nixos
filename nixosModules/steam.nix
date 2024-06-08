@@ -4,19 +4,18 @@ in {
   options.nuisance.modules.nixos.steam = {
     enable = lib.mkEnableOption "steam";
 
-    extraCompatTools = lib.mkOption {
+    extraCompatPackages = lib.mkOption {
       type = with lib.types; listOf package;
       default = [ ];
     };
   };
 
   config = lib.mkIf cfg.enable {
-    programs.steam = { enable = true; };
+    environment.systemPackages = with pkgs; [ mangohud protontricks ];
 
-    environment.systemPackages = with pkgs; [ protontricks mangohud ];
-    environment.sessionVariables = {
-      STEAM_EXTRA_COMPAT_TOOLS_PATHS =
-        lib.concatStringsSep ":" cfg.extraCompatTools;
+    programs.steam = {
+      enable = true;
+      extraCompatPackages = cfg.extraCompatPackages;
     };
   };
 }

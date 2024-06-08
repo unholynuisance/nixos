@@ -28,7 +28,8 @@
 
       steam = {
         enable = true;
-        extraCompatTools = with pkgs.nuisance; [ # #
+        extraCompatPackages = with pkgs.nuisance; [ # #
+          proton-ge-bin
           ge-proton8-16
           ge-proton8-25
         ];
