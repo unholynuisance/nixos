@@ -18,6 +18,7 @@
 
       services = { # #
         ssh.enable = true;
+        avahi.enable = true;
       };
 
       shells = { # #

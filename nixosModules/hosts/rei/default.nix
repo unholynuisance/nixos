@@ -18,6 +18,7 @@
 
       services = { # #
         ssh.enable = true;
+        avahi.enable = true;
       };
 
       gnome.enable = true;
