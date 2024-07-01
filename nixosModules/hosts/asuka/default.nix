@@ -119,11 +119,11 @@
                   unlock = true;
                 })
                 (mkBtrfsVolume {
-                  name = "home";
+                  name = "data";
                   size = "100%FREE";
                   subvolumes = {
-                    "?" = { mountpoint = "/home"; };
-                    "?unholynuisance" = {
+                    "?home" = { mountpoint = "/home"; };
+                    "?home?unholynuisance" = {
                       mountpoint = "/home/unholynuisance";
                     };
                   };
