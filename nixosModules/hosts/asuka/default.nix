@@ -126,6 +126,9 @@
                     "?home?unholynuisance" = {
                       mountpoint = "/home/unholynuisance";
                     };
+                    "?var?lib?libvirt" = { # #
+                      mountpoint = "/var/lib/libvirt";
+                    };
                   };
                   encrypt = true;
                   unlock = true;
