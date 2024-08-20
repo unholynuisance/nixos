@@ -27,6 +27,10 @@
       rtkit.enable = true;
       shells.zsh.enable = true;
 
+      applications = { # #
+        wireshark.enable = true;
+      };
+
       steam = {
         enable = true;
         extraCompatPackages = with pkgs.nuisance; [ # #
@@ -54,7 +58,13 @@
       users.unholynuisance = {
         enable = true;
         shell = pkgs.zsh;
-        extraGroups = [ "wheel" "networkmanager" "libvirtd" "minecraft" ];
+        extraGroups = [ # #
+          "wheel"
+          "networkmanager"
+          "libvirtd"
+          "wireshark"
+          "minecraft"
+        ];
         modules = [{ nuisance.profiles.hm.rei.enable = true; }];
       };
     };
