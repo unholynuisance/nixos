@@ -84,12 +84,9 @@
 
     hardware.nvidia = { modesetting.enable = true; };
 
-    hardware.opengl = {
+    hardware.graphics = {
       enable = true;
-      driSupport = true;
-      driSupport32Bit = true;
-
-      extraPackages = with pkgs; [ amdvlk driversi686Linux.amdvlk ];
+      enable32Bit = true;
     };
 
     networking.useDHCP = lib.mkDefault true;

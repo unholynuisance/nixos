@@ -6,7 +6,7 @@ in {
   };
 
   config = lib.mkIf cfg.enable {
-    virtualisation.containers.cdi.dynamic.nvidia.enable = true;
+    hardware.nvidia-container-toolkit.enable = true;
 
     virtualisation.podman = {
       enable = true;

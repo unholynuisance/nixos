@@ -13,8 +13,8 @@ in {
 
     environment.gnome.excludePackages = with pkgs; [
       gnome-tour
-      gnome.epiphany
-      gnome.geary
+      epiphany
+      geary
       pkgs.gedit
     ];
   };

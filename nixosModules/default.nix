@@ -18,8 +18,6 @@
   ];
 
   config = {
-    nix.package = pkgs.nixUnstable;
-
     nixpkgs.overlays = with self; [ # #
       overlays.lib
       overlays.pkgs

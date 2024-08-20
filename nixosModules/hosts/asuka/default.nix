@@ -70,11 +70,12 @@
     hardware.enableRedistributableFirmware = true;
     hardware.wirelessRegulatoryDatabase = true;
 
-    hardware.opengl = {
-      driSupport = true;
-      driSupport32Bit = true;
+    hardware.graphics = {
+      enable = true;
+      enable32Bit = true;
 
-      extraPackages = with pkgs; [ amdvlk driversi686Linux.amdvlk ];
+      extraPackages = with pkgs; [ amdvlk ];
+      extraPackages32 = with pkgs; [ driversi686Linux.amdvlk ];
     };
 
     networking.useDHCP = lib.mkDefault true;
