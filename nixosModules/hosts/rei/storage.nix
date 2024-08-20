@@ -1,6 +1,4 @@
-{ config, lib, pkgs, ... }:
-
-{
+{ config, lib, pkgs, ... }: {
   config = {
     nuisance.modules.nixos.disko = {
       enable = true;
@@ -84,26 +82,20 @@
                   unlock = true;
                 })
                 (mkBtrfsVolume {
-                  name = "home";
-                  size = "256G";
-                  subvolumes = {
-                    "?" = { mountpoint = "/home"; };
-                    "?unholynuisance" = {
-                      mountpoint = "/home/unholynuisance";
-                    };
-                  };
-                  encrypt = true;
-                  unlock = true;
-                })
-                (mkBtrfsVolume {
-                  name = "media";
+                  name = "data";
                   size = "100%FREE";
                   subvolumes = {
-                    "?unholynuisance?games" = {
-                      mountpoint = "/media/unholynuisance/games/primary";
+                    "?home" = { # #
+                      mountpoint = "/home";
                     };
-                    "?unholynuisance?vms" = {
-                      mountpoint = "/media/unholynuisance/vms/primary";
+                    "?home?unholynuisance" = { # #
+                      mountpoint = "/home/unholynuisance";
+                    };
+                    "?data?unholynuisance?games" = {
+                      mountpoint = "/data/unholynuisance/games/primary";
+                    };
+                    "?data?unholynuisance?vms" = {
+                      mountpoint = "/data/unholynuisance/vms/primary";
                     };
                   };
                   encrypt = true;
@@ -115,14 +107,14 @@
               name = "secondary";
               volumes = [
                 (mkBtrfsVolume {
-                  name = "media";
+                  name = "data";
                   size = "100%FREE";
                   subvolumes = {
-                    "?unholynuisance?games" = { # #
-                      mountpoint = "/media/unholynuisance/games/secondary";
+                    "?data?unholynuisance?games" = { # #
+                      mountpoint = "/data/unholynuisance/games/secondary";
                     };
-                    "?unholynuisance?vms" = { # #
-                      mountpoint = "/media/unholynuisance/vms/secondary";
+                    "?data?unholynuisance?vms" = { # #
+                      mountpoint = "/data/unholynuisance/vms/secondary";
                     };
                     "?var?lib?libvirt" = { # #
                       mountpoint = "/var/lib/libvirt";
@@ -146,11 +138,11 @@
             #   name = "tertiary";
             #   volumes = [
             #     (mkBtrfsVolume {
-            #       name = "media";
+            #       name = "data";
             #       size = "100%FREE";
             #       subvolumes = {
-            #         "?unholynuisance?games" = {mountpoint = "/media/unholynuisance/games/tertiary";};
-            #         "?unholynuisance?vms" = {mountpoint = "/media/unholynuisance/vms/tertiary";};
+            #         "?unholynuisance?games" = {mountpoint = "/data/unholynuisance/games/tertiary";};
+            #         "?unholynuisance?vms" = {mountpoint = "/data/unholynuisance/vms/tertiary";};
             #       };
             #       encrypt = true;
             #       unlock = true;
