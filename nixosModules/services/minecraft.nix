@@ -49,7 +49,7 @@ in {
   options.nuisance.modules.nixos.services.minecraft = {
     enable = lib.mkEnableOption "minecraft";
 
-    startOnBoot = lib.mkOption {
+    autoStart = lib.mkOption {
       type = lib.types.bool;
       default = false;
     };
@@ -128,7 +128,7 @@ in {
 
     systemd.services.minecraft = {
       description = "GT New Horizons Server service";
-      wantedBy = if cfg.startOnBoot then [ "multi-user.target" ] else [ ];
+      wantedBy = if cfg.autoStart then [ "multi-user.target" ] else [ ];
       requires = [ "minecraft.socket" ];
       after = [ "network.target" "minecraft.socket" ];
 
