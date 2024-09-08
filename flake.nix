@@ -73,7 +73,7 @@
             devShells = {
               default = mkShell {
                 packages = [ # #
-                  nil
+                  nixd
                   nixfmt-classic
                   nix-output-monitor
                 ];
