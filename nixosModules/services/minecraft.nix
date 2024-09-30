@@ -159,7 +159,7 @@ in {
         ln -sf ${eulaFile} eula.txt
 
         if [[ ! -e .lock ]] then
-          touch .lock
+          ln -sT ${cfg.package} .lock
 
           [[ -e scripts ]] && rm -r scripts
 
@@ -176,6 +176,10 @@ in {
           overwrite lwjgl3ify-forgePatches.jar
           overwrite java9args.txt
           overwrite server-icon.png
+
+          # state
+          [[ -d state/JourneyMapServer ]] || mkdir -p state/JourneyMapServer
+          ln -sf $(pwd)/state/JourneyMapServer config/JourneyMapServer
         fi
       '';
     };
