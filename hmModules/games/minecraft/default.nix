@@ -36,7 +36,7 @@ in {
         mkdir -p ${cfg.instances.gtnh.directory}
         pushd ${cfg.instances.gtnh.directory}
         if [[ ! -e .lock ]] then
-          touch .lock
+          ln -sT ${cfg.instances.gtnh.package} .lock
 
           overwrite instance.cfg
           overwrite mmc-pack.json
