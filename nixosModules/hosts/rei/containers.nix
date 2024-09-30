@@ -24,7 +24,7 @@
         };
       };
 
-      autoStart = true;
+      autoStart = false;
 
       specialArgs = { inherit self self' inputs inputs'; };
     };
