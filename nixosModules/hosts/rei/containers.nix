@@ -6,6 +6,7 @@
         config = {
           nuisance.modules.nixos.services.minecraft = {
             enable = true;
+            package = pkgs.nuisance.gtnh-server270-beta-2;
             autoStart = true;
 
             serverPort = 25665;

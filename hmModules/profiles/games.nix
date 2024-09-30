@@ -10,7 +10,10 @@ in {
       games = {
         minecraft = {
           enable = true;
-          instances.gtnh.enable = true;
+          instances.gtnh = {
+            enable = true;
+            package = pkgs.nuisance.gtnh-client270-beta-2;
+          };
         };
 
         cataclysm-dda.enable = true;
