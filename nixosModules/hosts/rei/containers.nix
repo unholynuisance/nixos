@@ -29,5 +29,40 @@
 
       specialArgs = { inherit self self' inputs inputs'; };
     };
+
+    containers.gtnh-coop = {
+      config = { config, self, ... }: {
+        imports = [ self.nixosModules.all ];
+        config = {
+          nuisance.modules.nixos.services.minecraft = {
+            enable = true;
+            package = pkgs.nuisance.gtnh-server270-beta-2;
+            autoStart = true;
+
+            serverPort = 25765;
+            rconPort = 25775;
+
+            openFirewall = true;
+            enableRcon = true;
+          };
+        };
+      };
+
+      bindMounts = {
+        "/var/lib/minecraft" = {
+          hostPath = "/var/lib/minecraft/gtnh-coop";
+          isReadOnly = false;
+        };
+      };
+
+      autoStart = false;
+
+      specialArgs = { inherit self self' inputs inputs'; };
+    };
+
+    networking.firewall = {
+      allowedTCPPorts = [ 25765 ];
+      allowedUDPPorts = [ 25765 ];
+    };
   };
 }
