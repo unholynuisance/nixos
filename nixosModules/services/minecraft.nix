@@ -6,45 +6,23 @@ let
     eula=true
   '';
 
-  serverProperties = {
-    op-permission-level = 2;
-    allow-nether = true;
-    level-name = "World";
-    enable-query = false;
-    allow-flight = true;
-    announce-player-achievements = true;
-    level-type = "rwg";
-    force-gamemode = false;
-    max-build-height = 256;
-    spawn-npcs = true;
-    white-list = true;
-    spawn-animals = true;
-    hardcore = false;
-    snooper-enabled = true;
-    online-mode = true;
-    server-id = "unnamed";
-    pvp = true;
-    difficulty = 3;
-    enable-command-block = true;
-    gamemode = 0;
-    player-idle-timeout = 0;
-    max-players = 20;
-    spawn-monsters = true;
-    generate-structures = true;
-    view-distance = 8;
-    spawn-protection = 1;
-    motd = "GT New Horizons 2.4.0";
-  } // cfg.serverProperties // {
-    server-port = cfg.serverPort;
-    enable-rcon = cfg.enableRcon;
-    rcon-port = cfg.rconPort;
-    rcon-password = cfg.rconPassword;
-  };
+  serverProperties = pkgs.lib.importJSON
+    (pkgs.runCommand "server.properties.json" {
+      nativeBuildInputs = with pkgs; [ jc ];
+    } ''
+      cat ${cfg.package}/lib/minecraft/server.properties | jc --ini > $out
+    '');
 
   serverPropertiesFile = pkgs.writeText "server.properties"
     (lib.generators.toINIWithGlobalSection { } {
-      globalSection = serverProperties;
+      globalSection = serverProperties // cfg.serverProperties // {
+        server-port = cfg.serverPort;
+        enable-rcon = cfg.enableRcon;
+        rcon-port = cfg.rconPort;
+        rcon-password = cfg.rconPassword;
+      };
     });
+
 in {
   options.nuisance.modules.nixos.services.minecraft = {
     enable = lib.mkEnableOption "minecraft";
