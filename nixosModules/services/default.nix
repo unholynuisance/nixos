@@ -1,7 +1,7 @@
 { config, lib, pkgs, ... }: {
   imports = [ # #
+    ./minecraft
     ./avahi.nix
-    ./minecraft.nix
     ./ssh.nix
   ];
 }
