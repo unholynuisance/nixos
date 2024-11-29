@@ -29,7 +29,7 @@
       rtkit.enable = true;
       shells.zsh.enable = true;
 
-      applications = { # #
+      programs = { # #
         wireshark.enable = true;
       };
 

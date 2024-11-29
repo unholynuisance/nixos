@@ -1,6 +1,6 @@
 { config, lib, pkgs, self, ... }: {
   imports = [
-    ./applications
+    ./programs
     ./boot
     ./services
     ./shells

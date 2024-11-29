@@ -1,7 +1,7 @@
 { config, lib, pkgs, ... }:
-let cfg = config.nuisance.modules.nixos.applications;
+let cfg = config.nuisance.modules.nixos.programs;
 in {
-  options.nuisance.modules.nixos.applications = {
+  options.nuisance.modules.nixos.programs = {
     wireshark.enable = lib.mkEnableOption "wireshark";
   };
 
