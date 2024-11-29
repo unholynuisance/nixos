@@ -44,14 +44,6 @@
 
       xserver.enable = true;
 
-      services.minecraft = {
-        enable = true;
-        stateDirectory = "/var/lib/minecraft/gtnh";
-
-        enableRcon = true;
-        openFirewall = true;
-      };
-
       virtualisation = {
         podman.enable = true;
         libvirt.enable = true;
