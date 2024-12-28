@@ -21,7 +21,7 @@
     nixpkgs.overlays = with self; [ # #
       overlays.lib
       overlays.pkgs
-      overlays.electron
+      # overlays.electron
     ];
 
     nixpkgs.config.allowUnfree = true;

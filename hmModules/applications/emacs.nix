@@ -33,7 +33,6 @@ in {
 
       fonts = {
         ibm-plex.enable = true;
-        nerdfonts.enable = true;
         noto-fonts-cjk-sans.enable = true;
       };
     };
