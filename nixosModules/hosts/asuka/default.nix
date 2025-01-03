@@ -80,6 +80,10 @@
 
     networking.useDHCP = lib.mkDefault true;
 
+    environment.sessionVariables = { # #
+      GSK_RENDERER = "ngl";
+    };
+
     nuisance.modules.nixos.disko = {
       enable = true;
       config.devices = with self.lib.storage;
