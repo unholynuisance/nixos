@@ -16,7 +16,7 @@ in {
           };
         };
 
-        cataclysm-dda.enable = true;
+        cataclysm-dda.enable = false;
       };
     };
   };
