@@ -1,4 +1,4 @@
-{ config, lib, pkgs, ... }:
+{ config, lib, pkgs, inputs, ... }:
 let cfg = config.nuisance.modules.hm.applications.emacs;
 in {
   options.nuisance.modules.hm.applications.emacs = {
@@ -13,12 +13,11 @@ in {
     };
   };
 
-  config = let
-    package = pkgs.buildEnv {
-      name = "emacs-with-env";
-      paths = with pkgs; [ cfg.package libvterm ];
-    };
-  in lib.mkIf cfg.enable {
+  imports = [ # #
+    inputs.doom-emacs.hmModule
+  ];
+
+  config = lib.mkIf cfg.enable {
     nuisance.modules.hm = {
       tools = {
         # doom dependencies
@@ -37,14 +36,15 @@ in {
       };
     };
 
-    programs.emacs = {
+    programs.doom-emacs = {
       enable = true;
-      inherit package;
+      emacs = cfg.package;
+      doomDir = inputs.doom-emacs-config;
+      tangleArgs = ".";
     };
 
     services.emacs = {
       enable = true;
-      inherit package;
       socketActivation.enable = true;
       startWithUserSession = "graphical";
 

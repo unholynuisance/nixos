@@ -32,6 +32,16 @@
       url = "github:unholynuisance/xkeyboard-config";
       flake = false;
     };
+
+    doom-emacs = {
+      url = "github:marienz/nix-doom-emacs-unstraightened";
+      inputs.nixpkgs.follows = "";
+    };
+
+    doom-emacs-config = {
+      url = "github:unholynuisance/.doom.d";
+      flake = false;
+    };
   };
 
   outputs = { self, flake-parts, ... }@inputs:
