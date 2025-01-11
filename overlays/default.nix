@@ -10,12 +10,18 @@
         master = inputs.nixpkgs-master.legacyPackages.${prev.system};
       };
 
-      electron = final: prev: { # #
-        inherit (prev.master) electron electron_28;
-      };
+      # electron = final: prev: { # #
+      #   inherit (prev.master) electron electron_28;
+      # };
 
-      teams = final: prev: { # #
-        inherit (prev.master) teams-for-linux;
+      # teams = final: prev: { # #
+      #   inherit (prev.master) teams-for-linux;
+      # };
+
+      xkeyboard_config_patched = (final: prev: {
+        xkeyboard_config_patched = final.xkeyboard_config.overrideAttrs
+          (old: { src = inputs.xkeyboard-config-src; });
+      });
       };
     };
   };

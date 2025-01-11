@@ -18,11 +18,7 @@
   ];
 
   config = {
-    nixpkgs.overlays = with self; [ # #
-      overlays.lib
-      overlays.pkgs
-      # overlays.electron
-    ];
+    nixpkgs.overlays = lib.attrValues self.overlays;
 
     nixpkgs.config.allowUnfree = true;
     system.stateVersion = "23.05";

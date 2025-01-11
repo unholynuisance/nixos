@@ -6,12 +6,6 @@ in {
   };
 
   config = lib.mkIf cfg.enable {
-    nixpkgs.overlays = [
-      (final: prev: {
-        xkeyboard_config_patched = final.xkeyboard_config.overrideAttrs
-          (old: { src = inputs.xkeyboard-config-src; });
-      })
-    ];
     services.xserver = {
       enable = true;
 
