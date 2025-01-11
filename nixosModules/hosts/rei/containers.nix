@@ -9,6 +9,10 @@
             package = pkgs.nuisance.gtnh-server270-beta-2;
             autoStart = true;
 
+            serverProperties = { # #
+              view-distance = 16;
+            };
+
             serverPort = 25565;
             rconPort = 25575;
 
