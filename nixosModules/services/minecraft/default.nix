@@ -159,7 +159,7 @@ in {
 
           # state
           [[ -d state/JourneyMapServer ]] || mkdir -p state/JourneyMapServer
-          ln -sf $(pwd)/state/JourneyMapServer config/JourneyMapServer
+          ln -sfT $(pwd)/state/JourneyMapServer config/JourneyMapServer
         fi
       '';
     };
