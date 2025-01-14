@@ -17,10 +17,7 @@
     ./xserver.nix
   ];
 
-  config = {
-    nixpkgs.overlays = lib.attrValues self.overlays;
-
-    nixpkgs.config.allowUnfree = true;
+  config = { # #
     system.stateVersion = "23.05";
   };
 }

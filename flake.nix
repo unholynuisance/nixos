@@ -50,6 +50,15 @@
       imports = [ # #
         ./lib
         ./overlays
+        ({ lib, self, ... }: {
+          config.perSystem = { system, ... }: {
+            _module.args.pkgs = import inputs.nixpkgs {
+              inherit system;
+              overlays = lib.attrsets.attrValues self.overlays;
+              config.allowUnfree = true;
+            };
+          };
+        })
         ({ config, lib, inputs, ... }: {
           config.flake = {
             nixosModules = rec { # #

@@ -20,12 +20,6 @@
       settings.experimental-features = [ "nix-command" "flakes" ];
     };
 
-    # see https://github.com/nix-community/home-manager/issues/2942
-    nixpkgs = {
-      config.allowUnfreePredicate = pkg: true;
-      overlays = lib.attrValues self.overlays;
-    };
-
     home.stateVersion = "23.05";
   };
 }

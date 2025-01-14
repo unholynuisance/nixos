@@ -23,25 +23,27 @@
           (old: { src = inputs.xkeyboard-config-src; });
       });
 
-      tree-sitter-grammars = final: prev: {
-        tree-sitter-grammars = prev.tree-sitter-grammars // {
-          tree-sitter-rust =
-            prev.tree-sitter-grammars.tree-sitter-rust.overrideAttrs (_: {
-              nativeBuildInputs = [ final.nodejs final.tree-sitter ];
-              configurePhase = ''
-                tree-sitter generate --abi 13 src/grammar.json
-              '';
-            });
+      # tree-sitter = final: prev: prev.tree-sitter.override { abiVersion = 13; };
 
-          tree-sitter-cpp =
-            prev.tree-sitter-grammars.tree-sitter-cpp.overrideAttrs (_: {
-              nativeBuildInputs = [ final.nodejs final.tree-sitter ];
-              configurePhase = ''
-                tree-sitter generate --abi 13 src/grammar.json
-              '';
-            });
-        };
-      };
+      # tree-sitter-grammars = final: prev: {
+      #   tree-sitter-grammars = prev.tree-sitter-grammars // {
+      #     tree-sitter-rust =
+      #       prev.tree-sitter-grammars.tree-sitter-rust.overrideAttrs (_: {
+      #         nativeBuildInputs = [ final.nodejs final.tree-sitter ];
+      #         configurePhase = ''
+      #           tree-sitter generate --abi 13 src/grammar.json
+      #         '';
+      #       });
+
+      #     tree-sitter-cpp =
+      #       prev.tree-sitter-grammars.tree-sitter-cpp.overrideAttrs (_: {
+      #         nativeBuildInputs = [ final.nodejs final.tree-sitter ];
+      #         configurePhase = ''
+      #           tree-sitter generate --abi 13 src/grammar.json
+      #         '';
+      #       });
+      #   };
+      # };
     };
   };
 }
