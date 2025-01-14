@@ -10,16 +10,18 @@
     ./gtk.nix
   ];
 
-  config = {
-    home.packages = lib.optionals (osConfig == null) [ # #
-      inputs'.home-manager.packages.home-manager
-    ];
+  config = lib.mkMerge [
+    (lib.mkIf (osConfig == null) {
+      home.packages = [ # #
+        inputs'.home-manager.packages.home-manager
+      ];
 
-    nix = lib.optionalAttrs (osConfig == null) { # #
-      package = pkgs.nix;
-      settings.experimental-features = [ "nix-command" "flakes" ];
-    };
+      nix = { # #
+        package = pkgs.nix;
+        settings.experimental-features = [ "nix-command" "flakes" ];
+      };
 
-    home.stateVersion = "23.05";
-  };
+    })
+    { home.stateVersion = "23.05"; }
+  ];
 }
