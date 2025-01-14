@@ -1,14 +1,13 @@
-{ config, inputs, withSystem, ... }: {
+{ lib, withSystem, ... }: {
   config.flake = {
-    lib = let inherit (inputs.nixpkgs) lib;
-    in {
+    lib = {
       utils = {
         mkNixosConfiguration = # #
           { self, inputs }:
           { system, modules }:
-          withSystem "x86_64-linux" ({ inputs', self', system, ... }@context:
+          withSystem "x86_64-linux" ({ inputs', self', pkgs, ... }@context:
             inputs.nixpkgs.lib.nixosSystem {
-              inherit system modules;
+              inherit pkgs modules;
               specialArgs = { inherit self self' inputs inputs'; };
             });
 
