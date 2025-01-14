@@ -21,6 +21,7 @@
         settings.experimental-features = [ "nix-command" "flakes" ];
       };
 
+      targets.genericLinux.enable = true;
     })
     { home.stateVersion = "23.05"; }
   ];
