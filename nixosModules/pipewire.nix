@@ -14,7 +14,7 @@ in {
       jack.enable = true;
     };
 
-    # TODO find out where this is set to true
-    hardware.pulseaudio.enable = false;
+    # # TODO find out where this is set to true
+    services.pulseaudio.enable = false;
   };
 }
