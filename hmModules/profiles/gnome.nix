@@ -12,8 +12,9 @@ in {
 
         extensions = with pkgs.gnomeExtensions; [
           appindicator
-          ip-finder
           freon
+          ip-finder
+          lock-keys
         ];
 
         favouriteApps = [ # #
