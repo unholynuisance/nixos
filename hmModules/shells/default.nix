@@ -1,1 +1,12 @@
-{ config, lib, pkgs, ... }: { imports = [ ./starship ./zsh.nix ]; }
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
+{
+  imports = [
+    ./starship
+    ./zsh.nix
+  ];
+}

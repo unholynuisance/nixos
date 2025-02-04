@@ -1,6 +1,13 @@
-{ config, lib, pkgs, ... }:
-let cfg = config.nuisance.modules.hm.tools.git;
-in {
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
+let
+  cfg = config.nuisance.modules.hm.tools.git;
+in
+{
   options.nuisance.modules.hm.tools.git = {
     enable = lib.mkEnableOption "git";
   };

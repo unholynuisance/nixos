@@ -1,7 +1,17 @@
-{ config, lib, pkgs, options, inputs, ... }:
-let cfg = config.nuisance.modules.nixos.virtualisation.wsl;
-in {
-  imports = [ # #
+{
+  config,
+  lib,
+  pkgs,
+  options,
+  inputs,
+  ...
+}:
+let
+  cfg = config.nuisance.modules.nixos.virtualisation.wsl;
+in
+{
+  imports = [
+
     inputs.wsl.nixosModules.wsl
   ];
 
@@ -17,7 +27,8 @@ in {
       defaultUser = cfg.defaultUser;
       startMenuLaunchers = true;
 
-      wslConf = { # #
+      wslConf = {
+
         automount.root = "/mnt";
       };
     };

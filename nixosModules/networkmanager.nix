@@ -1,6 +1,13 @@
-{ config, lib, pkgs, ... }:
-let cfg = config.nuisance.modules.nixos.networkmanager;
-in {
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
+let
+  cfg = config.nuisance.modules.nixos.networkmanager;
+in
+{
   options.nuisance.modules.nixos.networkmanager = {
     enable = lib.mkEnableOption "networkmanager";
   };

@@ -1,6 +1,13 @@
-{ config, lib, pkgs, ... }:
-let cfg = config.nuisance.modules.hm.shells.starship;
-in {
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
+let
+  cfg = config.nuisance.modules.hm.shells.starship;
+in
+{
   options.nuisance.modules.hm.shells.starship = {
     enable = lib.mkEnableOption "starship";
   };

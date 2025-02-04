@@ -1,6 +1,13 @@
-{ config, lib, pkgs, ... }:
-let cfg = config.nuisance.modules.hm.fonts;
-in {
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
+let
+  cfg = config.nuisance.modules.hm.fonts;
+in
+{
   options = {
     nuisance.modules.hm.fonts = {
       ibm-plex.enable = lib.mkEnableOption "ibm-plex";
@@ -10,12 +17,19 @@ in {
   };
 
   config = {
-    home.packages = with pkgs;
-      [ ] ++ (lib.optionals cfg.ibm-plex.enable [ # #
+    home.packages =
+      with pkgs;
+      [ ]
+      ++ (lib.optionals cfg.ibm-plex.enable [
+
         ibm-plex
-      ]) ++ (lib.optionals cfg.nerdfonts.enable [ # #
+      ])
+      ++ (lib.optionals cfg.nerdfonts.enable [
+
         nerdfonts
-      ]) ++ (lib.optionals cfg.noto-fonts-cjk-sans.enable [ # #
+      ])
+      ++ (lib.optionals cfg.noto-fonts-cjk-sans.enable [
+
         noto-fonts-cjk-sans
       ]);
   };

@@ -1,18 +1,28 @@
-{ config, lib, pkgs, ... }:
-let cfg = config.nuisance.modules.hm.gnome.keyboard-shortcuts;
-in {
-  options.nuisance.modules.hm.gnome.keyboard-shortcuts = # #
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
+let
+  cfg = config.nuisance.modules.hm.gnome.keyboard-shortcuts;
+in
+{
+  options.nuisance.modules.hm.gnome.keyboard-shortcuts =
     with lib.types;
     let
-      customShortcut = (submodule {
-        options = {
-          name = lib.mkOption { type = str; };
-          command = lib.mkOption { type = str; };
-          binding = lib.mkOption { type = str; };
-        };
-      });
+      customShortcut = (
+        submodule {
+          options = {
+            name = lib.mkOption { type = str; };
+            command = lib.mkOption { type = str; };
+            binding = lib.mkOption { type = str; };
+          };
+        }
+      );
 
-    in {
+    in
+    {
       enable = lib.mkEnableOption "keyboard-shortcuts";
 
       customShortcuts = lib.mkOption {
@@ -21,7 +31,7 @@ in {
       };
     };
 
-  config = # #
+  config =
     let
       keyboardShortcuts = {
         # Launchers
@@ -180,24 +190,27 @@ in {
         };
       };
 
-      customShortcuts = # #
+      customShortcuts =
         with builtins;
         with lib.attrsets;
         let
-          path = name:
-            "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/${name}";
+          path = name: "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/${name}";
 
-          attrs =
-            mapAttrs' (n: v: (nameValuePair (path n) v)) cfg.customShortcuts;
+          attrs = mapAttrs' (n: v: (nameValuePair (path n) v)) cfg.customShortcuts;
 
-        in attrs // {
+        in
+        attrs
+        // {
           "org/gnome/settings-daemon/plugins/media-keys" = {
             custom-keybindings = map (n: "/${n}/") (attrNames attrs);
           };
         };
 
-    in lib.mkIf cfg.enable (lib.mkMerge [
-      { dconf.settings = keyboardShortcuts; }
-      { dconf.settings = customShortcuts; }
-    ]);
+    in
+    lib.mkIf cfg.enable (
+      lib.mkMerge [
+        { dconf.settings = keyboardShortcuts; }
+        { dconf.settings = customShortcuts; }
+      ]
+    );
 }

@@ -1,4 +1,11 @@
-{ config, lib, pkgs, self, ... }: {
+{
+  config,
+  lib,
+  pkgs,
+  self,
+  ...
+}:
+{
   imports = [
     ./programs
     ./boot
@@ -17,7 +24,8 @@
     ./xserver.nix
   ];
 
-  config = { # #
+  config = {
+
     system.stateVersion = "23.05";
   };
 }

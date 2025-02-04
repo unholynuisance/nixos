@@ -1,30 +1,58 @@
-{ lib, withSystem, ... }: {
+{ lib, withSystem, ... }:
+{
   config.flake = {
     lib = {
       utils = {
-        mkNixosConfiguration = # #
+        mkNixosConfiguration =
           { self, inputs }:
           { system, modules }:
-          withSystem system ({ inputs', self', pkgs, ... }:
+          withSystem system (
+            {
+              inputs',
+              self',
+              pkgs,
+              ...
+            }:
             inputs.nixpkgs.lib.nixosSystem {
               inherit pkgs modules;
-              specialArgs = { inherit self self' inputs inputs'; };
-            });
+              specialArgs = {
+                inherit
+                  self
+                  self'
+                  inputs
+                  inputs'
+                  ;
+              };
+            }
+          );
 
-        mkHomeConfiguration = # #
+        mkHomeConfiguration =
           { self, inputs }:
           { system, modules }:
-          withSystem system ({ inputs', self', pkgs, ... }:
+          withSystem system (
+            {
+              inputs',
+              self',
+              pkgs,
+              ...
+            }:
             inputs.home-manager.lib.homeManagerConfiguration {
               inherit pkgs modules;
-              extraSpecialArgs = { inherit self self' inputs inputs'; };
-            });
+              extraSpecialArgs = {
+                inherit
+                  self
+                  self'
+                  inputs
+                  inputs'
+                  ;
+              };
+            }
+          );
 
       };
 
       types = {
-        uuid = lib.types.strMatching
-          "[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}";
+        uuid = lib.types.strMatching "[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}";
       };
 
       storage = import ./storage.nix { inherit lib; };

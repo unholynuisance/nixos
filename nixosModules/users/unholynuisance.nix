@@ -1,6 +1,15 @@
-{ config, lib, options, pkgs, self, ... }:
-let cfg = config.nuisance.modules.nixos.users.unholynuisance;
-in {
+{
+  config,
+  lib,
+  options,
+  pkgs,
+  self,
+  ...
+}:
+let
+  cfg = config.nuisance.modules.nixos.users.unholynuisance;
+in
+{
   options.nuisance.modules.nixos.users.unholynuisance = {
     enable = lib.mkEnableOption "unholynuisance";
 
@@ -21,11 +30,13 @@ in {
   };
 
   config = lib.mkIf cfg.enable {
-    nuisance.modules.nixos = { # #
+    nuisance.modules.nixos = {
+
       users.enable = true;
     };
 
-    users.users.unholynuisance = { # #
+    users.users.unholynuisance = {
+
       isNormalUser = true;
       description = "Unholy Nuisance";
       shell = cfg.shell;
@@ -33,10 +44,13 @@ in {
       initialPassword = "changeme";
     };
 
-    home-manager.users = { # #
-      unholynuisance = { ... }: {
-        imports = [ self.hmModules.unholynuisance ] ++ cfg.modules;
-      };
+    home-manager.users = {
+
+      unholynuisance =
+        { ... }:
+        {
+          imports = [ self.hmModules.unholynuisance ] ++ cfg.modules;
+        };
     };
   };
 }

@@ -1,6 +1,13 @@
-{ config, lib, pkgs, ... }:
-let cfg = config.nuisance.modules.nixos.rtkit;
-in {
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
+let
+  cfg = config.nuisance.modules.nixos.rtkit;
+in
+{
   options.nuisance.modules.nixos.rtkit = {
     enable = lib.mkEnableOption "rtkit";
   };

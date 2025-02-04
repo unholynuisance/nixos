@@ -1,12 +1,20 @@
-{ config, lib, pkgs, ... }:
-let cfg = config.nuisance.modules.nixos.services.ssh;
-in {
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
+let
+  cfg = config.nuisance.modules.nixos.services.ssh;
+in
+{
   options.nuisance.modules.nixos.services.ssh = {
     enable = lib.mkEnableOption "ssh";
   };
 
   config = {
-    services.openssh = { # #
+    services.openssh = {
+
       enable = true;
     };
   };

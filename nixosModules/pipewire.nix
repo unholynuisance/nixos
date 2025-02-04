@@ -1,6 +1,13 @@
-{ config, lib, pkgs, ... }:
-let cfg = config.nuisance.modules.nixos.pipewire;
-in {
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
+let
+  cfg = config.nuisance.modules.nixos.pipewire;
+in
+{
   options.nuisance.modules.nixos.pipewire = {
     enable = lib.mkEnableOption "pipewire";
   };
@@ -14,7 +21,7 @@ in {
       jack.enable = true;
     };
 
-    # # TODO find out where this is set to true
+    # TODO find out where this is set to true
     services.pulseaudio.enable = false;
   };
 }

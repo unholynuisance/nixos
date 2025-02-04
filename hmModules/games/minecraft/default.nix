@@ -1,6 +1,13 @@
-{ config, lib, pkgs, ... }:
-let cfg = config.nuisance.modules.hm.games.minecraft;
-in {
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
+let
+  cfg = config.nuisance.modules.hm.games.minecraft;
+in
+{
   options.nuisance.modules.hm.games.minecraft = {
     enable = lib.mkEnableOption "minecraft";
 
@@ -9,8 +16,7 @@ in {
 
       directory = lib.mkOption {
         type = lib.types.path;
-        default =
-          "${config.home.homeDirectory}/.local/share/PrismLauncher/instances/gtnh";
+        default = "${config.home.homeDirectory}/.local/share/PrismLauncher/instances/gtnh";
       };
 
       package = lib.mkOption {

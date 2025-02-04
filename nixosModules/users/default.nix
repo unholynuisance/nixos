@@ -1,7 +1,19 @@
-{ config, lib, pkgs, self, self', inputs, inputs', ... }:
-let cfg = config.nuisance.modules.nixos.users;
-in {
-  imports = [ # #
+{
+  config,
+  lib,
+  pkgs,
+  self,
+  self',
+  inputs,
+  inputs',
+  ...
+}:
+let
+  cfg = config.nuisance.modules.nixos.users;
+in
+{
+  imports = [
+
     inputs.home-manager.nixosModules.home-manager
     ./unholynuisance.nix
   ];
@@ -17,7 +29,14 @@ in {
       useGlobalPkgs = true;
       useUserPackages = true;
 
-      extraSpecialArgs = { inherit self self' inputs inputs'; };
+      extraSpecialArgs = {
+        inherit
+          self
+          self'
+          inputs
+          inputs'
+          ;
+      };
     };
   };
 }

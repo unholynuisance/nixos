@@ -1,4 +1,9 @@
-{ config, lib, pkgs, ... }@args:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}@args:
 let
   cfg = config.nuisance.modules.nixos.services.minecraft;
 
@@ -6,24 +11,32 @@ let
     eula=true
   '';
 
-  serverProperties = pkgs.lib.importJSON
-    (pkgs.runCommand "server.properties.json" {
-      nativeBuildInputs = with pkgs; [ jc ];
-    } ''
-      cat ${cfg.package}/lib/minecraft/server.properties | jc --ini > $out
-    '');
+  serverProperties = pkgs.lib.importJSON (
+    pkgs.runCommand "server.properties.json"
+      {
+        nativeBuildInputs = with pkgs; [ jc ];
+      }
+      ''
+        cat ${cfg.package}/lib/minecraft/server.properties | jc --ini > $out
+      ''
+  );
 
-  serverPropertiesFile = pkgs.writeText "server.properties"
-    (lib.generators.toINIWithGlobalSection { } {
-      globalSection = serverProperties // cfg.serverProperties // {
-        server-port = cfg.serverPort;
-        enable-rcon = cfg.enableRcon;
-        rcon-port = cfg.rconPort;
-        rcon-password = cfg.rconPassword;
-      };
-    });
+  serverPropertiesFile = pkgs.writeText "server.properties" (
+    lib.generators.toINIWithGlobalSection { } {
+      globalSection =
+        serverProperties
+        // cfg.serverProperties
+        // {
+          server-port = cfg.serverPort;
+          enable-rcon = cfg.enableRcon;
+          rcon-port = cfg.rconPort;
+          rcon-password = cfg.rconPassword;
+        };
+    }
+  );
 
-in {
+in
+{
   options.nuisance.modules.nixos.services.minecraft = {
     enable = lib.mkEnableOption "minecraft";
 
@@ -43,7 +56,13 @@ in {
     };
 
     serverProperties = lib.mkOption {
-      type = with lib.types; attrsOf (oneOf [ bool int str ]);
+      type =
+        with lib.types;
+        attrsOf (oneOf [
+          bool
+          int
+          str
+        ]);
       default = { };
     };
 
@@ -108,13 +127,14 @@ in {
       description = "GT New Horizons Server service";
       wantedBy = if cfg.autoStart then [ "multi-user.target" ] else [ ];
       requires = [ "minecraft.socket" ];
-      after = [ "network.target" "minecraft.socket" ];
+      after = [
+        "network.target"
+        "minecraft.socket"
+      ];
 
       serviceConfig = {
-        ExecStart =
-          "${cfg.package}/bin/minecraft-start -Xms${cfg.minMemory} -Xmx${cfg.maxMemory}";
-        ExecStop =
-          "${cfg.package}/bin/minecraft-stop $MAINPID ${config.systemd.sockets.minecraft.socketConfig.ListenFIFO}";
+        ExecStart = "${cfg.package}/bin/minecraft-start -Xms${cfg.minMemory} -Xmx${cfg.maxMemory}";
+        ExecStop = "${cfg.package}/bin/minecraft-stop $MAINPID ${config.systemd.sockets.minecraft.socketConfig.ListenFIFO}";
         User = "minecraft";
         WorkingDirectory = cfg.stateDirectory;
         Restart = "always";
@@ -166,8 +186,7 @@ in {
 
     networking.firewall = lib.mkIf cfg.openFirewall {
       allowedTCPPorts = [ cfg.serverPort ];
-      allowedUDPPorts = [ cfg.serverPort ]
-        ++ lib.optionals cfg.enableRcon [ cfg.rconPort ];
+      allowedUDPPorts = [ cfg.serverPort ] ++ lib.optionals cfg.enableRcon [ cfg.rconPort ];
     };
   };
 }

@@ -1,6 +1,14 @@
-{ config, lib, pkgs, inputs, ... }:
-let cfg = config.nuisance.modules.nixos.xserver;
-in {
+{
+  config,
+  lib,
+  pkgs,
+  inputs,
+  ...
+}:
+let
+  cfg = config.nuisance.modules.nixos.xserver;
+in
+{
   options.nuisance.modules.nixos.xserver = {
     enable = lib.mkEnableOption "xserver";
   };

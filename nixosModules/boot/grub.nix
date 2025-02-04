@@ -1,4 +1,9 @@
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 let
   cfg = config.nuisance.modules.nixos.boot.grub;
 
@@ -13,7 +18,8 @@ let
     };
     installPhase = "cp -r . $out";
   };
-in {
+in
+{
   options.nuisance.modules.nixos.boot.grub = {
     enable = lib.mkEnableOption "grub";
 

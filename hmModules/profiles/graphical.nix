@@ -1,12 +1,20 @@
-{ config, lib, pkgs, ... }:
-let cfg = config.nuisance.profiles.hm.graphical;
-in {
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
+let
+  cfg = config.nuisance.profiles.hm.graphical;
+in
+{
   options.nuisance.profiles.hm.graphical = {
     enable = lib.mkEnableOption "graphical";
   };
 
   config = lib.mkIf cfg.enable {
-    nuisance.profiles.hm = { # #
+    nuisance.profiles.hm = {
+
       gnome.enable = true;
     };
 

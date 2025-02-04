@@ -1,7 +1,15 @@
-{ config, lib, pkgs, ... }:
-let cfg = config.nuisance.modules.hm.tools;
-in {
-  imports = [ # #
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
+let
+  cfg = config.nuisance.modules.hm.tools;
+in
+{
+  imports = [
+
     ./direnv.nix
     ./git.nix
     ./nix.nix
@@ -23,24 +31,39 @@ in {
   };
 
   config = {
-    home.packages = with pkgs;
-      [ ] ++ (lib.optionals cfg.fd.enable [ # #
+    home.packages =
+      with pkgs;
+      [ ]
+      ++ (lib.optionals cfg.fd.enable [
+
         fd
-      ]) ++ (lib.optionals cfg.ripgrep.enable [ # #
+      ])
+      ++ (lib.optionals cfg.ripgrep.enable [
+
         ripgrep
-      ]) ++ (lib.optionals cfg.zip.enable [ # #
+      ])
+      ++ (lib.optionals cfg.zip.enable [
+
         zip
         unzip
-      ]) ++ (lib.optionals cfg.c.enable [ # #
+      ])
+      ++ (lib.optionals cfg.c.enable [
+
         gcc
         gnumake
         cmake
         libtool
-      ]) ++ (lib.optionals cfg.perl.enable [ # #
+      ])
+      ++ (lib.optionals cfg.perl.enable [
+
         perl
-      ]) ++ (lib.optionals cfg.latex.enable [ # #
+      ])
+      ++ (lib.optionals cfg.latex.enable [
+
         texlive.combined.scheme-full
-      ]) ++ (lib.optionals cfg.hunspell.enable [ # #
+      ])
+      ++ (lib.optionals cfg.hunspell.enable [
+
         hunspell
         hunspellDicts.uk-ua
         hunspellDicts.en-us-large

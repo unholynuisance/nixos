@@ -1,14 +1,20 @@
-{ config, lib, pkgs, ... }: {
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
+{
   config = {
     nuisance.modules.nixos.disko = {
       enable = true;
-      config.devices = with pkgs.lib.nuisance.storage;
+      config.devices =
+        with pkgs.lib.nuisance.storage;
         mkDevices {
           disks = [
             (mkDisk {
               name = "nvme0n1";
-              device =
-                "/dev/disk/by-id/nvme-Samsung_SSD_970_EVO_Plus_2TB_S4J4NX0W704961W";
+              device = "/dev/disk/by-id/nvme-Samsung_SSD_970_EVO_Plus_2TB_S4J4NX0W704961W";
               partitions = [
                 (mkEfiPartition { size = "128M"; })
                 (mkPhysicalVolumePartition {
@@ -19,8 +25,7 @@
             })
             (mkDisk {
               name = "sda";
-              device =
-                "/dev/disk/by-id/ata-KINGSTON_SA400S37960G_50026B7282DD00AE";
+              device = "/dev/disk/by-id/ata-KINGSTON_SA400S37960G_50026B7282DD00AE";
               partitions = [
                 (mkPhysicalVolumePartition {
                   size = "100%";
@@ -30,8 +35,7 @@
             })
             (mkDisk {
               name = "sdb";
-              device =
-                "/dev/disk/by-id/ata-KINGSTON_SA400S37960G_50026B76835CE2EE";
+              device = "/dev/disk/by-id/ata-KINGSTON_SA400S37960G_50026B76835CE2EE";
               partitions = [
                 (mkPhysicalVolumePartition {
                   size = "100%";
@@ -74,9 +78,15 @@
                   name = "root";
                   size = "128G";
                   subvolumes = {
-                    "?" = { mountpoint = "/"; };
-                    "?nix" = { mountpoint = "/nix"; };
-                    "?var?log" = { mountpoint = "/var/log"; };
+                    "?" = {
+                      mountpoint = "/";
+                    };
+                    "?nix" = {
+                      mountpoint = "/nix";
+                    };
+                    "?var?log" = {
+                      mountpoint = "/var/log";
+                    };
                   };
                   encrypt = true;
                   unlock = true;
@@ -85,10 +95,12 @@
                   name = "data";
                   size = "100%FREE";
                   subvolumes = {
-                    "?home" = { # #
+                    "?home" = {
+
                       mountpoint = "/home";
                     };
-                    "?home?unholynuisance" = { # #
+                    "?home?unholynuisance" = {
+
                       mountpoint = "/home/unholynuisance";
                     };
                     "?data?unholynuisance?games" = {
@@ -110,16 +122,20 @@
                   name = "data";
                   size = "100%FREE";
                   subvolumes = {
-                    "?data?unholynuisance?games" = { # #
+                    "?data?unholynuisance?games" = {
+
                       mountpoint = "/data/unholynuisance/games/secondary";
                     };
-                    "?data?unholynuisance?vms" = { # #
+                    "?data?unholynuisance?vms" = {
+
                       mountpoint = "/data/unholynuisance/vms/secondary";
                     };
-                    "?var?lib?libvirt" = { # #
+                    "?var?lib?libvirt" = {
+
                       mountpoint = "/var/lib/libvirt";
                     };
-                    "?var?lib?minecraft" = { # #
+                    "?var?lib?minecraft" = {
+
                       mountpoint = "/var/lib/minecraft";
                     };
                   };
@@ -129,7 +145,9 @@
                 (mkBtrfsVolume {
                   name = "stash";
                   size = "32G";
-                  subvolumes = { "?" = { }; };
+                  subvolumes = {
+                    "?" = { };
+                  };
                   encrypt = true;
                 })
               ];

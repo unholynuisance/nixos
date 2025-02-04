@@ -1,5 +1,10 @@
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
 {
-  imports = [./zsh.nix];
+  imports = [ ./zsh.nix ];
 }

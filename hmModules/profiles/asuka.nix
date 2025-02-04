@@ -1,7 +1,15 @@
-{ config, lib, pkgs, ... }:
-let cfg = config.nuisance.profiles.hm.asuka;
-in {
-  options.nuisance.profiles.hm.asuka = { # #
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
+let
+  cfg = config.nuisance.profiles.hm.asuka;
+in
+{
+  options.nuisance.profiles.hm.asuka = {
+
     enable = lib.mkEnableOption "asuka";
   };
 

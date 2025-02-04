@@ -1,6 +1,13 @@
-{ config, lib, pkgs, ... }:
-let cfg = config.nuisance.modules.nixos.pulseaudio;
-in {
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
+let
+  cfg = config.nuisance.modules.nixos.pulseaudio;
+in
+{
   options.nuisance.modules.nixos.pulseaudio = {
     enable = lib.mkEnableOption "pulseaudio";
   };

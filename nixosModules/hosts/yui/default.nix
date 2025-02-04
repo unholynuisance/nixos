@@ -1,5 +1,16 @@
-{ config, lib, pkgs, self, self', inputs, inputs', ... }: {
-  imports = [ # #
+{
+  config,
+  lib,
+  pkgs,
+  self,
+  self',
+  inputs,
+  inputs',
+  ...
+}:
+{
+  imports = [
+
     self.nixosModules.all
   ];
 
@@ -18,7 +29,7 @@
         enable = true;
         shell = pkgs.zsh;
         extraGroups = [ "wheel" ];
-        modules = [{ nuisance.profiles.hm.yui.enable = true; }];
+        modules = [ { nuisance.profiles.hm.yui.enable = true; } ];
       };
     };
   };

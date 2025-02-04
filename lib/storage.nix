@@ -1,26 +1,42 @@
-{ lib, ... }: rec {
+{ lib, ... }:
+rec {
   # Root
-  mkDevices = { disks ? [ ], volumeGroups ? [ ], }: {
-    disk = lib.attrsets.mergeAttrsList disks;
-    lvm_vg = lib.attrsets.mergeAttrsList volumeGroups;
-  };
+  mkDevices =
+    {
+      disks ? [ ],
+      volumeGroups ? [ ],
+    }:
+    {
+      disk = lib.attrsets.mergeAttrsList disks;
+      lvm_vg = lib.attrsets.mergeAttrsList volumeGroups;
+    };
 
   # Physical storage
-  mkDisk = { name, device, partitions, }: {
-    ${name} = {
-      name = name;
-      type = "disk";
-      device = device;
-      content = {
-        type = "gpt";
-        partitions =
-          lib.attrsets.mergeAttrsList (builtins.map (p: p name) partitions);
+  mkDisk =
+    {
+      name,
+      device,
+      partitions,
+    }:
+    {
+      ${name} = {
+        name = name;
+        type = "disk";
+        device = device;
+        content = {
+          type = "gpt";
+          partitions = lib.attrsets.mergeAttrsList (builtins.map (p: p name) partitions);
+        };
       };
     };
-  };
 
   # Abstract physical partitions
-  mkPartition = { name, size, content, }:
+  mkPartition =
+    {
+      name,
+      size,
+      content,
+    }:
     diskName: {
       ${name} = {
         label = "${diskName}-${name}";
@@ -30,7 +46,8 @@
     };
 
   # Concrete physical partitions
-  mkEfiPartition = { size }:
+  mkEfiPartition =
+    { size }:
     mkPartition {
       name = "efi";
       size = size;
@@ -42,7 +59,8 @@
       };
     };
 
-  mkPhysicalVolumePartition = { size, vg, }:
+  mkPhysicalVolumePartition =
+    { size, vg }:
     mkPartition {
       name = "pv";
       size = size;
@@ -53,18 +71,30 @@
     };
 
   # Logical storage
-  mkVolumeGroup = { name, volumes, }: {
-    ${name} = {
-      type = "lvm_vg";
-      lvs = lib.attrsets.mergeAttrsList (builtins.map (v: v name) volumes);
+  mkVolumeGroup =
+    { name, volumes }:
+    {
+      ${name} = {
+        type = "lvm_vg";
+        lvs = lib.attrsets.mergeAttrsList (builtins.map (v: v name) volumes);
+      };
     };
-  };
 
   # Abstract logical volumes
-  mkVolume = { encrypt ? false, ... }@args:
+  mkVolume =
+    {
+      encrypt ? false,
+      ...
+    }@args:
     (if encrypt then mkEncryptedVolume else mkUnencryptedVolume) args;
 
-  mkUnencryptedVolume = { name, size, content, ... }:
+  mkUnencryptedVolume =
+    {
+      name,
+      size,
+      content,
+      ...
+    }:
     vgName: {
       "${name}vol" = {
         name = "${name}vol";
@@ -73,7 +103,14 @@
       };
     };
 
-  mkEncryptedVolume = { name, size, content, unlock ? false, ... }:
+  mkEncryptedVolume =
+    {
+      name,
+      size,
+      content,
+      unlock ? false,
+      ...
+    }:
     vgName: {
       "crypt${name}vol" = {
         name = "crypt${name}vol";
@@ -90,20 +127,46 @@
     };
 
   # Concrete logical volumes
-  mkBtrfsVolume = { name, size, subvolumes, encrypt ? false, unlock ? false, }:
+  mkBtrfsVolume =
+    {
+      name,
+      size,
+      subvolumes,
+      encrypt ? false,
+      unlock ? false,
+    }:
     mkVolume {
-      inherit name size encrypt unlock;
+      inherit
+        name
+        size
+        encrypt
+        unlock
+        ;
       content = mkBtrfsContent { inherit subvolumes; };
     };
 
-  mkBootVolume = { size, encrypt ? false, unlock ? false, }:
+  mkBootVolume =
+    {
+      size,
+      encrypt ? false,
+      unlock ? false,
+    }:
     mkBtrfsVolume {
       name = "boot";
       inherit size encrypt unlock;
-      subvolumes = { "?" = { mountpoint = "/boot"; }; };
+      subvolumes = {
+        "?" = {
+          mountpoint = "/boot";
+        };
+      };
     };
 
-  mkSwapVolume = { size, encrypt ? false, unlock ? false, }:
+  mkSwapVolume =
+    {
+      size,
+      encrypt ? false,
+      unlock ? false,
+    }:
     mkVolume {
       name = "swap";
       inherit size encrypt unlock;
@@ -111,7 +174,8 @@
     };
 
   # Content
-  mkBtrfsContent = { subvolumes }:
+  mkBtrfsContent =
+    { subvolumes }:
     vgName: name: {
       type = "btrfs";
       extraArgs = [ "--label ${vgName}-${name}" ];

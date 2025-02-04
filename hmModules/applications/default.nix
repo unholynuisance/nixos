@@ -1,7 +1,15 @@
-{ config, lib, pkgs, ... }:
-let cfg = config.nuisance.modules.hm.applications;
-in {
-  imports = [ # #
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
+let
+  cfg = config.nuisance.modules.hm.applications;
+in
+{
+  imports = [
+
     ./calibre.nix
     ./discord.nix
     ./emacs.nix
@@ -23,24 +31,43 @@ in {
   };
 
   config = {
-    home.packages = with pkgs;
-      [ ] ++ (lib.optionals cfg.firefox.enable [ # #
+    home.packages =
+      with pkgs;
+      [ ]
+      ++ (lib.optionals cfg.firefox.enable [
+
         firefox
-      ]) ++ (lib.optionals cfg.chrome.enable [ # #
+      ])
+      ++ (lib.optionals cfg.chrome.enable [
+
         google-chrome
-      ]) ++ (lib.optionals cfg.torrent.enable [ # #
+      ])
+      ++ (lib.optionals cfg.torrent.enable [
+
         qbittorrent
-      ]) ++ (lib.optionals cfg.office.enable [ # #
+      ])
+      ++ (lib.optionals cfg.office.enable [
+
         libreoffice
-      ]) ++ (lib.optionals cfg.slack.enable [ # #
+      ])
+      ++ (lib.optionals cfg.slack.enable [
+
         slack
-      ]) ++ (lib.optionals cfg.teams.enable [ # #
+      ])
+      ++ (lib.optionals cfg.teams.enable [
+
         teams-for-linux
-      ]) ++ (lib.optionals cfg.telegram.enable [ # #
+      ])
+      ++ (lib.optionals cfg.telegram.enable [
+
         telegram-desktop
-      ]) ++ (lib.optionals cfg.krita.enable [ # #
+      ])
+      ++ (lib.optionals cfg.krita.enable [
+
         krita
-      ]) ++ (lib.optionals cfg.xournal.enable [ # #
+      ])
+      ++ (lib.optionals cfg.xournal.enable [
+
         xournalpp
       ]);
   };

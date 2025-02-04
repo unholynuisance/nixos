@@ -1,5 +1,12 @@
-{ config, lib, pkgs, ... }: {
-  imports = [ # #
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
+{
+  imports = [
+
     ./cli.nix
     ./graphical.nix
     ./gnome.nix

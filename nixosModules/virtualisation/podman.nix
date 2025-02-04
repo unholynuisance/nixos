@@ -1,6 +1,13 @@
-{ config, lib, pkgs, ... }:
-let cfg = config.nuisance.modules.nixos.virtualisation.podman;
-in {
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
+let
+  cfg = config.nuisance.modules.nixos.virtualisation.podman;
+in
+{
   options.nuisance.modules.nixos.virtualisation.podman = {
     enable = lib.mkEnableOption "podman";
   };

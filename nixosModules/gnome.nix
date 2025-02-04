@@ -1,6 +1,13 @@
-{ config, lib, pkgs, ... }:
-let cfg = config.nuisance.modules.nixos.gnome;
-in {
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
+let
+  cfg = config.nuisance.modules.nixos.gnome;
+in
+{
   options.nuisance.modules.nixos.gnome = {
     enable = lib.mkEnableOption "gnome";
   };

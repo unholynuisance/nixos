@@ -1,7 +1,15 @@
-{ config, lib, pkgs, ... }:
-let cfg = config.nuisance.profiles.hm.games;
-in {
-  options.nuisance.profiles.hm.games = { # #
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
+let
+  cfg = config.nuisance.profiles.hm.games;
+in
+{
+  options.nuisance.profiles.hm.games = {
+
     enable = lib.mkEnableOption "games";
   };
 

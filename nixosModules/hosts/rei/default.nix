@@ -1,5 +1,16 @@
-{ config, lib, pkgs, self, self', inputs, inputs', ... }: {
-  imports = [ # #
+{
+  config,
+  lib,
+  pkgs,
+  self,
+  self',
+  inputs,
+  inputs',
+  ...
+}:
+{
+  imports = [
+
     self.nixosModules.all
     ./containers.nix
     ./storage.nix
@@ -18,7 +29,8 @@
         };
       };
 
-      services = { # #
+      services = {
+
         ssh.enable = true;
         avahi.enable = true;
       };
@@ -29,13 +41,15 @@
       rtkit.enable = true;
       shells.zsh.enable = true;
 
-      programs = { # #
+      programs = {
+
         wireshark.enable = true;
       };
 
       steam = {
         enable = true;
-        extraCompatPackages = with pkgs.nuisance; [ # #
+        extraCompatPackages = with pkgs.nuisance; [
+
           proton-ge-bin
           ge-proton8-16
           ge-proton8-25
@@ -52,19 +66,24 @@
       users.unholynuisance = {
         enable = true;
         shell = pkgs.zsh;
-        extraGroups = [ # #
+        extraGroups = [
+
           "wheel"
           "networkmanager"
           "libvirtd"
           "wireshark"
           "minecraft"
         ];
-        modules = [{ nuisance.profiles.hm.rei.enable = true; }];
+        modules = [ { nuisance.profiles.hm.rei.enable = true; } ];
       };
     };
 
     boot.initrd.systemd.enable = true;
-    boot.initrd.availableKernelModules = [ "nvme" "xhci_pci" "usbhid" ];
+    boot.initrd.availableKernelModules = [
+      "nvme"
+      "xhci_pci"
+      "usbhid"
+    ];
     boot.initrd.kernelModules = [ ];
     boot.kernelModules = [ "kvm-amd" ];
     boot.extraModulePackages = [ ];

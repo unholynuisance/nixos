@@ -1,6 +1,13 @@
-{ config, lib, pkgs, ... }:
-let cfg = config.nuisance.modules.nixos.steam;
-in {
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
+let
+  cfg = config.nuisance.modules.nixos.steam;
+in
+{
   options.nuisance.modules.nixos.steam = {
     enable = lib.mkEnableOption "steam";
 
@@ -11,7 +18,10 @@ in {
   };
 
   config = lib.mkIf cfg.enable {
-    environment.systemPackages = with pkgs; [ mangohud protontricks ];
+    environment.systemPackages = with pkgs; [
+      mangohud
+      protontricks
+    ];
 
     programs.steam = {
       enable = true;

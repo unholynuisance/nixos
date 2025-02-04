@@ -1,6 +1,13 @@
-{ config, lib, pkgs, ... }:
-let cfg = config.nuisance.modules.hm.shells.zsh;
-in {
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
+let
+  cfg = config.nuisance.modules.hm.shells.zsh;
+in
+{
   options.nuisance.modules.hm.shells.zsh = {
     enable = lib.mkEnableOption "zsh";
   };
@@ -14,7 +21,9 @@ in {
 
       autosuggestion.enable = true;
 
-      history = { path = "${config.xdg.dataHome}/zsh/zsh_history"; };
+      history = {
+        path = "${config.xdg.dataHome}/zsh/zsh_history";
+      };
     };
   };
 }

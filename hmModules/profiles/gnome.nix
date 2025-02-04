@@ -1,11 +1,20 @@
-{ config, lib, pkgs, ... }:
-let cfg = config.nuisance.profiles.hm.gnome;
-in {
-  options.nuisance.profiles.hm.gnome = { # #
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
+let
+  cfg = config.nuisance.profiles.hm.gnome;
+in
+{
+  options.nuisance.profiles.hm.gnome = {
+
     enable = lib.mkEnableOption "gnome";
   };
 
-  config = lib.mkIf cfg.enable { # #
+  config = lib.mkIf cfg.enable {
+
     nuisance.modules.hm = {
       gnome = {
         enable = true;
@@ -17,14 +26,16 @@ in {
           lock-keys
         ];
 
-        favouriteApps = [ # #
+        favouriteApps = [
+
           "firefox"
           "org.gnome.Console"
           "emacs"
           "org.gnome.Nautilus"
         ];
 
-        appFolders = { # #
+        appFolders = {
+
           games = {
             name = "Games";
             categories = [ "Game" ];

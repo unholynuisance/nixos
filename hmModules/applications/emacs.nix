@@ -1,6 +1,14 @@
-{ config, lib, pkgs, inputs, ... }:
-let cfg = config.nuisance.modules.hm.applications.emacs;
-in {
+{
+  config,
+  lib,
+  pkgs,
+  inputs,
+  ...
+}:
+let
+  cfg = config.nuisance.modules.hm.applications.emacs;
+in
+{
   options.nuisance.modules.hm.applications.emacs = {
     enable = lib.mkEnableOption "emacs";
 
@@ -13,7 +21,8 @@ in {
     };
   };
 
-  imports = [ # #
+  imports = [
+
     inputs.doom-emacs.hmModule
   ];
 

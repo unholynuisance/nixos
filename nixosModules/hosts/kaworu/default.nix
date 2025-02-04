@@ -1,5 +1,16 @@
-{ config, lib, pkgs, self, self', inputs, inputs', ... }: {
-  imports = [ # #
+{
+  config,
+  lib,
+  pkgs,
+  self,
+  self',
+  inputs,
+  inputs',
+  ...
+}:
+{
+  imports = [
+
     self.nixosModules.all
   ];
 
@@ -12,7 +23,8 @@
         grub.enable = true;
       };
 
-      services = { # #
+      services = {
+
         ssh.enable = true;
       };
 
@@ -22,20 +34,30 @@
       rtkit.enable = true;
       xserver.enable = true;
 
-      virtualisation = { # #
+      virtualisation = {
+
         guest.enable = true;
       };
 
       users.unholynuisance = {
         enable = true;
-        extraGroups = [ "wheel" "networkmanager" "libvirtd" ];
-        modules = [{ nuisance.profiles.hm.kaworu.enable = true; }];
+        extraGroups = [
+          "wheel"
+          "networkmanager"
+          "libvirtd"
+        ];
+        modules = [ { nuisance.profiles.hm.kaworu.enable = true; } ];
       };
     };
 
     boot.initrd.systemd.enable = true;
-    boot.initrd.availableKernelModules =
-      [ "ahci" "xhci_pci" "virtio_pci" "sr_mod" "virtio_blk" ];
+    boot.initrd.availableKernelModules = [
+      "ahci"
+      "xhci_pci"
+      "virtio_pci"
+      "sr_mod"
+      "virtio_blk"
+    ];
     boot.initrd.kernelModules = [ ];
     boot.kernelModules = [ ];
     boot.extraModulePackages = [ config.boot.kernelPackages.rtl8821ce ];
@@ -44,7 +66,8 @@
 
     nuisance.modules.nixos.disko = {
       enable = true;
-      config.devices = with self.lib.storage;
+      config.devices =
+        with self.lib.storage;
         mkDevices {
           disks = [
             (mkDisk {
@@ -69,9 +92,15 @@
                   name = "root";
                   size = "100%FREE";
                   subvolumes = {
-                    "?" = { mountpoint = "/"; };
-                    "?nix" = { mountpoint = "/nix"; };
-                    "?var?log" = { mountpoint = "/var/log"; };
+                    "?" = {
+                      mountpoint = "/";
+                    };
+                    "?nix" = {
+                      mountpoint = "/nix";
+                    };
+                    "?var?log" = {
+                      mountpoint = "/var/log";
+                    };
                     "?home?unholynuisance" = {
                       mountpoint = "/home/unholynuisance";
                     };

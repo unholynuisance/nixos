@@ -1,7 +1,15 @@
-{ config, lib, pkgs, ... }:
-let cfg = config.nuisance.profiles.hm.kaworu;
-in {
-  options.nuisance.profiles.hm.kaworu = { # #
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
+let
+  cfg = config.nuisance.profiles.hm.kaworu;
+in
+{
+  options.nuisance.profiles.hm.kaworu = {
+
     enable = lib.mkEnableOption "kaworu";
   };
 

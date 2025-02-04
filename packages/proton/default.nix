@@ -1,7 +1,9 @@
-{ pkgs }: {
+{ pkgs }:
+{
   inherit (pkgs) proton-ge-bin;
 
-  ge-proton8-16 = pkgs.proton-ge-bin.overrideAttrs (prev: { # #
+  ge-proton8-16 = pkgs.proton-ge-bin.overrideAttrs (prev: {
+
     version = "GE-Proton8-16";
     src = pkgs.fetchzip {
       inherit (prev.src) url;
@@ -9,7 +11,8 @@
     };
   });
 
-  ge-proton8-25 = pkgs.proton-ge-bin.overrideAttrs (prev: { # #
+  ge-proton8-25 = pkgs.proton-ge-bin.overrideAttrs (prev: {
+
     version = "GE-Proton8-25";
     src = pkgs.fetchzip {
       inherit (prev.src) url;

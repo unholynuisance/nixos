@@ -1,6 +1,13 @@
-{ config, lib, pkgs, ... }:
-let cfg = config.nuisance.modules.hm.tools.direnv;
-in {
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
+let
+  cfg = config.nuisance.modules.hm.tools.direnv;
+in
+{
   options.nuisance.modules.hm.tools.direnv = {
     enable = lib.mkEnableOption "direnv";
   };

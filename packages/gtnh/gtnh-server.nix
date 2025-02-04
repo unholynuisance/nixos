@@ -1,6 +1,14 @@
-{ stdenv, version, url ?
-  "https://downloads.gtnewhorizons.com/ServerPacks/GT_New_Horizons_${version}_Server_Java_17-21.zip"
-, hash, jdk ? jdk21, jdk21, writeShellScript, fetchzip, unzip }:
+{
+  stdenv,
+  version,
+  url ? "https://downloads.gtnewhorizons.com/ServerPacks/GT_New_Horizons_${version}_Server_Java_17-21.zip",
+  hash,
+  jdk ? jdk21,
+  jdk21,
+  writeShellScript,
+  fetchzip,
+  unzip,
+}:
 let
   src = fetchzip {
     inherit url hash;
@@ -21,7 +29,8 @@ let
     done
   '';
 
-in stdenv.mkDerivation {
+in
+stdenv.mkDerivation {
   inherit src version;
   pname = "gtnh-server";
 

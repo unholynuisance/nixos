@@ -1,7 +1,17 @@
-{ config, lib, pkgs, options, inputs, ... }:
-let cfg = config.nuisance.modules.nixos.disko;
-in {
-  imports = [ # #
+{
+  config,
+  lib,
+  pkgs,
+  options,
+  inputs,
+  ...
+}:
+let
+  cfg = config.nuisance.modules.nixos.disko;
+in
+{
+  imports = [
+
     inputs.disko.nixosModules.disko
   ];
 
@@ -10,7 +20,8 @@ in {
     config = options.disko;
   };
 
-  config = lib.mkIf cfg.enable { # #
+  config = lib.mkIf cfg.enable {
+
     disko = cfg.config;
   };
 }

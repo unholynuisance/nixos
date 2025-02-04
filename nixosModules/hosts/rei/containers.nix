@@ -1,26 +1,39 @@
-{ config, lib, pkgs, self, self', inputs, inputs', ... }: {
+{
+  config,
+  lib,
+  pkgs,
+  self,
+  self',
+  inputs,
+  inputs',
+  ...
+}:
+{
   config = {
     containers.gtnh-valentine = {
-      config = { config, self, ... }: {
-        imports = [ self.nixosModules.all ];
-        config = {
-          nuisance.modules.nixos.services.minecraft = {
-            enable = true;
-            package = pkgs.nuisance.gtnh-server270-beta-2;
-            autoStart = true;
+      config =
+        { config, self, ... }:
+        {
+          imports = [ self.nixosModules.all ];
+          config = {
+            nuisance.modules.nixos.services.minecraft = {
+              enable = true;
+              package = pkgs.nuisance.gtnh-server270-beta-2;
+              autoStart = true;
 
-            serverProperties = { # #
-              view-distance = 16;
+              serverProperties = {
+
+                view-distance = 16;
+              };
+
+              serverPort = 25565;
+              rconPort = 25575;
+
+              openFirewall = true;
+              enableRcon = true;
             };
-
-            serverPort = 25565;
-            rconPort = 25575;
-
-            openFirewall = true;
-            enableRcon = true;
           };
         };
-      };
 
       bindMounts = {
         "/var/lib/minecraft" = {
@@ -31,26 +44,35 @@
 
       autoStart = false;
 
-      specialArgs = { inherit self self' inputs inputs'; };
+      specialArgs = {
+        inherit
+          self
+          self'
+          inputs
+          inputs'
+          ;
+      };
     };
 
     containers.gtnh-solo = {
-      config = { config, self, ... }: {
-        imports = [ self.nixosModules.all ];
-        config = {
-          nuisance.modules.nixos.services.minecraft = {
-            enable = true;
-            package = pkgs.nuisance.gtnh-server270-beta-2;
-            autoStart = true;
+      config =
+        { config, self, ... }:
+        {
+          imports = [ self.nixosModules.all ];
+          config = {
+            nuisance.modules.nixos.services.minecraft = {
+              enable = true;
+              package = pkgs.nuisance.gtnh-server270-beta-2;
+              autoStart = true;
 
-            serverPort = 25665;
-            rconPort = 25675;
+              serverPort = 25665;
+              rconPort = 25675;
 
-            openFirewall = true;
-            enableRcon = true;
+              openFirewall = true;
+              enableRcon = true;
+            };
           };
         };
-      };
 
       bindMounts = {
         "/var/lib/minecraft" = {
@@ -61,26 +83,35 @@
 
       autoStart = false;
 
-      specialArgs = { inherit self self' inputs inputs'; };
+      specialArgs = {
+        inherit
+          self
+          self'
+          inputs
+          inputs'
+          ;
+      };
     };
 
     containers.gtnh-coop = {
-      config = { config, self, ... }: {
-        imports = [ self.nixosModules.all ];
-        config = {
-          nuisance.modules.nixos.services.minecraft = {
-            enable = true;
-            package = pkgs.nuisance.gtnh-server270-beta-2;
-            autoStart = true;
+      config =
+        { config, self, ... }:
+        {
+          imports = [ self.nixosModules.all ];
+          config = {
+            nuisance.modules.nixos.services.minecraft = {
+              enable = true;
+              package = pkgs.nuisance.gtnh-server270-beta-2;
+              autoStart = true;
 
-            serverPort = 25765;
-            rconPort = 25775;
+              serverPort = 25765;
+              rconPort = 25775;
 
-            openFirewall = true;
-            enableRcon = true;
+              openFirewall = true;
+              enableRcon = true;
+            };
           };
         };
-      };
 
       bindMounts = {
         "/var/lib/minecraft" = {
@@ -91,12 +122,25 @@
 
       autoStart = false;
 
-      specialArgs = { inherit self self' inputs inputs'; };
+      specialArgs = {
+        inherit
+          self
+          self'
+          inputs
+          inputs'
+          ;
+      };
     };
 
     networking.firewall = {
-      allowedTCPPorts = [ 25565 25765 ];
-      allowedUDPPorts = [ 25565 25765 ];
+      allowedTCPPorts = [
+        25565
+        25765
+      ];
+      allowedUDPPorts = [
+        25565
+        25765
+      ];
     };
   };
 }

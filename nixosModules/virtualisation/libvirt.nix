@@ -1,6 +1,13 @@
-{ config, lib, pkgs, ... }:
-let cfg = config.nuisance.modules.nixos.virtualisation.libvirt;
-in {
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
+let
+  cfg = config.nuisance.modules.nixos.virtualisation.libvirt;
+in
+{
   options.nuisance.modules.nixos.virtualisation.libvirt = {
     enable = lib.mkEnableOption "libvirt";
   };

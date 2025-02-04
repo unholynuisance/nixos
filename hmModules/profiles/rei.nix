@@ -1,7 +1,15 @@
-{ config, lib, pkgs, ... }:
-let cfg = config.nuisance.profiles.hm.rei;
-in {
-  options.nuisance.profiles.hm.rei = { # #
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
+let
+  cfg = config.nuisance.profiles.hm.rei;
+in
+{
+  options.nuisance.profiles.hm.rei = {
+
     enable = lib.mkEnableOption "rei";
   };
 

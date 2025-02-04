@@ -1,5 +1,16 @@
-{ config, lib, pkgs, self, self', inputs, inputs', ... }: {
-  imports = [ # #
+{
+  config,
+  lib,
+  pkgs,
+  self,
+  self',
+  inputs,
+  inputs',
+  ...
+}:
+{
+  imports = [
+
     self.nixosModules.all
   ];
 
@@ -16,16 +27,19 @@
         };
       };
 
-      services = { # #
+      services = {
+
         ssh.enable = true;
         avahi.enable = true;
       };
 
-      shells = { # #
+      shells = {
+
         zsh.enable = true;
       };
 
-      virtualisation = { # #
+      virtualisation = {
+
         libvirt.enable = true;
       };
 
@@ -36,7 +50,8 @@
 
       steam = {
         enable = true;
-        extraCompatPackages = with pkgs.nuisance; [ # #
+        extraCompatPackages = with pkgs.nuisance; [
+
           proton-ge-bin
           ge-proton8-16
           ge-proton8-25
@@ -48,8 +63,12 @@
       users.unholynuisance = {
         enable = true;
         shell = pkgs.zsh;
-        extraGroups = [ "wheel" "networkmanager" "libvirtd" ];
-        modules = [{ nuisance.profiles.hm.asuka.enable = true; }];
+        extraGroups = [
+          "wheel"
+          "networkmanager"
+          "libvirtd"
+        ];
+        modules = [ { nuisance.profiles.hm.asuka.enable = true; } ];
       };
     };
 
@@ -80,19 +99,20 @@
 
     networking.useDHCP = lib.mkDefault true;
 
-    environment.sessionVariables = { # #
+    environment.sessionVariables = {
+
       GSK_RENDERER = "ngl";
     };
 
     nuisance.modules.nixos.disko = {
       enable = true;
-      config.devices = with self.lib.storage;
+      config.devices =
+        with self.lib.storage;
         mkDevices {
           disks = [
             (mkDisk {
               name = "nvme0n1";
-              device =
-                "/dev/disk/by-id/nvme-SKHynix_HFS001TEJ4X112N_4JC5N4835101A5L1A";
+              device = "/dev/disk/by-id/nvme-SKHynix_HFS001TEJ4X112N_4JC5N4835101A5L1A";
               partitions = [
                 (mkEfiPartition { size = "128M"; })
                 (mkPhysicalVolumePartition {
@@ -116,9 +136,15 @@
                   name = "root";
                   size = "128G";
                   subvolumes = {
-                    "?" = { mountpoint = "/"; };
-                    "?nix" = { mountpoint = "/nix"; };
-                    "?var?log" = { mountpoint = "/var/log"; };
+                    "?" = {
+                      mountpoint = "/";
+                    };
+                    "?nix" = {
+                      mountpoint = "/nix";
+                    };
+                    "?var?log" = {
+                      mountpoint = "/var/log";
+                    };
                   };
                   encrypt = true;
                   unlock = true;
@@ -127,11 +153,14 @@
                   name = "data";
                   size = "100%FREE";
                   subvolumes = {
-                    "?home" = { mountpoint = "/home"; };
+                    "?home" = {
+                      mountpoint = "/home";
+                    };
                     "?home?unholynuisance" = {
                       mountpoint = "/home/unholynuisance";
                     };
-                    "?var?lib?libvirt" = { # #
+                    "?var?lib?libvirt" = {
+
                       mountpoint = "/var/lib/libvirt";
                     };
                   };

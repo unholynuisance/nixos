@@ -1,7 +1,15 @@
-{ config, lib, pkgs, ... }:
-let cfg = config.nuisance.profiles.hm.cli;
-in {
-  options.nuisance.profiles.hm.cli = { # #
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
+let
+  cfg = config.nuisance.profiles.hm.cli;
+in
+{
+  options.nuisance.profiles.hm.cli = {
+
     enable = lib.mkEnableOption "cli";
   };
 
@@ -12,7 +20,9 @@ in {
         starship.enable = true;
       };
 
-      applications = { emacs.enable = true; };
+      applications = {
+        emacs.enable = true;
+      };
 
       tools = {
         zip.enable = true;
