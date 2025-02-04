@@ -95,13 +95,13 @@
               default = mkShell {
                 packages = [ # #
                   nixd
-                  nixfmt-classic
+                  nixfmt-rfc-style
                   nix-output-monitor
                 ];
               };
             };
 
-            formatter = nixfmt-classic;
+            formatter = nixfmt-rfc-style;
           };
         };
 
