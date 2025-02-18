@@ -16,6 +16,14 @@
       url = "github:hercules-ci/flake-parts";
     };
 
+    devenv = {
+      url = "github:cachix/devenv";
+    };
+
+    treefmt-nix = {
+      url = "github:numtide/treefmt-nix";
+    };
+
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -58,6 +66,8 @@
       }:
       {
         imports = [
+          inputs.devenv.flakeModule
+          inputs.treefmt-nix.flakeModule
           ./lib
           ./overlays
           (
@@ -119,20 +129,25 @@
               ...
             }:
             {
-              imports = [ ./packages ];
+              imports = [
+                ./packages
+              ];
 
               config = with pkgs; {
-                devShells = {
-                  default = mkShell {
-                    packages = [
-                      nixd
-                      nixfmt-rfc-style
-                      nix-output-monitor
-                    ];
+                devenv.shells.default = {
+                  packages = [ config.treefmt.build.wrapper ] ++ lib.attrValues config.treefmt.build.programs;
+
+                  languages = {
+                    nix = {
+                      enable = true;
+                      lsp.package = nixd;
+                    };
                   };
                 };
 
-                formatter = nixfmt-rfc-style;
+                treefmt.programs = {
+                  nixfmt.enable = true;
+                };
               };
             };
 
