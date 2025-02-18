@@ -3,41 +3,34 @@
 
   inputs = {
     nixpkgs = {
-
       # url = "github:nixos/nixpkgs/nixos-unstable";
       url = "github:unholynuisance/nixpkgs/nixos-unstable";
     };
 
     nixpkgs-master = {
-
       # url = "github:nixos/nixpkgs/master";
       url = "github:unholynuisance/nixpkgs/master";
     };
 
     flake-parts = {
-
       url = "github:hercules-ci/flake-parts";
     };
 
     home-manager = {
-
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
     disko = {
-
       url = "github:nix-community/disko";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
     wsl = {
-
       url = "github:nix-community/nixos-wsl";
     };
 
     xkeyboard-config-src = {
-
       url = "github:unholynuisance/xkeyboard-config";
       flake = false;
     };
@@ -65,7 +58,6 @@
       }:
       {
         imports = [
-
           ./lib
           ./overlays
           (
@@ -92,7 +84,6 @@
             {
               config.flake = {
                 nixosModules = rec {
-
                   default = all;
                   all = import ./nixosModules;
 
@@ -104,7 +95,6 @@
                 };
 
                 hmModules = rec {
-
                   default = all;
                   all = import ./hmModules;
 
@@ -129,15 +119,12 @@
               ...
             }:
             {
-
               imports = [ ./packages ];
 
               config = with pkgs; {
-
                 devShells = {
                   default = mkShell {
                     packages = [
-
                       nixd
                       nixfmt-rfc-style
                       nix-output-monitor
@@ -152,12 +139,10 @@
           flake =
             let
               mkNixosConfiguration = self.lib.utils.mkNixosConfiguration {
-
                 inherit self inputs;
               };
 
               mkHomeConfiguration = self.lib.utils.mkHomeConfiguration {
-
                 inherit self inputs;
               };
             in
