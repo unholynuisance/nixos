@@ -50,6 +50,12 @@
             }
           );
 
+        getPrimaryEmail =
+          config:
+          let
+            cfg = config.accounts.email;
+          in
+          (lib.findFirst (a: a.primary) null (lib.attrsets.attrValues cfg.accounts));
       };
 
       types = {

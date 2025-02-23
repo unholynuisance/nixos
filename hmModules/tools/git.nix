@@ -13,10 +13,14 @@ in
   };
 
   config = lib.mkIf cfg.enable {
-    programs.git = {
-      enable = true;
-      userName = config.home.username;
-      userEmail = config.accounts.email.accounts.personal.address;
-    };
+    programs.git =
+      let
+        primaryEmail = lib.nuisance.utils.getPrimaryEmail config;
+      in
+      {
+        enable = true;
+        userName = config.home.username;
+        userEmail = primaryEmail.address;
+      };
   };
 }
