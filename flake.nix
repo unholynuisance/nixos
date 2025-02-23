@@ -208,9 +208,12 @@
               };
 
               homeConfigurations = {
-                unholynuisance = mkHomeConfiguration {
+                "unholynuisance@rei" = mkHomeConfiguration {
                   system = "x86_64-linux";
-                  modules = [ self.modules.unholynuisance ];
+                  modules = [
+                    self.hmModules.unholynuisance
+                    { nuisance.profiles.hm.rei.enable = true; }
+                  ];
                 };
               };
             };
