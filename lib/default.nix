@@ -15,6 +15,7 @@
             }:
             inputs.nixpkgs.lib.nixosSystem {
               inherit pkgs modules;
+              inherit (pkgs) lib;
               specialArgs = {
                 inherit
                   self
