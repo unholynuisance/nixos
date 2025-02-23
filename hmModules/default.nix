@@ -23,12 +23,10 @@
   config = lib.mkMerge [
     (lib.mkIf (osConfig == null) {
       home.packages = [
-
         inputs'.home-manager.packages.home-manager
       ];
 
       nix = {
-
         package = pkgs.nix;
         settings.experimental-features = [
           "nix-command"

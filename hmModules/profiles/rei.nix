@@ -9,7 +9,6 @@ let
 in
 {
   options.nuisance.profiles.hm.rei = {
-
     enable = lib.mkEnableOption "rei";
   };
 
