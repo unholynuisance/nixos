@@ -25,6 +25,9 @@
   ];
 
   config = {
+    nix = {
+      channel.enable = false;
+    };
 
     system.stateVersion = "23.05";
   };
