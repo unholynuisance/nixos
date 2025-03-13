@@ -49,7 +49,7 @@ in
       unholynuisance =
         { ... }:
         {
-          imports = [ self.hmModules.unholynuisance ] ++ cfg.modules;
+          imports = [ self.homeModules.unholynuisance ] ++ cfg.modules;
         };
     };
   };

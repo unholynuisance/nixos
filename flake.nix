@@ -113,11 +113,11 @@
                   yui = import ./nixosModules/hosts/yui;
                 };
 
-                hmModules = rec {
+                homeModules = rec {
                   default = all;
-                  all = import ./hmModules;
+                  all = import ./homeModules;
 
-                  unholynuisance = import ./hmModules/users/unholynuisance;
+                  unholynuisance = import ./homeModules/users/unholynuisance;
                 };
               };
             }
@@ -220,7 +220,7 @@
                 "unholynuisance@rei" = mkHomeConfiguration {
                   system = "x86_64-linux";
                   modules = [
-                    self.hmModules.unholynuisance
+                    self.homeModules.unholynuisance
                     { nuisance.profiles.hm.rei.enable = true; }
                   ];
                 };

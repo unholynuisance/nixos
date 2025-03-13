@@ -6,7 +6,7 @@
   ...
 }:
 {
-  imports = [ self.hmModules.all ];
+  imports = [ self.homeModules.all ];
 
   config = {
     home.username = "unholynuisance";
