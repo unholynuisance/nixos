@@ -19,28 +19,11 @@ in
 
     nuisance.modules.hm = {
       applications = {
-        # web
-        firefox.enable = true;
-        chrome.enable = true;
-        # messengers
-        discord.enable = true;
-        telegram.enable = true;
-        teams.enable = true;
-        slack.enable = true;
-        #
-        calibre.enable = true;
-        zotero.enable = true;
-        #
-        obs-studio.enable = true;
-        krita.enable = true;
-        xournal.enable = true;
-        office.enable = true;
-        #
-        torrent.enable = true;
-        # holy grail of editors
+        firefox.enable = lib.mkDefault true;
+
         emacs = {
-          enable = true;
-          package = pkgs.emacs29-gtk3;
+          enable = lib.mkDefault true;
+          package = lib.mkDefault pkgs.emacs29-gtk3;
         };
       };
     };

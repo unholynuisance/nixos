@@ -9,12 +9,10 @@ let
 in
 {
   options.nuisance.profiles.hm.gnome = {
-
     enable = lib.mkEnableOption "gnome";
   };
 
   config = lib.mkIf cfg.enable {
-
     nuisance.modules.hm = {
       gnome = {
         enable = true;
@@ -27,7 +25,6 @@ in
         ];
 
         favouriteApps = [
-
           "firefox"
           "org.gnome.Console"
           "emacs"
@@ -35,7 +32,6 @@ in
         ];
 
         appFolders = {
-
           games = {
             name = "Games";
             categories = [ "Game" ];

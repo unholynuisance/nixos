@@ -16,12 +16,37 @@ in
     nuisance.profiles.hm = {
       cli.enable = true;
       graphical.enable = true;
-      games.enable = true;
     };
 
     nuisance.modules.hm = {
       applications = {
+        chrome.enable = true;
+
+        office.enable = true;
+        torrent.enable = true;
+
         remmina.enable = true;
+
+        discord.enable = true;
+        telegram.enable = true;
+        teams.enable = true;
+        slack.enable = true;
+
+        zotero.enable = true;
+
+        obs-studio.enable = true;
+        krita.enable = true;
+        xournal.enable = true;
+      };
+
+      games = {
+        minecraft = {
+          enable = true;
+          instances.gtnh = {
+            enable = true;
+            package = pkgs.nuisance.gtnh-client270-beta-2;
+          };
+        };
       };
     };
   };

@@ -1,7 +1,6 @@
 {
   config,
   lib,
-  pkgs,
   ...
 }:
 let
@@ -9,7 +8,6 @@ let
 in
 {
   options.nuisance.profiles.hm.yui = {
-
     enable = lib.mkEnableOption "yui";
   };
 

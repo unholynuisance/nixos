@@ -9,7 +9,6 @@
 
     # minor profiles
     ./gnome.nix
-    ./games.nix
 
     # host profiles
     ./asuka.nix
