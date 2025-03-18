@@ -18,5 +18,11 @@ in
       graphical.enable = true;
       games.enable = true;
     };
+
+    nuisance.modules.hm = {
+      applications = {
+        remmina.enable = true;
+      };
+    };
   };
 }

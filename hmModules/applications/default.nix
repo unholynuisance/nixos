@@ -13,6 +13,7 @@ in
     ./discord.nix
     ./emacs.nix
     ./obs-studio.nix
+    ./remmina.nix
     ./zotero.nix
   ];
 
