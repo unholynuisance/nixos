@@ -14,7 +14,6 @@ in
 
   config = lib.mkIf cfg.enable {
     nuisance.profiles.hm = {
-
       gnome.enable = true;
     };
 
