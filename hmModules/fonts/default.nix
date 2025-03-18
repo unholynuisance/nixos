@@ -19,18 +19,13 @@ in
   config = {
     home.packages =
       with pkgs;
-      [ ]
-      ++ (lib.optionals cfg.ibm-plex.enable [
-
-        ibm-plex
-      ])
-      ++ (lib.optionals cfg.nerdfonts.enable [
-
-        nerdfonts
-      ])
-      ++ (lib.optionals cfg.noto-fonts-cjk-sans.enable [
-
-        noto-fonts-cjk-sans
+      let
+        inherit (lib.nuisance.utils) mkOptPackages optPackages;
+      in
+      (mkOptPackages [
+        (optPackages cfg.ibm-plex.enable [ ibm-plex ])
+        (optPackages cfg.nerdfonts.enable [ nerdfonts ])
+        (optPackages cfg.noto-fonts-cjk-sans.enable [ noto-fonts-cjk-sans ])
       ]);
   };
 }

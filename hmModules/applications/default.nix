@@ -9,7 +9,6 @@ let
 in
 {
   imports = [
-
     ./calibre.nix
     ./discord.nix
     ./emacs.nix
@@ -33,42 +32,19 @@ in
   config = {
     home.packages =
       with pkgs;
-      [ ]
-      ++ (lib.optionals cfg.firefox.enable [
-
-        firefox
-      ])
-      ++ (lib.optionals cfg.chrome.enable [
-
-        google-chrome
-      ])
-      ++ (lib.optionals cfg.torrent.enable [
-
-        qbittorrent
-      ])
-      ++ (lib.optionals cfg.office.enable [
-
-        libreoffice
-      ])
-      ++ (lib.optionals cfg.slack.enable [
-
-        slack
-      ])
-      ++ (lib.optionals cfg.teams.enable [
-
-        teams-for-linux
-      ])
-      ++ (lib.optionals cfg.telegram.enable [
-
-        telegram-desktop
-      ])
-      ++ (lib.optionals cfg.krita.enable [
-
-        krita
-      ])
-      ++ (lib.optionals cfg.xournal.enable [
-
-        xournalpp
+      let
+        inherit (lib.nuisance.utils) mkOptPackages optPackages;
+      in
+      (mkOptPackages [
+        (optPackages cfg.firefox.enable [ firefox ])
+        (optPackages cfg.chrome.enable [ google-chrome ])
+        (optPackages cfg.torrent.enable [ qbittorrent ])
+        (optPackages cfg.office.enable [ libreoffice ])
+        (optPackages cfg.slack.enable [ slack ])
+        (optPackages cfg.teams.enable [ teams-for-linux ])
+        (optPackages cfg.telegram.enable [ telegram-desktop ])
+        (optPackages cfg.krita.enable [ krita ])
+        (optPackages cfg.xournal.enable [ xournalpp ])
       ]);
   };
 }

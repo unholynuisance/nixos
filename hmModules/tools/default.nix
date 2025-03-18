@@ -22,51 +22,21 @@ in
       ripgrep.enable = lib.mkEnableOption "ripgrep";
       zip.enable = lib.mkEnableOption "zip";
 
-      c.enable = lib.mkEnableOption "c";
-      perl.enable = lib.mkEnableOption "perl";
       latex.enable = lib.mkEnableOption "latex";
-
-      hunspell.enable = lib.mkEnableOption "hunspell";
     };
   };
 
   config = {
     home.packages =
       with pkgs;
-      [ ]
-      ++ (lib.optionals cfg.fd.enable [
-
-        fd
-      ])
-      ++ (lib.optionals cfg.ripgrep.enable [
-
-        ripgrep
-      ])
-      ++ (lib.optionals cfg.zip.enable [
-
-        zip
-        unzip
-      ])
-      ++ (lib.optionals cfg.c.enable [
-
-        gcc
-        gnumake
-        cmake
-        libtool
-      ])
-      ++ (lib.optionals cfg.perl.enable [
-
-        perl
-      ])
-      ++ (lib.optionals cfg.latex.enable [
-
-        texlive.combined.scheme-full
-      ])
-      ++ (lib.optionals cfg.hunspell.enable [
-
-        hunspell
-        hunspellDicts.uk-ua
-        hunspellDicts.en-us-large
+      let
+        inherit (lib.nuisance.utils) mkOptPackages optPackages;
+      in
+      (mkOptPackages [
+        (optPackages cfg.fd.enable [ fd ])
+        (optPackages cfg.ripgrep.enable [ ripgrep ])
+        (optPackages cfg.zip.enable [ zip ])
+        (optPackages cfg.latex.enable [ texlive.combined.scheme-full ])
       ]);
   };
 }
