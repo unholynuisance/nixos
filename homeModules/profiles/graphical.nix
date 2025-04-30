@@ -23,7 +23,7 @@ in
 
         emacs = {
           enable = lib.mkDefault true;
-          package = lib.mkDefault pkgs.emacs29-gtk3;
+          package = lib.mkDefault pkgs.emacs30-gtk3;
         };
       };
     };
