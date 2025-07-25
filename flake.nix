@@ -167,34 +167,34 @@
             {
 
               nixosConfigurations = {
-                # personal. shinji, rei, asuka, toji, mari
-                # virtual. kaworu
-                # work. misato ritsuko
-                # _: gendo kozo
-                # _: makoto maya shigeru
-                # server. adam lilith sachiel shamshel ramiel gaghiel israfel sahaquiel bardiel zeruel arael armisael tabris lilin
+                # personal: shinji, rei, asuka, toji, mari
+                # virtual: kaworu
+                # work: misato, ritsuko
+                # _: gendo, kozo
+                # _: makoto, maya, shigeru
+                # server: adam, lilith, sachiel, shamshel, ramiel, gaghiel, israfel, sahaquiel, bardiel, zeruel, arael, armisael, tabris, lilin
                 # wsl: naoko, kyoko, yui
                 # iso: ryoji
 
-                # primary personal desktop
+                # desktop
                 rei = mkNixosConfiguration {
                   system = "x86_64-linux";
                   modules = [ self.nixosModules.rei ];
                 };
 
-                # primary personal laptop
+                # laptop
                 asuka = mkNixosConfiguration {
                   system = "x86_64-linux";
                   modules = [ self.nixosModules.asuka ];
                 };
 
-                # primary virtual host:
+                # test vm
                 kaworu = mkNixosConfiguration {
                   system = "x86_64-linux";
                   modules = [ self.nixosModules.kaworu ];
                 };
 
-                # primary work laptop
+                # work laptop
                 # misato = ...
 
                 # wsl
