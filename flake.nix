@@ -67,10 +67,7 @@
     { self, flake-parts, ... }@inputs:
     flake-parts.lib.mkFlake { inherit inputs; } (
       {
-        config,
-        lib,
         inputs,
-        withSystem,
         ...
       }:
       {
@@ -95,9 +92,6 @@
           )
           (
             {
-              config,
-              lib,
-              inputs,
               ...
             }:
             {
