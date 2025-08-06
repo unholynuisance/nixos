@@ -3,13 +3,11 @@
 
   inputs = {
     nixpkgs = {
-      # url = "github:nixos/nixpkgs/nixos-unstable";
-      url = "github:unholynuisance/nixpkgs/nixos-unstable";
+      url = "github:nixos/nixpkgs/nixos-unstable";
     };
 
     nixpkgs-master = {
-      # url = "github:nixos/nixpkgs/master";
-      url = "github:unholynuisance/nixpkgs/master";
+      url = "github:nixos/nixpkgs/master";
     };
 
     flake-parts = {
