@@ -29,5 +29,9 @@ in
         };
       };
     };
+
+    networking.firewall.trustedInterfaces = [
+      "virbr0"
+    ];
   };
 }
