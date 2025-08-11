@@ -1,16 +1,11 @@
 {
-  config,
   lib,
   pkgs,
   self,
-  self',
-  inputs,
-  inputs',
   ...
 }:
 {
   imports = [
-
     self.nixosModules.all
   ];
 
@@ -28,13 +23,11 @@
       };
 
       services = {
-
         ssh.enable = true;
         avahi.enable = true;
       };
 
       shells = {
-
         zsh.enable = true;
       };
 
@@ -51,7 +44,6 @@
       steam = {
         enable = true;
         extraCompatPackages = with pkgs.nuisance; [
-
           proton-ge-bin
           ge-proton8-16
           ge-proton8-25
@@ -100,7 +92,6 @@
     networking.useDHCP = lib.mkDefault true;
 
     environment.sessionVariables = {
-
       GSK_RENDERER = "ngl";
     };
 

@@ -1,6 +1,4 @@
 {
-  config,
-  lib,
   pkgs,
   self,
   self',
@@ -12,7 +10,7 @@
   config = {
     containers.gtnh-valentine = {
       config =
-        { config, self, ... }:
+        { self, ... }:
         {
           imports = [ self.nixosModules.all ];
           config = {
@@ -22,7 +20,6 @@
               autoStart = true;
 
               serverProperties = {
-
                 view-distance = 16;
               };
 
@@ -56,7 +53,7 @@
 
     containers.gtnh-solo = {
       config =
-        { config, self, ... }:
+        { self, ... }:
         {
           imports = [ self.nixosModules.all ];
           config = {
@@ -95,7 +92,7 @@
 
     containers.gtnh-coop = {
       config =
-        { config, self, ... }:
+        { self, ... }:
         {
           imports = [ self.nixosModules.all ];
           config = {

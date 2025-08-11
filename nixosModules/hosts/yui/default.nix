@@ -1,16 +1,10 @@
 {
-  config,
-  lib,
   pkgs,
   self,
-  self',
-  inputs,
-  inputs',
   ...
 }:
 {
   imports = [
-
     self.nixosModules.all
   ];
 

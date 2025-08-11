@@ -1,16 +1,11 @@
 {
-  config,
   lib,
   pkgs,
   self,
-  self',
-  inputs,
-  inputs',
   ...
 }:
 {
   imports = [
-
     self.nixosModules.all
     ./containers.nix
     ./storage.nix
@@ -42,14 +37,12 @@
       shells.zsh.enable = true;
 
       programs = {
-
         wireshark.enable = true;
       };
 
       steam = {
         enable = true;
         extraCompatPackages = with pkgs.nuisance; [
-
           proton-ge-bin
           ge-proton8-16
           ge-proton8-25
@@ -67,7 +60,6 @@
         enable = true;
         shell = pkgs.zsh;
         extraGroups = [
-
           "wheel"
           "networkmanager"
           "libvirtd"

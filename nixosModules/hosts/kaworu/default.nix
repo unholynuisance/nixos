@@ -1,16 +1,11 @@
 {
   config,
   lib,
-  pkgs,
   self,
-  self',
-  inputs,
-  inputs',
   ...
 }:
 {
   imports = [
-
     self.nixosModules.all
   ];
 
@@ -24,7 +19,6 @@
       };
 
       services = {
-
         ssh.enable = true;
       };
 
@@ -35,7 +29,6 @@
       xserver.enable = true;
 
       virtualisation = {
-
         guest.enable = true;
       };
 
