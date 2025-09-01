@@ -20,11 +20,11 @@ in
   config = lib.mkIf cfg.enable {
     environment.systemPackages = with pkgs; [
       mangohud
-      protontricks
     ];
 
     programs.steam = {
       enable = true;
+      protontricks.enable = true;
       extraCompatPackages = cfg.extraCompatPackages;
     };
   };
