@@ -1,4 +1,5 @@
 {
+  config,
   lib,
   pkgs,
   self,
@@ -25,7 +26,6 @@
       };
 
       services = {
-
         ssh.enable = true;
         avahi.enable = true;
       };
@@ -77,8 +77,14 @@
       "usbhid"
     ];
     boot.initrd.kernelModules = [ ];
-    boot.kernelModules = [ "kvm-amd" ];
-    boot.extraModulePackages = [ ];
+    boot.kernelModules = [
+      "kvm-amd"
+      "universal-pidff"
+    ];
+    boot.extraModulePackages = with config.boot.kernelPackages; [ universal-pidff ];
+
+    environment.systemPackages = [ pkgs.boxflat ];
+    services.udev.packages = [ pkgs.boxflat ];
 
     hardware.enableAllFirmware = true;
     hardware.enableRedistributableFirmware = true;
