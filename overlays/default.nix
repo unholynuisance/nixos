@@ -1,5 +1,4 @@
 {
-  config,
   self,
   inputs,
   ...
@@ -20,6 +19,9 @@
         final: prev: {
           xkeyboard_config_patched = final.xkeyboard_config.overrideAttrs (old: {
             src = inputs.xkeyboard-config-src;
+            # TODO: remove when 2.46 is released.
+            # revert https://github.com/NixOS/nixpkgs/pull/429388
+            patches = [ ];
           });
         }
       );
