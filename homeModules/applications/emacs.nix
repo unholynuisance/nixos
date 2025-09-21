@@ -44,6 +44,7 @@ in
       emacs = cfg.package;
       doomDir = inputs.doom-emacs-config;
       tangleArgs = ".";
+      extraPackages = epkgs: [ epkgs.treesit-grammars.with-all-grammars ];
     };
 
     services.emacs = {
