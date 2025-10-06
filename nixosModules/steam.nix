@@ -26,6 +26,22 @@ in
       enable = true;
       protontricks.enable = true;
       extraCompatPackages = cfg.extraCompatPackages;
+
+      package =
+        with pkgs;
+        steam.override {
+          extraPkgs = _: [
+            jq
+            cabextract
+            wget
+            git
+            pkgsi686Linux.libpulseaudio
+            pkgsi686Linux.freetype
+            pkgsi686Linux.xorg.libXcursor
+            pkgsi686Linux.xorg.libXcomposite
+            pkgsi686Linux.xorg.libXi
+          ];
+        };
     };
   };
 }
