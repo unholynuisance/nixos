@@ -6,8 +6,7 @@
 }:
 {
   imports = [
-
-    ./minecraft
+    ./gtnh
     ./avahi.nix
     ./ssh.nix
   ];

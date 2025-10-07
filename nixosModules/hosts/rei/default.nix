@@ -8,7 +8,6 @@
 {
   imports = [
     self.nixosModules.all
-    ./containers.nix
     ./storage.nix
   ];
 
@@ -28,6 +27,11 @@
       services = {
         ssh.enable = true;
         avahi.enable = true;
+      };
+
+      services.gtnh = {
+        enable = true;
+        package = pkgs.nuisance.gtnh-server280;
       };
 
       gnome.enable = true;

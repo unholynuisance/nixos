@@ -44,7 +44,6 @@ in
           enable = true;
           instances.gtnh = {
             enable = true;
-            package = pkgs.nuisance.gtnh-client270-beta-2;
           };
         };
 

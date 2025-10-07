@@ -13,11 +13,15 @@ in
   };
 
   config = lib.mkIf cfg.enable {
-    hardware.nvidia-container-toolkit.enable = true;
+    # hardware.nvidia-container-toolkit.enable = true;
 
     virtualisation.podman = {
       enable = true;
       dockerSocket.enable = true;
+    };
+
+    virtualisation.oci-containers = {
+      backend = "podman";
     };
   };
 }
