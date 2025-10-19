@@ -6,8 +6,8 @@
 }:
 {
   imports = [
-
-    ./minecraft
     ./cataclysm-dda.nix
+    ./minecraft
+    ./starsector.nix
   ];
 }

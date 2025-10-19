@@ -47,6 +47,8 @@ in
             package = pkgs.nuisance.gtnh-client270-beta-2;
           };
         };
+
+        starsector.enable = true;
       };
     };
   };
