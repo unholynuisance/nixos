@@ -22,9 +22,7 @@ in
         enable = true;
 
         qemu = {
-          ovmf.enable = true;
           swtpm.enable = true;
-
           runAsRoot = false;
         };
       };

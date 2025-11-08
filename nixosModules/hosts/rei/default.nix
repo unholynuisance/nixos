@@ -87,8 +87,8 @@
     ];
     boot.extraModulePackages = with config.boot.kernelPackages; [ universal-pidff ];
 
-    environment.systemPackages = [ pkgs.boxflat ];
-    services.udev.packages = [ pkgs.boxflat ];
+    # environment.systemPackages = [ pkgs.boxflat ];
+    # services.udev.packages = [ pkgs.boxflat ];
 
     hardware.enableAllFirmware = true;
     hardware.enableRedistributableFirmware = true;
