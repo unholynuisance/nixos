@@ -13,6 +13,7 @@
       pkgs = final: prev: {
         nuisance = self.packages.${prev.system};
         master = inputs.nixpkgs-master.legacyPackages.${prev.system};
+        release = inputs.nixpkgs-release.legacyPackages.${prev.system};
       };
 
       xkeyboard_config_patched = (

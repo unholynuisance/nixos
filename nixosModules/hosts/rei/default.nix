@@ -32,6 +32,7 @@
       services.gtnh = {
         enable = true;
         package = pkgs.nuisance.gtnh-server280;
+        viewDistance = 16;
       };
 
       gnome.enable = true;
@@ -87,8 +88,8 @@
     ];
     boot.extraModulePackages = with config.boot.kernelPackages; [ universal-pidff ];
 
-    # environment.systemPackages = [ pkgs.boxflat ];
-    # services.udev.packages = [ pkgs.boxflat ];
+    environment.systemPackages = [ pkgs.release.boxflat ];
+    services.udev.packages = [ pkgs.release.boxflat ];
 
     hardware.enableAllFirmware = true;
     hardware.enableRedistributableFirmware = true;

@@ -10,6 +10,10 @@
       url = "github:nixos/nixpkgs/master";
     };
 
+    nixpkgs-release = {
+      url = "github:nixos/nixpkgs/nixos-25.05";
+    };
+
     flake-parts = {
       url = "github:hercules-ci/flake-parts";
     };
