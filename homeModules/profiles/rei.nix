@@ -48,6 +48,10 @@ in
         };
 
         starsector.enable = true;
+        starsector.resolution = {
+          x = 2560;
+          y = 1371;
+        };
       };
     };
   };
