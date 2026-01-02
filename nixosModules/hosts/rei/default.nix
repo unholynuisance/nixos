@@ -51,6 +51,7 @@
           proton-ge-bin
           ge-proton8-16
           ge-proton8-25
+          ge-proton10-26
         ];
       };
 
