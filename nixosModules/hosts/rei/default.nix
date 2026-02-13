@@ -52,6 +52,7 @@
           ge-proton8-16
           ge-proton8-25
           ge-proton10-26
+          ge-proton10-30
         ];
       };
 
