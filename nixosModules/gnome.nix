@@ -24,5 +24,11 @@ in
       geary
       pkgs.gedit
     ];
+
+    xdg.portal = {
+      enable = true;
+    };
+
+    programs.xwayland.enable = true;
   };
 }
