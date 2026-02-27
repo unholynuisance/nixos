@@ -1,6 +1,7 @@
 {
   config,
   lib,
+  pkgs,
   ...
 }:
 let
@@ -29,6 +30,8 @@ in
         teams.enable = true;
 
         zotero.enable = true;
+
+        emacs.package = pkgs.emacs-pgtk;
       };
     };
   };

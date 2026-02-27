@@ -37,6 +37,8 @@ in
         obs-studio.enable = true;
         krita.enable = true;
         xournal.enable = true;
+
+        emacs.package = pkgs.emacs-pgtk;
       };
 
       games = {
