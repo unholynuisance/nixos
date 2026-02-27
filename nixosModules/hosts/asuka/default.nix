@@ -77,6 +77,13 @@
     boot.kernelModules = [ "kvm-amd" ];
     boot.extraModulePackages = [ ];
 
+    boot.kernelPatches = [
+      {
+        name = "test";
+        patch = ./skhynix_hfs001tej4x112n_patch.bin;
+      }
+    ];
+
     hardware.enableAllFirmware = true;
     hardware.enableRedistributableFirmware = true;
     hardware.wirelessRegulatoryDatabase = true;
