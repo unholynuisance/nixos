@@ -19,9 +19,8 @@ in
 
         extensions = with pkgs.gnomeExtensions; [
           appindicator
-          freon
+          vitals
           ip-finder
-          lock-keys
         ];
 
         favouriteApps = [
