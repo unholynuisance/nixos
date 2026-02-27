@@ -1,7 +1,6 @@
 {
   config,
   lib,
-  pkgs,
   ...
 }:
 let
@@ -19,8 +18,10 @@ in
       in
       {
         enable = true;
-        userName = config.home.username;
-        userEmail = primaryEmail.address;
+        settings.user = {
+          name = config.home.username;
+          email = primaryEmail.address;
+        };
       };
   };
 }

@@ -63,7 +63,7 @@
             packages' = lib.filter (p: p.enable) packages;
             packages'' = (lib.map (p: p.packages) packages');
           in
-          (lib.fold (a: b: a ++ b) [ ] packages'');
+          (lib.foldr (a: b: a ++ b) [ ] packages'');
 
         optPackages = enable: packages: { inherit packages enable; };
       };

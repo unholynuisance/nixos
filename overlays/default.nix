@@ -11,9 +11,9 @@
       };
 
       pkgs = final: prev: {
-        nuisance = self.packages.${prev.system};
-        master = inputs.nixpkgs-master.legacyPackages.${prev.system};
-        release = inputs.nixpkgs-release.legacyPackages.${prev.system};
+        nuisance = self.packages.${prev.stdenv.hostPlatform.system};
+        master = inputs.nixpkgs-master.legacyPackages.${prev.stdenv.hostPlatform.system};
+        release = inputs.nixpkgs-release.legacyPackages.${prev.stdenv.hostPlatform.system};
       };
 
       xkeyboard_config_patched = (
