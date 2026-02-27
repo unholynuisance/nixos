@@ -110,5 +110,12 @@
     };
 
     networking.useDHCP = lib.mkDefault true;
+
+    networking.firewall.allowedUDPPortRanges = [
+      {
+        from = 16261;
+        to = 16270;
+      }
+    ];
   };
 }
