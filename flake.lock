@@ -573,11 +573,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1772373289,
-        "narHash": "sha256-0AszSu63nU0OHnogocSAby3Q+CEzB7lEU8rs7jgV+2U=",
+        "lastModified": 1772376120,
+        "narHash": "sha256-odRY3OGq+J6a6OROOEG+86oBmLof2tn8y1dHtdC38fU=",
         "owner": "unholynuisance",
         "repo": "xwayland-global-shortcut-bridge",
-        "rev": "b48585a06e388259d037e975a35d266309dcf39a",
+        "rev": "f6b231a0e03fc99c061806af6d79f94344d541dd",
         "type": "github"
       },
       "original": {
