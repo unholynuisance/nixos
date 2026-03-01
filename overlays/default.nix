@@ -30,6 +30,14 @@
         krita = final.pkgs.release.krita;
         lager = final.pkgs.release.lager;
       };
+
+      xwayland = final: prev: {
+        xwayland = prev.xwayland.overrideAttrs (old: {
+          mesonFlags = old.mesonFlags ++ [
+            "-Dxwayland_ei=socket"
+          ];
+        });
+      };
     };
   };
 }

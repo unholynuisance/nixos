@@ -459,7 +459,8 @@
         "nixpkgs-release": "nixpkgs-release",
         "treefmt-nix": "treefmt-nix_2",
         "wsl": "wsl",
-        "xkeyboard-config-src": "xkeyboard-config-src"
+        "xkeyboard-config-src": "xkeyboard-config-src",
+        "xwayland-global-shortcut-bridge": "xwayland-global-shortcut-bridge"
       }
     },
     "systems": {
@@ -553,6 +554,35 @@
       "original": {
         "owner": "unholynuisance",
         "repo": "xkeyboard-config",
+        "type": "github"
+      }
+    },
+    "xwayland-global-shortcut-bridge": {
+      "inputs": {
+        "devenv": [
+          "devenv"
+        ],
+        "flake-parts": [
+          "flake-parts"
+        ],
+        "nixpkgs": [
+          "nixpkgs"
+        ],
+        "treefmt-nix": [
+          "treefmt-nix"
+        ]
+      },
+      "locked": {
+        "lastModified": 1772373289,
+        "narHash": "sha256-0AszSu63nU0OHnogocSAby3Q+CEzB7lEU8rs7jgV+2U=",
+        "owner": "unholynuisance",
+        "repo": "xwayland-global-shortcut-bridge",
+        "rev": "b48585a06e388259d037e975a35d266309dcf39a",
+        "type": "github"
+      },
+      "original": {
+        "owner": "unholynuisance",
+        "repo": "xwayland-global-shortcut-bridge",
         "type": "github"
       }
     }

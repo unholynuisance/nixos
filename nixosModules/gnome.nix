@@ -30,5 +30,18 @@ in
     };
 
     programs.xwayland.enable = true;
+
+    systemd.user.services.xwayland-global-shortcut-bridge = {
+      enable = true;
+      description = "";
+      after = [ "gnome-session.target" ];
+      wantedBy = [ "default.target" ];
+      serviceConfig = {
+        Type = "simple";
+        ExecStart = "${pkgs.nuisance.xwayland-global-shortcut-bridge}/bin/xwayland-global-shortcut-bridge";
+        Restart = "on-failure";
+        RestartSec = "5";
+      };
+    };
   };
 }

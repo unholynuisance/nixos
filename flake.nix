@@ -68,6 +68,14 @@
       url = "github:unholynuisance/.doom.d";
       flake = false;
     };
+
+    xwayland-global-shortcut-bridge = {
+      url = "github:unholynuisance/xwayland-global-shortcut-bridge";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.flake-parts.follows = "flake-parts";
+      inputs.devenv.follows = "devenv";
+      inputs.treefmt-nix.follows = "treefmt-nix";
+    };
   };
 
   outputs =
