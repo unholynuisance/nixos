@@ -16,16 +16,20 @@
         release = inputs.nixpkgs-release.legacyPackages.${prev.stdenv.hostPlatform.system};
       };
 
-      xkeyboard_config_patched = (
-        final: prev: {
-          xkeyboard_config_patched = final.xkeyboard_config.overrideAttrs (old: {
-            src = inputs.xkeyboard-config-src;
-            # TODO: remove when 2.46 is released.
-            # revert https://github.com/NixOS/nixpkgs/pull/429388
-            patches = [ ];
-          });
-        }
-      );
+      xkeyboard_config_patched = final: prev: {
+        xkeyboard_config_patched = final.xkeyboard_config.overrideAttrs (old: {
+          src = inputs.xkeyboard-config-src;
+          # TODO: remove when 2.46 is released.
+          # reverts https://github.com/NixOS/nixpkgs/pull/429388
+          patches = [ ];
+        });
+      };
+
+      # TODO: remove once https://github.com/NixOS/nixpkgs/issues/485826 is resolved
+      boost_build_failure_fix = final: prev: {
+        krita = final.pkgs.release.krita;
+        lager = final.pkgs.release.lager;
+      };
     };
   };
 }
