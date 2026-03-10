@@ -13,7 +13,7 @@ in
 
   config = lib.mkIf cfg.enable {
     services.remmina = {
-      enable = true;
+      enable = false;
     };
   };
 }
