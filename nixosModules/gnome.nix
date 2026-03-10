@@ -34,7 +34,7 @@ in
     systemd.user.services.xwayland-global-shortcut-bridge = {
       enable = true;
       description = "";
-      after = [ "gnome-session.target" ];
+      after = [ "graphical-session.target" ];
       wantedBy = [ "default.target" ];
       serviceConfig = {
         Type = "simple";
