@@ -21,7 +21,7 @@
     ./pulseaudio.nix
     ./rtkit.nix
     ./steam.nix
-    ./xserver.nix
+    ./xkb.nix
   ];
 
   config = {

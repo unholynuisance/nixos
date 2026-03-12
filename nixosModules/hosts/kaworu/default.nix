@@ -26,7 +26,7 @@
       networkmanager.enable = true;
       pipewire.enable = true;
       rtkit.enable = true;
-      xserver.enable = true;
+      xkb.enable = true;
 
       virtualisation = {
         guest.enable = true;

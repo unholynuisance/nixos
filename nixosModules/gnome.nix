@@ -38,7 +38,7 @@ in
     programs.xwayland.enable = true;
 
     systemd.user.services.xwayland-global-shortcut-bridge = {
-      enable = true;
+      enable = false;
       description = "";
       after = [ "graphical-session.target" ];
       wantedBy = [ "default.target" ];

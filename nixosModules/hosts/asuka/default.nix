@@ -50,7 +50,7 @@
         ];
       };
 
-      xserver.enable = true;
+      xkb.enable = true;
 
       users.unholynuisance = {
         enable = true;

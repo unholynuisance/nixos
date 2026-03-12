@@ -56,7 +56,7 @@
         ];
       };
 
-      xserver.enable = true;
+      xkb.enable = true;
 
       virtualisation = {
         podman.enable = true;
@@ -96,8 +96,6 @@
     hardware.enableAllFirmware = true;
     hardware.enableRedistributableFirmware = true;
     hardware.wirelessRegulatoryDatabase = true;
-
-    services.xserver.videoDrivers = [ "nvidia" ];
 
     hardware.nvidia = {
       modesetting.enable = true;
