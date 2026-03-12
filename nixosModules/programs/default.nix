@@ -13,10 +13,9 @@ in
   };
 
   config = {
-
     programs.wireshark = {
       enable = cfg.wireshark.enable;
-      package = with pkgs; wireshark-qt;
+      package = with pkgs; wireshark;
     };
   };
 }
