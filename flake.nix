@@ -25,15 +25,6 @@
       inputs.flake-parts.follows = "flake-parts";
     };
 
-    nix2container = {
-      url = "github:nlewo/nix2container";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    mk-shell-bin = {
-      url = "github:rrbutani/nix-mk-shell-bin";
-    };
-
     treefmt-nix = {
       url = "github:numtide/treefmt-nix";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -161,6 +152,8 @@
                       lsp.package = nixd;
                     };
                   };
+
+                  containers = lib.mkForce { };
                 };
 
                 treefmt.programs = {
