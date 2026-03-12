@@ -27,6 +27,12 @@ in
 
     xdg.portal = {
       enable = true;
+      config.gnome = {
+        default = [
+          "gnome"
+          "gtk"
+        ];
+      };
     };
 
     programs.xwayland.enable = true;
