@@ -20,12 +20,12 @@ in
 
     whitelist = lib.mkOption {
       type = lib.types.str;
-      default = ''unholynuisance'';
+      default = "unholynuisance";
     };
 
     ops = lib.mkOption {
       type = lib.types.str;
-      default = ''unholynuisance'';
+      default = "unholynuisance";
     };
 
     serverPort = lib.mkOption {
