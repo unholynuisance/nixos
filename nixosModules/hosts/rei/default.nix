@@ -97,6 +97,8 @@
     hardware.enableRedistributableFirmware = true;
     hardware.wirelessRegulatoryDatabase = true;
 
+    services.xserver.videoDrivers = [ "nvidia" ];
+
     hardware.nvidia = {
       modesetting.enable = true;
       open = false;
