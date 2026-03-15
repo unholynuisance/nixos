@@ -27,6 +27,10 @@
   config = {
     nix = {
       channel.enable = false;
+
+      settings = {
+        build-dir = "/var/tmp";
+      };
     };
 
     system.stateVersion = "23.05";

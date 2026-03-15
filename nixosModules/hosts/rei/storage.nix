@@ -94,12 +94,13 @@
                   size = "100%FREE";
                   subvolumes = {
                     "?home" = {
-
                       mountpoint = "/home";
                     };
                     "?home?unholynuisance" = {
-
                       mountpoint = "/home/unholynuisance";
+                    };
+                    "?var?tmp" = {
+                      mountpoint = "/var/tmp";
                     };
                     "?data?unholynuisance?games" = {
                       mountpoint = "/data/unholynuisance/games/primary";
@@ -121,20 +122,16 @@
                   size = "100%FREE";
                   subvolumes = {
                     "?data?unholynuisance?games" = {
-
                       mountpoint = "/data/unholynuisance/games/secondary";
                     };
                     "?data?unholynuisance?vms" = {
-
                       mountpoint = "/data/unholynuisance/vms/secondary";
                     };
-                    "?var?lib?libvirt" = {
-
-                      mountpoint = "/var/lib/libvirt";
-                    };
                     "?var?lib?minecraft" = {
-
                       mountpoint = "/var/lib/minecraft";
+                    };
+                    "?var?lib?libvirt" = {
+                      mountpoint = "/var/lib/libvirt";
                     };
                   };
                   encrypt = true;
