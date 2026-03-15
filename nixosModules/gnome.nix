@@ -38,10 +38,8 @@ in
     programs.xwayland.enable = true;
 
     systemd.user.services.xwayland-global-shortcut-bridge = {
-      enable = false;
+      enable = true;
       description = "";
-      after = [ "graphical-session.target" ];
-      wantedBy = [ "default.target" ];
       serviceConfig = {
         Type = "simple";
         ExecStart = "${pkgs.nuisance.xwayland-global-shortcut-bridge}/bin/xwayland-global-shortcut-bridge";
