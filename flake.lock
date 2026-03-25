@@ -98,11 +98,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1774474989,
-        "narHash": "sha256-pcQNSmQBVey3uvzirmCNieDcqAxktkyK2cW7NmUWdOw=",
+        "lastModified": 1774475444,
+        "narHash": "sha256-6MXqftAyTHbeIvyu2AYV2sglCbl0GKCY66RU+/2cBPw=",
         "owner": "unholynuisance",
         "repo": ".doom.d",
-        "rev": "960f46c8c056f654fc993f8bbf3636cfb5a2acf2",
+        "rev": "9ab077aa9f04f06888c890f9ceaf6fb085daa96a",
         "type": "github"
       },
       "original": {
