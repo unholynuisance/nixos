@@ -157,9 +157,6 @@
                     "?var?lib?libvirt" = {
                       mountpoint = "/var/lib/libvirt";
                     };
-                    "?var?tmp" = {
-                      mountpoint = "/var/tmp";
-                    };
                   };
                   encrypt = true;
                   unlock = true;

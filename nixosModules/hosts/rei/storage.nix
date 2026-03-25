@@ -99,9 +99,6 @@
                     "?home?unholynuisance" = {
                       mountpoint = "/home/unholynuisance";
                     };
-                    "?var?tmp" = {
-                      mountpoint = "/var/tmp";
-                    };
                     "?data?unholynuisance?games" = {
                       mountpoint = "/data/unholynuisance/games/primary";
                     };
