@@ -44,6 +44,7 @@ in
           pkg = pkgs.nuisance.emacs-with-doom;
           pkg' = pkg.override {
             emacs = cfg.package;
+            profileName = "nuisance";
           };
         in
         pkg';
