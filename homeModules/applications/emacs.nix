@@ -2,7 +2,6 @@
   config,
   lib,
   pkgs,
-  inputs,
   ...
 }:
 let
@@ -13,18 +12,18 @@ in
     enable = lib.mkEnableOption "emacs";
 
     package = lib.mkOption {
-      description = ''
-        Emacs package to use.
-      '';
+      description = "Emacs package to use.";
       type = lib.types.package;
       default = pkgs.emacs;
     };
+
+    finalPackage = lib.mkOption {
+      description = "Final package.";
+      type = lib.types.package;
+      readOnly = true;
+      visible = false;
+    };
   };
-
-  imports = [
-
-    inputs.doom-emacs.hmModule
-  ];
 
   config = lib.mkIf cfg.enable {
     nuisance.modules.hm = {
@@ -39,16 +38,24 @@ in
       };
     };
 
-    programs.doom-emacs = {
-      enable = true;
-      emacs = cfg.package;
-      doomDir = inputs.doom-emacs-config;
-      tangleArgs = ".";
-      extraPackages = epkgs: [ epkgs.treesit-grammars.with-all-grammars ];
+    nuisance.modules.hm.applications.emacs = {
+      finalPackage =
+        let
+          pkg = pkgs.nuisance.emacs-with-doom;
+          pkg' = pkg.override {
+            emacs = cfg.package;
+          };
+        in
+        pkg';
     };
+
+    home.packages = [
+      cfg.finalPackage
+    ];
 
     services.emacs = {
       enable = true;
+      package = cfg.finalPackage;
       socketActivation.enable = true;
       startWithUserSession = "graphical";
 

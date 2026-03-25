@@ -51,13 +51,11 @@
     };
 
     doom-emacs = {
-      url = "github:marienz/nix-doom-emacs-unstraightened";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    doom-emacs-config = {
       url = "github:unholynuisance/.doom.d";
-      flake = false;
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.flake-parts.follows = "flake-parts";
+      inputs.devenv.follows = "devenv";
+      inputs.treefmt-nix.follows = "treefmt-nix";
     };
 
     xwayland-global-shortcut-bridge = {
