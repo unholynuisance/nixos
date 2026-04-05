@@ -78,8 +78,8 @@
         imports = [
           inputs.devenv.flakeModule
           inputs.treefmt-nix.flakeModule
-          ./lib
-          ./overlays
+          ./nix/lib
+          ./nix/overlays
           (
             { lib, self, ... }:
             {
@@ -102,20 +102,20 @@
               config.flake = {
                 nixosModules = rec {
                   default = all;
-                  all = import ./nixosModules;
+                  all = import ./nix/modules/nixos;
 
-                  rei = import ./nixosModules/hosts/rei;
-                  asuka = import ./nixosModules/hosts/asuka;
-                  kaworu = import ./nixosModules/hosts/kaworu;
-                  ryoji = import ./nixosModules/hosts/ryoji;
-                  yui = import ./nixosModules/hosts/yui;
+                  rei = import ./nix/modules/nixos/hosts/rei;
+                  asuka = import ./nix/modules/nixos/hosts/asuka;
+                  kaworu = import ./nix/modules/nixos/hosts/kaworu;
+                  ryoji = import ./nix/modules/nixos/hosts/ryoji;
+                  yui = import ./nix/modules/nixos/hosts/yui;
                 };
 
                 homeModules = rec {
                   default = all;
-                  all = import ./homeModules;
+                  all = import ./nix/modules/home;
 
-                  unholynuisance = import ./homeModules/users/unholynuisance;
+                  unholynuisance = import ./nix/modules/home/users/unholynuisance;
                 };
               };
             }
@@ -137,7 +137,7 @@
             }:
             {
               imports = [
-                ./packages
+                ./nix/packages
               ];
 
               config = with pkgs; {
