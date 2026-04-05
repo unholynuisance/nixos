@@ -80,46 +80,7 @@
           inputs.treefmt-nix.flakeModule
           ./nix/lib
           ./nix/overlays
-          (
-            { lib, self, ... }:
-            {
-              config.perSystem =
-                { system, ... }:
-                {
-                  _module.args.pkgs = import inputs.nixpkgs {
-                    inherit system;
-                    overlays = lib.attrsets.attrValues self.overlays;
-                    config.allowUnfree = true;
-                  };
-                };
-            }
-          )
-          (
-            {
-              ...
-            }:
-            {
-              config.flake = {
-                nixosModules = rec {
-                  default = all;
-                  all = import ./nix/modules/nixos;
-
-                  rei = import ./nix/modules/nixos/hosts/rei;
-                  asuka = import ./nix/modules/nixos/hosts/asuka;
-                  kaworu = import ./nix/modules/nixos/hosts/kaworu;
-                  ryoji = import ./nix/modules/nixos/hosts/ryoji;
-                  yui = import ./nix/modules/nixos/hosts/yui;
-                };
-
-                homeModules = rec {
-                  default = all;
-                  all = import ./nix/modules/home;
-
-                  unholynuisance = import ./nix/modules/home/users/unholynuisance;
-                };
-              };
-            }
-          )
+          ./nix/modules/flake
         ];
 
         config = {
