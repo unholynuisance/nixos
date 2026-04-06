@@ -77,9 +77,6 @@
       {
         imports = [
           ./nix/modules/flake
-          ./nix/lib
-          ./nix/overlays
-          ./nix/packages
         ];
 
         config = {

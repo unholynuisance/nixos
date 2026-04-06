@@ -6,6 +6,7 @@
 }:
 {
   imports = [
+    ./outputs.nix
     ./modules.nix
     ./shells.nix
   ];

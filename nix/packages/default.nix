@@ -1,21 +1,12 @@
 {
-  config.perSystem =
-    {
-      lib,
-      pkgs,
-      inputs',
-      ...
-    }:
-    {
-      packages =
-        with inputs'.xwayland-global-shortcut-bridge.packages;
-        with inputs'.doom-emacs.packages;
-        lib.attrsets.mergeAttrsList [
-          { inherit xwayland-global-shortcut-bridge; }
-          { inherit emacs-with-doom; }
+  lib,
+  pkgs,
+  inputs',
+}:
+lib.attrsets.mergeAttrsList [
+  { inherit (inputs'.xwayland-global-shortcut-bridge.packages) xwayland-global-shortcut-bridge; }
+  { inherit (inputs'.doom-emacs.packages) emacs-with-doom; }
 
-          (import ./gtnh { inherit pkgs; })
-          (import ./proton { inherit pkgs; })
-        ];
-    };
-}
+  (import ./gtnh { inherit pkgs; })
+  (import ./proton { inherit pkgs; })
+]
