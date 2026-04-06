@@ -7,6 +7,7 @@
 {
   imports = [
     ./modules.nix
+    ./shells.nix
   ];
 
   config.perSystem =

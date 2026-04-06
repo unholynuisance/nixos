@@ -76,11 +76,10 @@
       }:
       {
         imports = [
-          inputs.devenv.flakeModule
-          inputs.treefmt-nix.flakeModule
+          ./nix/modules/flake
           ./nix/lib
           ./nix/overlays
-          ./nix/modules/flake
+          ./nix/packages
         ];
 
         config = {
@@ -88,38 +87,6 @@
             "x86_64-linux"
             "aarch64-linux"
           ];
-
-          perSystem =
-            {
-              config,
-              lib,
-              pkgs,
-              ...
-            }:
-            {
-              imports = [
-                ./nix/packages
-              ];
-
-              config = with pkgs; {
-                devenv.shells.default = {
-                  packages = [ config.treefmt.build.wrapper ] ++ lib.attrValues config.treefmt.build.programs;
-
-                  languages = {
-                    nix = {
-                      enable = true;
-                      lsp.package = nixd;
-                    };
-                  };
-
-                  containers = lib.mkForce { };
-                };
-
-                treefmt.programs = {
-                  nixfmt.enable = true;
-                };
-              };
-            };
 
           flake =
             let
