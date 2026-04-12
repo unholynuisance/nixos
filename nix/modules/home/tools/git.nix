@@ -22,6 +22,7 @@ in
           name = config.home.username;
           email = primaryEmail.address;
         };
+        signing.format = null;
       };
   };
 }
