@@ -8,7 +8,7 @@
   imports = [
     ./outputs.nix
     ./modules.nix
-    ./shells.nix
+    ./devenv.nix
   ];
 
   config.perSystem =
