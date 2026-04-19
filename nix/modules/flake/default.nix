@@ -9,6 +9,7 @@
     ./outputs.nix
     ./modules.nix
     ./devenv.nix
+    ./configurations.nix
   ];
 
   config.perSystem =
@@ -20,4 +21,11 @@
         config.allowUnfree = true;
       };
     };
+
+  config = {
+    systems = [
+      "x86_64-linux"
+      "aarch64-linux"
+    ];
+  };
 }
